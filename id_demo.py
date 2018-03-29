@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 x = ('hoge', 5)
 y = ('hoge', 5)
 

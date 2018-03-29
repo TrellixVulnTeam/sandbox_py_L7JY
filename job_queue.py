@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 # Circular Queue demo
 
 from collections import deque

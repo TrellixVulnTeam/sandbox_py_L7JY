@@ -35,6 +35,8 @@ class Truck(Car):
 c = Car()
 convert = Car()
 t = Truck()
+print(c.__class__)
+print(c.__class__.__name__)
 print(type(c))
 print(type(t))
 print(type(c) == type(t))
@@ -48,3 +50,4 @@ print(issubclass(Truck, Car))
 
 print()
 print(issubclass(bool, int))  # True
+print(isinstance(True, int))  # True

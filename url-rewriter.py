@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 # This example is about re-writing URLs. It assumes we are moving a series
 # of web sites from the domain oldplace.com to the domain newplace.org and
 # need to update a document containing a list of URLs.

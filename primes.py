@@ -1,8 +1,3 @@
-#!/usr/bin/python3
-
-# Program to find prime numbers.
-# Intended for demonstrating signals
-
 from time import sleep
 
 # Test for prime number

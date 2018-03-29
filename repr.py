@@ -1,7 +1,7 @@
-#!/usr/bin/env python3
+# repr
 
 
-class bunny:
+class Bunny:
     def __init__(self, n):
         self._n = n
 
@@ -13,7 +13,7 @@ class bunny:
 
 
 def main():
-    s = bunny(47)
+    s = Bunny(47)
     print(s)
     print(repr(s))
     print(ascii(s))

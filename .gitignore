@@ -1,6 +1,9 @@
-/tmp
+/tmp/*
 /out
 /.vscode
 /.idea
 __pycache__
+*.pyc
 .mypy_cache
+
+!.gitkeep

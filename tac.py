@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 # tac -- echo each line of input files backwards
 
 import sys
@@ -43,4 +41,4 @@ else:
             print("%s" % e, file=sys.stderr)
             continue
         process_file(file)
-        close(file)
+        file.close()

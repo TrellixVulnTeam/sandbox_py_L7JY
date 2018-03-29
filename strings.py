@@ -64,6 +64,7 @@ print()
 # slice (substr)
 spam = 'Hello world!'
 print(spam)
+print(spam[:])
 print(spam[0])
 print(spam[4])
 print(spam[-1])  # 最後の文字

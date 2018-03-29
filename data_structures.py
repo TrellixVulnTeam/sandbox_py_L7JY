@@ -1,5 +1,5 @@
 """
-hoge
+built-in collections(containers)
 """
 
 # List
@@ -35,14 +35,33 @@ l1 = [(7, 2), (3, 4), (5, 5), (10, 3)]
 l2 = sorted(l1, key=lambda x: x[1])
 print(l2)  # [(7, 2), (10, 3), (3, 4), (5, 5)]
 
+print()
+l = [1, 2, 3]
+l.extend("abc")  # => l += ['a', 'b', 'c']
+print(l)
+l.insert(3, 'x')
+print(l)
 
-# tuple : immutable
+print()
+ages = [0, 11, 43] + [12, 10]
+print(len(ages))
+for i in range(0, len(ages)):
+    print(ages[i])
+
+ages.remove(43)  # indexではなく、value指定
+print(len(ages))
+print(ages)
+
+print()
+
+# Tuple : immutable
 subjects = ('Python', 'Coding', 'Tips')
 subjects2 = ('Python', 'Coding', 'Tips')
 print(subjects == subjects2)  # => True
 print(id(subjects) == id(subjects2))  # => False : stringとは違う点
 print(subjects is subjects2)  # => False
 
+print()
 
 # List & Set
 a = ['fugafuga']
@@ -63,6 +82,7 @@ print(x ^ y)
 print(x & y)
 print(x | y)
 
+print()
 
 # Dictionary
 student = {
@@ -93,7 +113,7 @@ print(student)
 
 print()
 
-# slice
+#
 x = {'hoge': ('a', 'x', 100)}
 a = [5, x, 6]
 b = a[:]  # shallow copy

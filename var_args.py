@@ -6,7 +6,7 @@ def var_args(name, *args):
 var_args("hoge", None, 5, 3.0, "fefe", True)
 
 
-# Key Word args
+# Keyword args
 def var_args2(name, **kwargs):
     print(name)
     print(kwargs["desc"])

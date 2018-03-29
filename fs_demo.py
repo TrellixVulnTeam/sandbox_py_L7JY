@@ -3,7 +3,6 @@
 #
 import os
 import shutil
-import sys
 import time
 from datetime import datetime
 from os import path
@@ -12,24 +11,12 @@ TEXT_FILE = "tmp/textfile.txt"
 NEW_FILE = "tmp/newfile.txt"
 
 
-def main():
+def file_spec():
     if not path.exists(TEXT_FILE):
         f = open(TEXT_FILE, "w+")
         for i in range(10):
             f.write("This is line %d\n" % (i + 1))
         f.close()
-
-    v = sys.version_info
-    print('Python version {}.{}.{}'.format(*v))
-
-    print(sys.platform)
-
-    # Print the name of the OS
-    print(os.name)
-
-    print(os.getcwd())
-    print(os.getenv('PATH'))
-    print(os.listdir("tmp"))
 
     # Check for item existence and type
     print("Item exists: " + str(path.exists(TEXT_FILE)))
@@ -111,6 +98,6 @@ def walk_demo():
 
 
 if __name__ == "__main__":
-    main()
+    file_spec()
     fs_demo()
     walk_demo()

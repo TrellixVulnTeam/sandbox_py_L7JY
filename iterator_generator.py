@@ -1,6 +1,7 @@
-#!/usr/bin/env python3
+# iterator and generator
 
-class inclusive_range:
+
+class InclusiveRange:
     def __init__(self, *args):
         numargs = len(args)
         self._start = 0
@@ -33,7 +34,7 @@ class inclusive_range:
             return _r
 
 
-class inclusive_range2:
+class InclusiveRange2:
     def __init__(self, *args):
         numargs = len(args)
         self._start = 0
@@ -71,8 +72,8 @@ def print_list(iter_obj):
 
 
 def main():
-    print_list(inclusive_range)
-    print_list(inclusive_range2)
+    print_list(InclusiveRange)
+    print_list(InclusiveRange2)
 
 
 if __name__ == '__main__':
