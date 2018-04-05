@@ -1,4 +1,4 @@
-# strings
+# string
 
 # quotes
 print("'hoge\nfuga'")
@@ -68,7 +68,7 @@ print(spam[:])
 print(spam[0])
 print(spam[4])
 print(spam[-1])  # 最後の文字
-print(spam[-1:])  # 同上
+print(spam[-1:])  # 同上（listの場合とは違う）
 print(spam[:-1])  # 最後の文字を除く
 print(spam[0:5])  # 0 ~ 4番目の文字
 print(spam[:5])  # 同上

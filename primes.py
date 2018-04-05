@@ -1,24 +1,23 @@
-from time import sleep
-
 # Test for prime number
 
 
-def isprime(n):
-    sleep(0.1)      # 100 msec sleep
+def is_prime(n):
     x = 2
-    while (x * x) <= n:
-        if not n % x:
+    while x * x <= n:
+        if n % x == 0:
             return False
         x += 1
     return True
 
 
-n = 1
-primes_list = []
+def is_prime2(n):
+    x = 2
+    while x <= n / 2:
+        if n % x == 0:
+            return False
+        x += 1
+    return True
 
-# Build a big list of primes
-while True:
-    if isprime(n):
-        print("%d is prime" % n)
-        primes_list.append(n)
-    n += 1
+
+print([x for x in range(1, 100) if is_prime(x)])
+print([x for x in range(1, 100) if is_prime2(x)])
