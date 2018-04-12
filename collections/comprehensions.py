@@ -28,11 +28,10 @@ print({x for x in 'superduper' if x not in 'pd'})
 print('---')
 rows = range(4)
 cols = range(10)
-print([(y, x) for y in rows for x in cols])
+print([(col, row) for row in rows for col in cols])
 
 print('---')
 print({number: letter for letter, number
        in zip('abcdefghijklmnopqrstuvwxyz', range(1, 27))})
 
-print('---')
 print('---')

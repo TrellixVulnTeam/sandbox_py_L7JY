@@ -1,0 +1,48 @@
+# Dictionary
+
+print(dict([["name", "hoge"]]))
+print(dict((("name", "hoge"),)))
+print({
+    "b": {"first_name": "hoge", "last_name": "fuga"},
+    "c": "3",
+    "a": "1",
+})
+
+print()
+
+student = {
+    "name": "Mark",
+    "student_id": 15163,
+    "feedback": None
+}
+
+print(student["name"])
+# student["last_name"]  # KeyError
+print(student.get("last_name", "Unknown"))
+print(student.keys())  # dict_keys : like set
+print(student.values())  # dict_values : like list
+print(student.items())  # dict_items : like set of tuples
+for k, v in student.items():
+    print("{}: {}".format(k, v))
+
+print()
+
+# manipulation
+student["name"] = "James"
+print(student)
+print("name" in student.keys())
+print("name" in student)
+print(None in student.values())
+
+student.update({"name": "Hoge", "last_name": "Fuga"})  # "upsert"
+print(student)
+
+del student["name"]
+print(student)
+
+student.setdefault("class", "A")
+print(student)
+student.setdefault("class", "B")
+print(student)
+
+print()
