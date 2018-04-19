@@ -1,4 +1,4 @@
-from dice import D6
+from .dice import D6
 
 
 class Hand(list):

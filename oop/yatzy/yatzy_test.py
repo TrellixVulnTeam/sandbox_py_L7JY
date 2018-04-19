@@ -1,6 +1,6 @@
-from hands import YatzyHand
-from dice import D6
-from scoresheets import YatzyScoreSheet
+from .hands import YatzyHand
+from .dice import D6
+from .scoresheets import YatzyScoreSheet
 
 
 def main():

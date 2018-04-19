@@ -22,8 +22,17 @@ print(student.get("last_name", "Unknown"))
 print(student.keys())  # dict_keys : like set
 print(student.values())  # dict_values : like list
 print(student.items())  # dict_items : like set of tuples
-for k, v in student.items():
-    print("{}: {}".format(k, v))
+
+for key in student:  # ↓
+    print("key:", key)
+for key in student.keys():
+    print("key:", key)
+
+for value in student.values():
+    print("value:", value)
+
+for key, value in student.items():  # tuple unpacking
+    print("{}: {}".format(key, value))
 
 print()
 

@@ -18,6 +18,7 @@ import random
 #          (0, 3), (1, 3), (2, 3), (3, 3), (4, 3),
 #          (0, 4), (1, 4), (2, 4), (3, 4), (4, 4), ]
 CELLS = [(col, row) for row in range(5) for col in range(5)]
+# print(CELLS)
 
 
 def clear_screen():
