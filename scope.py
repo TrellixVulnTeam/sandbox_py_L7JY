@@ -1,4 +1,23 @@
-# Global vs. local variables in functions
+# Scope demo
+
+
+class T:
+    l = ["hoge"]
+
+
+a = T()
+b = T()
+c = T()
+print(id(a.l) == id(b.l))
+print(id(a.l) == id(c.l))
+c.l = ["c"]
+print(id(a.l) == id(b.l))
+print(id(a.l) == id(c.l))
+
+print()
+
+
+# global vs. local variables in functions
 x = "global: x"
 y = "global: y"
 

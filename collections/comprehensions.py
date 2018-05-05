@@ -36,6 +36,9 @@ print({number: letter for letter, number
        in zip('abcdefghijklmnopqrstuvwxyz', range(1, 27))})
 
 print('---')
+print(', '.join(str(x) for x in [4, 3, 6]))
+
+print('---')
 total_nums = range(1, 101)
 fizzbuzzes = {
     'fizz': [n for n in total_nums if n % 3 == 0],
@@ -52,5 +55,6 @@ fizzbuzzes2 = {key: set(value) for key, value in fizzbuzzes.items()}
 print(fizzbuzzes2)
 
 # fizzbuzzes2['fizzbuzz'] = {n for n in fizzbuzzes2['fizz'].intersection(fizzbuzzes2['buzz'])}
-fizzbuzzes2['fizzbuzz'] = {n for n in fizzbuzzes2['fizz'] & fizzbuzzes2['buzz']}
+fizzbuzzes2['fizzbuzz'] = {
+    n for n in fizzbuzzes2['fizz'] & fizzbuzzes2['buzz']}
 print(fizzbuzzes2['fizzbuzz'])

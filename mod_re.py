@@ -16,6 +16,9 @@ mo = nameRegex.search('33 fefe 555 awaaa 222 12 piyo')
 print(mo)
 print(mo.groups())
 print(mo.groupdict())
+print(nameRegex.findall('33 fefe 555 awaaa 222 12 piyo'))
+for match in nameRegex.finditer('33 fefe 555 awaaa 222 12 piyo'):
+    print("{first}, {second}".format(**match.groupdict()))
 
 print()
 
@@ -32,29 +35,23 @@ print(mo.group(1))
 
 print()
 
-no_match = re.compile(r"hoge")
-mo = no_match.search("fuga")
-print(mo)
-
-print()
-
 # difference between match() and search()
 print(re.match(r'Hello', 'Hello World!'))
-print(re.search(r'Hello', 'Hello World!'))
-print(re.match(r'World', 'Hello World!'))
+print(re.match(r'World', 'Hello World!'))  # None
 print(re.search(r'World', 'Hello World!'))
 
 print()
 
 # sub()
-namesRegex = re.compile(r'Agent (\w+)')
-print(namesRegex.sub(r'\1CENSORED', 'Agent Alice gave the secret documents to Agent Bob.'))
+print(re.sub(r'Agent (\w+)', r'\1CENSORED',
+             'Agent Alice gave the secret documents to Agent Bob.'))
 
 print()
 
 # split()
-middle = re.compile('[A-Z]\.')
-print(middle.split('Hoge X. Fefe'))
+print(re.split(r'[A-Z]\.', 'Hoge X. Fefe'))
+print(re.split(r'\s*,\s*', 'hoge,  fuga ,   fefe'))
+
 
 # flags
 # re.I, re.IGNORECASE

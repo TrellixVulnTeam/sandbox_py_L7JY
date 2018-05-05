@@ -17,7 +17,7 @@ class Thief(Character):
     def __init__(self, name, sneaky=True, **kwargs):
         super().__init__(name, **kwargs)
         self.sneaky = sneaky
-        # super().__init__(name, **kwargs)  # Javaと違ってOKだが、同名変数がある場合は上書きしてしまうので注意
+        # super().__init__(name, **kwargs)  # Javaと違って後置OKだが、同名変数がある場合は上書きしてしまうので注意
 
     def pickpocket(self):
         # print("Called by {}".format(self))

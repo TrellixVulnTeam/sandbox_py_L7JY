@@ -1,4 +1,4 @@
-from datetime import date, datetime, timedelta
+from datetime import date, datetime, timedelta, time, timezone
 
 # datetime
 now = datetime.now()
@@ -31,6 +31,12 @@ print(now.strftime("%X"))
 
 print()
 
+# strptime
+dt = datetime.strptime('2018-2-9', '%Y-%m-%d')
+print(dt)
+
+print()
+
 # date
 # Get today's date from the simple today() method from the date class
 today = date.today()
@@ -52,6 +58,11 @@ future = now + timediff  # operator overload : datetime = datetime + timedelta
 print(future)
 timediff2 = future - now  # operator overload : timedelta = datetime - datetime
 print(timediff2)
+
+print()
+
+# combine
+print(datetime.combine(date.today(), time()))
 
 print()
 
@@ -86,10 +97,27 @@ afd = date(today.year, 4, 1)  # get April Fool's for the same year
 # use date comparison to see if April Fool's has already gone for this year
 # if it has, use the replace() function to get the date for next year
 if afd < today:
-    print("April Fool's day already went by %d days ago" %
-          ((today - afd).days))
+    print("April Fool's day already went by %d days ago" % (today - afd).days)
     afd = afd.replace(year=today.year + 1)  # if so, get the date for next year
 
 # Now calculate the amount of time until April Fool's Day
 time_to_afd = abs(afd - today)
 print(time_to_afd.days, "days until next April Fools' Day!")
+
+print()
+
+
+def example(mmdd):
+    try:
+        date = datetime.strptime(mmdd, '%m/%d')
+        output = date.strftime('%b_%d')
+        print(output)
+    except ValueError:
+        print("That's not a valid date. Please try again.")
+
+
+example("4/31")
+example("2/29")
+example("12/12")
+
+print()
