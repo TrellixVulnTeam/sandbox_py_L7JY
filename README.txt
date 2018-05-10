@@ -1,0 +1,4 @@
+# requirements
+pytz
+coverage
+peewee

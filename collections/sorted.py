@@ -18,10 +18,7 @@ print(sorted(leaderBoard, reverse=True))
 print(leaderBoard.get(432))
 
 # tuple
-students = [('alice', 'B', 12), ('eliza', 'A', 16), ('tae', 'C', 15)]
+students = [('alice', 'B', 12), ('tae', 'C', 15), ('eliza', 'A', 16)]
 print(sorted(students, key=lambda student: student[0]))
 print(sorted(students, key=lambda student: student[1]))
 print(sorted(students, key=lambda student: student[2]))
-
-# object
-# TODO:

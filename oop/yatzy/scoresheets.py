@@ -11,4 +11,3 @@ class YatzyScoreSheet:
 
     def score_one_pair(self, hand):
         return self._score_set(hand, 2)
-

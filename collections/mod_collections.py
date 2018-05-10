@@ -127,6 +127,12 @@ def deque_demo():
     print(deck2)
 
 
+def most_common_demo():
+    lst = [1, 2, 1, 3, 6, 3, 3]
+    result = Counter(lst).most_common()
+    print(result)
+
+
 if __name__ == '__main__':
     counter_demo()
     print()
@@ -137,3 +143,5 @@ if __name__ == '__main__':
     namedtuple_demo()
     print()
     deque_demo()
+    print()
+    most_common_demo()

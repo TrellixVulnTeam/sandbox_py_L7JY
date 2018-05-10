@@ -1,51 +1,45 @@
 class BaseClass:
-    num_base_calls = 0
+    call_list = []
 
     def __init__(self):
         print("BaseClass")
 
     def call_me(self):
         print("Calling method on Base Class")
-        self.num_base_calls += 1
+        self.call_list.append("BaseClass")
 
 
 class LeftSubclass(BaseClass):
-    num_left_calls = 0
-
-    # def __init__(self):
-    #     print("LeftSubclass")
+    def __init__(self):
+        print("LeftSubclass")
 
     def call_me(self):
-        BaseClass.call_me(self)
         print("Calling method on Left Subclass")
-        self.num_left_calls += 1
+        super().call_me()
+        self.call_list.append("LeftSubclass")
 
 
 class RightSubclass(BaseClass):
-    num_right_calls = 0
-
     def __init__(self):
         print("RigthSubclass")
 
     def call_me(self):
-        BaseClass.call_me(self)
         print("Calling method on Right Subclass")
-        self.num_right_calls += 1
+        super().call_me()
+        self.call_list.append("RightSubclass")
 
 
 class Subclass(LeftSubclass, RightSubclass):
-    num_sub_calls = 0
-
     # def __init__(self):
     #     print("Subclass")
 
     def call_me(self):
-        LeftSubclass.call_me(self)
-        RightSubclass.call_me(self)
         print("Calling method on Subclass")
-        self.num_sub_calls += 1
+        super().call_me()
+        self.call_list.append("Subclass")
 
 
 s = Subclass()
 s.call_me()
-print(s.num_sub_calls, s.num_left_calls, s.num_right_calls, s.num_base_calls)
+print(s.call_list)
+print(Subclass.mro())

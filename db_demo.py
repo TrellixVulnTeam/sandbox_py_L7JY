@@ -6,10 +6,7 @@ from collections import namedtuple
 
 
 def my_func(number):
-    if number > 3:
-        return 'big'
-    else:
-        return 'little'
+    return 'big' if number > 3 else 'little'
 
 
 TestRow = namedtuple('TestRow', field_names=['id', 'string', 'number'])
@@ -20,12 +17,12 @@ def test_factory(cursor, row):
 
 
 def main():
-    print('connect')
+    print('--- connect ---')
     # db = sqlite3.connect('tmp/db_demo.db')
     db = sqlite3.connect(':memory:')
     cur = db.cursor()
 
-    print('create')
+    print('--- create ---')
     cur.execute("DROP TABLE IF EXISTS test")
     cur.execute("""
         CREATE TABLE test (
@@ -33,51 +30,51 @@ def main():
         )
         """)
 
-    print('insert row')
+    print('--- insert row ---')
     cur.execute("""
         INSERT INTO test (string, number) VALUES ('one', 1)
         """)
-    print('insert row')
+    print('--- insert row ---')
     cur.execute("""
         INSERT INTO test (string, number) VALUES ('two', 2)
         """)
-    print('insert row')
+    print('--- insert row ---')
     cur.execute("""
         INSERT INTO test (string, number) VALUES ('three', 3)
         """)
-    print('commit')
+    print('--- commit ---')
     db.commit()
 
-    print('insert rows')
+    print('--- insert rows ---')
     cur.executemany("""
         INSERT INTO test (string, number) VALUES (?, ?)
         """, [('four', 4), ('five', 5), ('six', 6)])
-    print('commit')
+    print('--- commit ---')
     db.commit()
 
-    print('count')
+    print('--- count ---')
     cur.execute("SELECT COUNT(*) FROM test")
     count = cur.fetchone()[0]
     print(f'there are {count} rows in the table.')
 
-    print('read')
+    print('--- read ---')
     for row in cur.execute("SELECT * FROM test"):
         print(row)
 
-    print('function')
+    print('--- python function ---')
     db.create_function('my_func', 1, my_func)
     for row in cur.execute("SELECT *, my_func(number) FROM test"):
         print(row)
 
-    print('row factory')
+    print('--- row factory ---')
     db.row_factory = test_factory
     cur = db.cursor()  # row factoryの読み直し
     for row in cur.execute("SELECT * FROM test"):
         print(row)  # namedtuple
 
-    print('drop')
+    print('--- drop ---')
     cur.execute("DROP TABLE test")
-    print('close')
+    print('--- close ---')
     db.close()
 
 

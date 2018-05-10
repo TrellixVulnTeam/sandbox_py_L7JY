@@ -2,20 +2,19 @@
 
 
 class T:
-    l = ["hoge"]
+    lst = ["hoge"]
 
 
 a = T()
 b = T()
 c = T()
-print(id(a.l) == id(b.l))
-print(id(a.l) == id(c.l))
-c.l = ["c"]
-print(id(a.l) == id(b.l))
-print(id(a.l) == id(c.l))
+print(id(a.lst) == id(b.lst))
+print(id(a.lst) == id(c.lst))
+c.lst = ["c"]
+print(id(a.lst) == id(b.lst))
+print(id(a.lst) == id(c.lst))
 
 print()
-
 
 # global vs. local variables in functions
 x = "global: x"
@@ -25,6 +24,7 @@ y = "global: y"
 def someFunction():
     # print(x)  # error
     x = "local: x"
+    # print(y)  # error
     global y
     y = "local: y"
 
@@ -35,31 +35,26 @@ print(y)
 
 print()
 
-
-# 未定義
-def getfunc3():
-    def func(): return s
-    return func
-
-
-f = getfunc3()
-s = "value@call"
-print(f())
+s = "s@global"
 
 
 # Closure or Lambda
 def getfunc2():
     # func = lambda: s  # PEP8 violation
     def func(): return s
-    s = "value@def"  # 位置に注目
+
+    s = "s@getfunc2()"  # 位置に注目
     return func
 
 
-f = getfunc2()
-s = "value@call"
-print(f())
+print(getfunc2()())
 
 
-# 削除
-del f
-print(f)  # error
+# global
+def getfunc3():
+    def func(): return s
+
+    return func
+
+
+print(getfunc3()())
