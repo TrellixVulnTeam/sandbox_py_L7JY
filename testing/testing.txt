@@ -1,0 +1,7 @@
+
+```
+coverage report -m
+coverage html
+python -m http.server
+# htmlcov
+```

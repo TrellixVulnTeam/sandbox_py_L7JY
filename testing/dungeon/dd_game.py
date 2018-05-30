@@ -5,6 +5,9 @@ The grue is hiding somewhere inside!
 Created: 2014
 Last Updated: 2015
 Author: Hoge Hoge
+
+doctest demo
+python -m doctest dd_game.py
 """
 
 import os

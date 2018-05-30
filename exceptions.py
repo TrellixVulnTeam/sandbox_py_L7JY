@@ -1,3 +1,5 @@
+import random
+
 student = {
     "name": "Mark",
     "student_id": 15163,
@@ -19,7 +21,6 @@ except Exception:
 
 print("This code executes!")
 
-
 print('---')
 
 
@@ -28,6 +29,13 @@ class MyException(Exception):
 
 
 try:
-    raise MyException('Hoge!')
+    if random.randint(0, 1):
+        raise MyException('Hoge!')
 except MyException as e:
-    print(e)
+    print('exception: ' + str(e))
+else:
+    # no exception
+    print('else')
+finally:
+    # both
+    print('finally')

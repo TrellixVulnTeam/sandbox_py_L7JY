@@ -49,8 +49,8 @@ outfile.close()  # important
 infile.close()
 
 # copy binary file
-infile = open('./data/berlin.jpg', 'rb')
-outfile = open('./tmp/berlin-copy.jpg', 'wb')
+infile = open('./data/bonsai.jpg', 'rb')
+outfile = open('./tmp/bonsai-copy.jpg', 'wb')
 while True:
     buf = infile.read(16384)  # 16kb
     if buf:

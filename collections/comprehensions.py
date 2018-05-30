@@ -1,4 +1,6 @@
 # 内包表記
+import functools
+import random
 
 nums = range(3, 21)
 halves = []
@@ -58,3 +60,69 @@ print(fizzbuzzes2)
 fizzbuzzes2['fizzbuzz'] = {
     n for n in fizzbuzzes2['fizz'] & fizzbuzzes2['buzz']}
 print(fizzbuzzes2['fizzbuzz'])
+
+print('--- list ---')
+letters = [chr(code) for code in range(ord('a'), ord('z'))]
+print(letters)
+random_letters = [random.choice(letters) for _ in range(100)]
+print(random_letters)
+
+print('---')
+
+cart = [
+    ['Coffee', 7.99, 2],
+    ['Bread', 2.99, 1],
+    ['Apple', 0.99, 2],
+    ['Milk', 4.99, 1],
+    ['Cola', 1.99, 4],
+]
+sales_tax = 0.07
+
+cart_item_totals = [item_name + ' ' + str(item_price * item_qty)
+                    for (item_name, item_price, item_qty) in cart]
+print(cart_item_totals)
+
+# 2,3列目を掛けて合計
+cart_subtotal = functools.reduce(lambda x, y: x + y[0] * y[1], [item[1:] for item in cart], 0)
+print(cart_subtotal)
+
+item_prices_plus_tax = [round(price * (1 + sales_tax), 2)
+                        for price in [item[1] for item in cart]]
+print(item_prices_plus_tax)
+
+print('--- prediicate ---')
+cart_items_one_count = [item for item in cart if item[2] == 1]
+print(cart_items_one_count)
+cart_items_one_count_2 = ['{}: {} * {}'.format(name, price, qty) for (name, price, qty) in cart if
+                          qty == 1]
+print(cart_items_one_count_2)
+
+print('--- generator ---')
+# cart_item_count = sum(item[2] for item in cart)
+cart_item_count = sum(qty for (name, price, qty) in cart)
+print(cart_item_count)
+
+max_item_count = max(item[2] for item in cart)
+print(max_item_count)
+
+max_item_price = max(price for name, price, qty in cart)
+print(max_item_price)
+
+max_item = max((item for item in cart), key=lambda i: i[1])
+print(max_item)
+
+print('---')
+food = {
+    'coffee': 'beverage',
+    'pizza': 'entree',
+    'cookie': 'dessert',
+    'tea': 'beverage',
+}
+
+print('--- dict ---')
+beverages = {food: category.upper() for food, category in food.items() if category == 'beverage'}
+print(beverages)
+
+print('--- set ---')
+categories = {category for category in food.values()}
+print(categories)
