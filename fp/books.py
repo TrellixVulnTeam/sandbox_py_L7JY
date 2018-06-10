@@ -2,6 +2,7 @@ import json
 
 FILE_NAME = '../data/books.json'
 
+
 class Book:
     def __init__(self, **kwargs):
         for k, v in kwargs.items():
