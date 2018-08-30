@@ -22,11 +22,12 @@ debug = False
 
 
 def sighup_handler(signum, frame):
-    global debug    # Otherwise would be assumed local
+    global debug  # Otherwise would be assumed local
     debug = not debug
 
 
 signal(SIGHUP, sighup_handler)
+
 
 # SIGUSR1 reports current status
 

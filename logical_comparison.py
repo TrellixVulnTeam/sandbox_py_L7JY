@@ -4,7 +4,6 @@
 isRaining = False
 isSunny = True
 
-
 # Logical Operators -> Special Operators for Booleans
 
 # AND
@@ -29,7 +28,6 @@ if isRaining or isSunny:
 # false --> true
 if not isRaining:
     print("It must be raining")
-
 
 # Python Comparison Operators
 
@@ -56,7 +54,6 @@ mouse = 1
 if mouse < kitten and mouse < tiger:
     print("The mouse weighs the least")
 
-
 # False --> 0
 # True --> 1
 # > --> is greater than
@@ -69,7 +66,7 @@ print("Jennifer" > "Jenny")
 
 # A - Z --> 1 - 26
 # <= --> is less than or equal to
-print('a' <= 'b')
+print('A' < 'a')
 
 # ternary
 a = 1
@@ -85,11 +82,11 @@ print(nl1 is nl2)  # => False
 
 v = None
 w = 0
-if v == None:
+if v == None:  # bad
     print("None")
 if v is None:
     print("None")
-if w != None:
+if w != None:  # bad
     print("Not None")
 if w is not None:
     print("Not None")

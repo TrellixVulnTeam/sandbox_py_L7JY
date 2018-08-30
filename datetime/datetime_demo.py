@@ -1,22 +1,72 @@
 from datetime import date, datetime, timedelta, time, timezone
 
+# date
+# year=1-9999, month=1-12, day=1-31
+print(date.min)
+print(date.max)
+print(date.resolution)
+
+print(date(2018, 1, 1))
+print(date(year=2018, month=1, day=1))
+# print(date(2017, 2, 29))  # NG
+
+today = date.today()
+print(today)
+print(today.weekday())  # 0:Mon - 6:Sun
+print(today.isoweekday())  # 1:Mon - 7:Sun
+
+print(date.fromtimestamp(1_000_000_000))
+print(date.fromordinal(1))
+print(date.fromordinal(730000))
+
+print()
+
+# time
+print(time.min)
+print(time.max)
+print(time.resolution)
+
+print(time())  # time class has no other factory methods
+
+t = time(hour=1, minute=23, second=45, microsecond=6789)
+print(t)
+print(t.isoformat())
+
+print()
+
 # datetime
+print(datetime(2018, 1, 1, 2, 3, 4, 56789))
+print(datetime.utcnow())
+print(datetime.fromtimestamp(1_000_000_000))
+print(datetime.utcfromtimestamp(1_000_000_000))
+print(datetime.fromordinal(1))
+print(datetime.fromordinal(730000))
+print(datetime.combine(date.today(), time()))
+print(datetime.strptime('2018-2-9', '%Y-%m-%d'))
+
 now = datetime.now()
 
 print(now)
+print(now.isoformat())
 print(now.date())
 print(now.time())
 print(now.year)
 print(now.month)
+print(now.day)
 print(now.hour)
 print(now.minute)
 print(now.second)
+print(now.microsecond)
+
+print(datetime.min)
+print(datetime.max)
+print(datetime.resolution)
 
 print()
 
 # strftime
 # %y/%Y - Year, %a/%A - weekday, %b/%B - month, %d - day of month
-print(now.strftime("%a %A %d"))  # day
+print(now.strftime("%a %A %d %d"))  # day
 print(now.strftime("%b %B %m"))  # month
 print(now.strftime("%y %Y"))  # year
 
@@ -29,69 +79,25 @@ print(now.strftime("%c"))
 print(now.strftime("%x"))
 print(now.strftime("%X"))
 
-print()
-
-# strptime
-dt = datetime.strptime('2018-2-9', '%Y-%m-%d')
-print(dt)
-
-print()
-
-# date
-# Get today's date from the simple today() method from the date class
-today = date.today()
-print("Today's date is", today)
-
-# print out the date's individual components
-print("Date Components:", today.day, today.month, today.year)
-
-# retrieve today's weekday (0=Monday, 6=Sunday)
-print("Today's Weekday #:", today.weekday())
+print("{:%A %d %B %Y}".format(now))
 
 print()
 
 # timedelta
-# construct a basic timedelta and print it
+# for datetime and date not time object
 timediff = timedelta(days=365, hours=5, minutes=1)
 print(timediff)
-future = now + timediff  # operator overload : datetime = datetime + timedelta
-print(future)
-timediff2 = future - now  # operator overload : timedelta = datetime - datetime
-print(timediff2)
-
-print()
-
-# combine
-print(datetime.combine(date.today(), time()))
-
-print()
-
-# timestamp
-print("datetieme.now().timestamp():", now.timestamp())
-print("datetime.fromtimestamp():", datetime.fromtimestamp(now.timestamp()))
-
-print()
-
-# print today's date
-print("today is: " + str(datetime.now()))
-
-# print today's date one year from now
-print("one year from now it will be: " +
-      str(datetime.now() + timedelta(days=365)))
-
-# create a timedelta that uses more than one argument
-print("in two weeks and 3 days it will be: " +
-      str(datetime.now() + timedelta(weeks=2, days=3)))
-
-# calculate the date 1 week ago, formatted as a string
-t = datetime.now() - timedelta(weeks=1)
-s = t.strftime("%A %B %d, %Y")
-print("one week ago it was " + s)
+print(repr(timediff))
+future = now + timediff  # datetime = datetime + timedelta
+print(repr(future))
+timediff2 = future - now  # timedelta = datetime - datetime
+print(repr(timediff2))
+future2 = today + timedelta(hours=11) * 5  # date = date + timedelta
+print(repr(future2))
 
 print()
 
 # How many days until April Fools' Day?
-
 today = date.today()  # get today's date
 afd = date(today.year, 4, 1)  # get April Fool's for the same year
 # use date comparison to see if April Fool's has already gone for this year
@@ -119,5 +125,3 @@ def example(mmdd):
 example("4/31")
 example("2/29")
 example("12/12")
-
-print()

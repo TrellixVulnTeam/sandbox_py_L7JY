@@ -2,8 +2,8 @@
 import sys
 
 # Print Arguments
-print("Number of arguments:", len(sys.argv), 'arguments.')
-print("Arguments", sys.argv)
+print("Number of arguments:", len(sys.argv), "arguments.")  # C-Style
+print("Arguments:", sys.argv)
 
 print()
 
@@ -12,7 +12,7 @@ sum = 0
 for arg in sys.argv[1:]:
     try:
         sum += int(arg)
-    except Exception:
-        print("Bad input")
+    except Exception as e:
+        print(str(type(e)) + ": " + str(e))
 
 print(sum)

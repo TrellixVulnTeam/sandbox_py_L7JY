@@ -7,8 +7,8 @@
 
 import subprocess
 
-threshold = 80    # default threshold (%)
-partition = "/"   # default partition
+threshold = 80  # default threshold (%)
+partition = "/"  # default partition
 
 proc = subprocess.Popen(["df", "-h"], stdout=subprocess.PIPE)
 for line in proc.stdout:

@@ -64,18 +64,29 @@ print()
 l = [1, 2, 3]
 l.extend("abc")  # => l += ['a', 'b', 'c']
 print(l)
+print(l.index('c'))
 l.insert(3, 'x')
 print(l)
 del l[2:4]
 print(l)
 l.remove('b')
 print(l)
+l.reverse()
+print(l)
+
+l = [[5, 8], {6, 3, 7}, (2, 9), [100]]
+l.sort(key=sum, reverse=True)  # key: func (len, sum, ...)
+print(l)
+print(list(map(sum, l)))
 
 print()
 
 l1 = [(7, 2), (3, 4), (5, 5), (10, 3)]
 l2 = sorted(l1, key=lambda x: x[1])
-print(l2)  # [(7, 2), (10, 3), (3, 4), (5, 5)]
+print(l2)  # => [(7, 2), (10, 3), (3, 4), (5, 5)]
+l3 = reversed(l1)
+print(l3)
+print(list(l3))
 
 print()
 

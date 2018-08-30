@@ -30,10 +30,11 @@ for i, d in enumerate(days):
 animals = ('bear', 'bunny', 'dog', 'cat', 'velociraptor')
 for pet in animals:
     # if pet == 'dog': continue
-    if pet == 'cat': break
+    if pet == 'cat':
+        break
     print(pet)
 else:  # breakで抜けたとき以外は実行される
-    print('that is all of thianimals')
+    print('that is all of the animals')
 
 while False:
     print('loop')

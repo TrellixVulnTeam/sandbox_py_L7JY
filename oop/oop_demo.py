@@ -11,12 +11,13 @@ class Character:
 
 
 class Thief(Character):
+    # Class attribute
     # instanceに同名変数がない場合は、こちらが参照されることに注意
     sneaky = True
 
     def __init__(self, name, sneaky=True, **kwargs):
         super().__init__(name, **kwargs)
-        self.sneaky = sneaky
+        self.sneaky = sneaky  # instance attribute
         # super().__init__(name, **kwargs)  # Javaと違って後置OKだが、同名変数がある場合は上書きしてしまうので注意
 
     def pickpocket(self):

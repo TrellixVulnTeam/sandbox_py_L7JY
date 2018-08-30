@@ -1,4 +1,9 @@
-# Scope demo
+""" Scope demo
+Local
+Enclosing
+Global
+Built-in
+"""
 
 
 class T:
@@ -58,3 +63,25 @@ def getfunc3():
 
 
 print(getfunc3()())
+
+print()
+
+message = 'global'
+
+
+def enclosing():
+    message = 'enclosing'
+
+    def local():
+        # nonlocal message
+        # global message
+        message = 'local'
+
+    print('enclosing message:', message)
+    local()
+    print('enclosing message:', message)
+
+
+print('global message:', message)
+enclosing()
+print('global message:', message)

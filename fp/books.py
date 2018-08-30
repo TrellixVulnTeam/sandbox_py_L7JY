@@ -30,5 +30,7 @@ def get_books(raw=False):
 BOOKS = get_books()
 # RAW_BOOKS is a list of book dictionaries
 RAW_BOOKS = get_books(raw=True)
-# print(BOOKS)
-# print(RAW_BOOKS)
+
+if __name__ == '__main__':
+    print(BOOKS)
+    print(RAW_BOOKS)

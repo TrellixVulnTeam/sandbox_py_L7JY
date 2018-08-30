@@ -1,4 +1,3 @@
 # requirements
 pytz
 coverage
-peewee

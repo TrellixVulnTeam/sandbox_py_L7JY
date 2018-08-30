@@ -21,9 +21,9 @@ for line in open("fstab.in"):
         uuid = lsblk.stdout.readline().decode()
         # Build the replacement line (using the second match group)
         replacement = "UUID=" + uuid[:-1] + re.sub(regex, r"\2", line)
-        print("replacement line is %s" % replacement)   # Debugging only
+        print("replacement line is %s" % replacement)  # Debugging only
         print(replacement, end='', file=outfile)
-    else:   # Copy the line through unchanged
+    else:  # Copy the line through unchanged
         print(line, end='', file=outfile)
 
 outfile.close()

@@ -3,15 +3,18 @@ import datetime
 # timezone
 pacific = datetime.timezone(datetime.timedelta(hours=-8))
 eastern = datetime.timezone(datetime.timedelta(hours=-5))
-tokyo = datetime.timezone(datetime.timedelta(hours=9))
+tokyo = datetime.timezone(datetime.timedelta(hours=9), "JST")
 
-naive = datetime.datetime(2018, 4, 25, 9, 0)
+naive = datetime.datetime(2018, 4, 25, 9, 0)  # system locale
 aware = datetime.datetime(2018, 4, 25, 9, 0, tzinfo=pacific)
 
+print(naive.astimezone(datetime.timezone.utc))
 print(naive.astimezone(eastern))
+print(aware.astimezone(datetime.timezone.utc))
 print(aware.astimezone(eastern))
 print(aware.astimezone(tokyo))
 
+# pytz library
 import pytz
 
 pacific = pytz.timezone('US/Pacific')

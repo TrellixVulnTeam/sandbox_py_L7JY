@@ -15,7 +15,7 @@ print(s)
 s.remove(15)
 print(s)
 # s.remove(100)  # KeyError
-s.discard(100)  # no Exception
+s.discard(100)  # no Exception : listにはない
 
 while s:
     print(s.pop() / 3)
@@ -26,13 +26,18 @@ x = set('hogehoge')
 y = set('abcdefg')
 print(x)
 print(y)
-print(x | y)  # or : union
-print(x & y)  # and: intersection
-print(x - y)  # sub: difference
-print(x ^ y)  # xor: symmetric difference => (x | y) - (x & y)
+print(x | y)  # or : union()
+print(x & y)  # and: intersection()
+print(x - y)  # sub: difference()
+print(x ^ y)  # xor: symmetric_difference() => (x | y) - (x & y)
 
 set1 = {0, 1}
 set2 = {2, 0, 1}
 print(set1.issubset(set2))  # 真部分集合
+print(set2.issuperset(set1))
 set1.add(2)
 print(set1.issubset(set2))  # 部分集合（同値を含む）
+print(set2.issuperset(set1))
+
+set3 = {3, 6, 9}
+print(set3.isdisjoint(set1))

@@ -25,6 +25,7 @@ jlogger.warning("This is a warning sent to the journal")
 jlogger.propagate = False
 jlogger.warning("Warning ONLY to journal")
 
+
 # Within an exception handler you can print a stack trace:
 
 

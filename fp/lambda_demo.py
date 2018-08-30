@@ -1,4 +1,3 @@
-import dis
 from functools import reduce
 from books import BOOKS
 
@@ -23,39 +22,10 @@ def long_total(a=None, b=None, books=None):
 
 print(long_total(None, None, [b.price for b in BOOKS]))
 
-print()
-
-total = reduce(lambda x, y: x + y, [b.price for b in BOOKS], 0)
+total = reduce(lambda x, y: x + y, (b.price for b in BOOKS), 0)
 print(total)
+
 long_books = filter(lambda book: book.number_of_pages >= 600, BOOKS)
 print(len(list(long_books)))
 good_deals = filter(lambda book: book.price <= 5.99, BOOKS)
 print(len(list(good_deals)))
-
-print()
-
-# Lambda vs Helper Functions
-print('--- Lambda ---')
-
-
-def f(x):
-    return x.g(lambda x: x.good, lambda x: x.member)
-
-
-dis.dis(f)
-
-
-print()
-print('--- Helper Functions ---')
-
-
-def l1(x): return x.good
-
-
-def l2(x): return x.member
-
-
-def f(x): return x.g(l1, l2)
-
-
-dis.dis(f)

@@ -1,9 +1,17 @@
 from functools import reduce
 
+# map
 print(list(map(lambda x: x * 2, [x for x in range(10)])))
 print([x * 2 for x in range(10)])
 
+# filter
+print(list(filter(lambda x: x > 0, [1, -2, 0, 5, 8, -3])))
+print(list(filter(None, [0, 1, False, True, [], [0], {}, (), "", "abc"])))  # filter only True value
 
+print()
+
+
+# reduce
 def product(x, y):
     return x * y
 
@@ -14,13 +22,13 @@ print()
 
 
 def factorial(n):
-    if n == 1:
+    if n == 0:
         return 1
     else:
         return n * factorial(n - 1)
 
 
-print(factorial(5))
+print(factorial(1))
 
 print()
 
@@ -97,7 +105,7 @@ print('--- curry ---')
 
 def curried_f(x, y=None, z=None):
     def f(x, y, z):
-        return x ** 3 + y ** 2 + z
+        return x**3 + y**2 + z
 
     # returns the partial function with current variables saved
 

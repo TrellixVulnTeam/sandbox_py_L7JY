@@ -18,7 +18,6 @@ sales_books = list(map(sales_price, BOOKS))
 print(sales_books)
 
 print()
-
 print('--- filter ---')
 
 
@@ -33,13 +32,12 @@ print(long_books)
 print(long_books2)
 
 print()
-
 print('--- chaining: filter-map ---')
 
 
 def has_roland(book):
     """ predicate """
-    return any(["Roland" in subject for subject in book.subjects])
+    return any("Roland" in subject for subject in book.subjects)
 
 
 def titlecase(book):
@@ -51,7 +49,6 @@ def titlecase(book):
 print(list(map(titlecase, filter(has_roland, BOOKS))))
 
 print()
-
 print('--- chaining: map-filter-sorted ---')
 
 
@@ -66,7 +63,6 @@ cheap_books = sorted(
 print(cheap_books[0], cheap_books[0].price)
 
 print()
-
 print('--- reduce ---')
 
 
@@ -74,11 +70,10 @@ def add_book_prices(book1, book2):
     return book1 + book2
 
 
-total = reduce(add_book_prices, [b.price for b in BOOKS])
+total = reduce(add_book_prices, (b.price for b in BOOKS))
 print(total)
 
 print()
-
 print('--- partial ---')
 
 

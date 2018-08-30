@@ -5,6 +5,7 @@
 import hashlib
 import os
 
+
 # Compute the MD5 digest of a file
 
 
@@ -20,7 +21,7 @@ def gethash(file):
 hashmap = {}
 
 # Recursively visit all files in the directory being scanned
-for rootdir, dirs, files in os.walk("/home/chris/food"):
+for rootdir, dirs, files in os.walk("/food"):
     for f in files:
         path = os.path.join(rootdir, f)
         # Skip short files and symlinks

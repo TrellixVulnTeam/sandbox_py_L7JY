@@ -14,6 +14,7 @@ print(g(f, 42))
 def addx(x):
     def _(y):
         return x + y
+
     return _
 
 
@@ -23,7 +24,7 @@ add3 = addx(3)
 print(add2(2), add3(3))
 
 
-# curry (部分適用)
+# curry （部分適用）
 def f(x, y):
     return x * y
 
@@ -31,6 +32,7 @@ def f(x, y):
 def f2(x):
     def _(y):
         return f(x, y)
+
     return _
 
 

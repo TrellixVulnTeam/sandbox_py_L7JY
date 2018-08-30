@@ -1,6 +1,4 @@
-# "new" : make an immutable instance
-
-
+# "__new__" : customize immutable class's constructor
 class ReversedStr(str):
     def __new__(cls, *args, **kwargs):
         self = str.__new__(cls, *args, **kwargs)

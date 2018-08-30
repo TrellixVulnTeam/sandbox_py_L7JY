@@ -9,14 +9,15 @@ from signal import *
 def timeout_handler(signum, frame):
     raise IOError("User not responding")
 
+
 # Read string from stdin, with timeout
 
 
 def get_name():
     signal(SIGALRM, timeout_handler)
-    alarm(5)        # Request SIGALRM in 5 seconds
+    alarm(5)  # Request SIGALRM in 5 seconds
     n = sys.stdin.readline()
-    alarm(0)        # Cancel alarm
+    alarm(0)  # Cancel alarm
     return n
 
 
