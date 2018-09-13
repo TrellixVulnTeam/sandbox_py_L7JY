@@ -10,13 +10,14 @@ kwarg_only_func(1, 2, flag=True)
 # kwarg_only_func(1, 2, 3, flag=True)  # NG
 
 
-# var-args
+# var args
 def var_args(name, *args):
     print(name)
     print(args)  # tuple
 
 
 var_args("hoge", None, 5, 3.0, "fefe", True)
+var_args("hoge", 111)
 
 
 # Keyword args

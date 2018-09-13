@@ -85,3 +85,29 @@ def enclosing():
 print('global message:', message)
 enclosing()
 print('global message:', message)
+
+print()
+
+print(globals())
+globals()['tau'] = 6.283185
+print(globals())
+
+print()
+
+
+def report_scope(arg):
+    from pprint import pprint as pp
+    x = 496
+    pp(locals(), width=10)
+
+
+report_scope(42)
+
+
+def print_locals():
+    name = "Hoge"
+    age = 9
+    print("{name}: {age}".format(**locals()))
+
+
+print_locals()

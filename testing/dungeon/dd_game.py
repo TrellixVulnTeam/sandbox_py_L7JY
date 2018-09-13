@@ -6,7 +6,7 @@ Created: 2014
 Last Updated: 2015
 Author: Hoge Hoge
 
-doctest demo
+doctest demo (if successful, return nothing)
 python -m doctest dd_game.py
 """
 

@@ -1,8 +1,11 @@
-# Demonstrate the use of function docstrings
+""" Demonstrate the use of function docstrings and doctest
 
+Doctest (if successful, return nothing)
+python -m doctest docstrings.py
+"""
 
-def myFunction(arg1, arg2=None):
-    """myFunction(arg1, arg2=None) --> Doesn't really do anything special.
+def func(arg1, arg2=None):
+    """func(arg1, arg2=None) --> Doesn't really do anything special.
 
     Parameters:
     arg1: the first argument. Whatever you feel like passing.
@@ -11,10 +14,25 @@ def myFunction(arg1, arg2=None):
     print(arg1, arg2)
 
 
-def main():
-    print(myFunction.__doc__)
+def add(x, y):
+    """Add 2 items
+    :param x:
+    :param y:
+    :return:
+
+    >>> add(2, 2)
+    4
+    >>> add("hoge", "fuga")
+    'hogefuga'
+    """
+    return x + y
 
 
 if __name__ == "__main__":
-    main()
-    # help(myFunction)
+    # print(func.__doc__)
+    help(func)
+
+    # doctest from code
+    import doctest
+
+    doctest.testmod()

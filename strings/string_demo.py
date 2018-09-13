@@ -1,5 +1,7 @@
 # string
 
+print("hoge" "fuga")  # 'hogefuga'
+
 # quotes
 print("'hoge\nfuga'")
 print('"hoge\nfuga"')
@@ -13,7 +15,7 @@ print()
 print('''Dear Alice,
 Eve's cat has been arrested for catnapping, cat burglary, and extortion.
 Sincerely,
-Bob''')  # no need escape quotes and newlines
+Bob''')  # no need to escape quotes and newlines
 
 print()
 
@@ -21,14 +23,15 @@ print()
 s = "hoge"
 t = "hoge"
 u = "ho"
-u += "ge"
 v = str("hoge")
 print(id(s))
 print(id(t))
 print(id(u))
+u += "ge"
+print(id(u))
 print(id("hoge"))
 print(id("ho" + "ge"))
-print(id("fuga"))
+print(id("ho" "ge"))
 print(id(s) == id(t))  # => True
 print(id(s) == id(u))  # => False
 print(id(s) == id(v))  # => True

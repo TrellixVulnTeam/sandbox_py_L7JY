@@ -88,7 +88,7 @@ class RefrigeratedShippingContainer(ShippingContainer):
     # def volume_ft3(self):
     #     return super().volume_ft3 - RefrigeratedShippingContainer.FRIDGE_VOLUME_FT3
 
-    # propertyをoverrideするのではなく、normal methodをoverride （Template Method）
+    # propertyをoverrideするのではなく、normal methodをoverride （Template Method Pattern）
     def _calc_volume(self):
         return super()._calc_volume() - RefrigeratedShippingContainer.FRIDGE_VOLUME_FT3
 

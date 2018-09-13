@@ -1,4 +1,7 @@
-"""Demonstrate raiding a refrigerator."""
+"""
+Demonstrate raiding a refrigerator.
+Context Manager and contextlib
+"""
 
 from contextlib import closing
 
@@ -27,4 +30,4 @@ def raid(food):
 
 if __name__ == '__main__':
     raid('bacon')
-    # raid('deep fried pizza')
+    raid('deep fried pizza')

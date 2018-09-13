@@ -6,7 +6,8 @@ import math
 v = ["ab", "abc", "x", "a", "xyz"]
 print(min(v, key=len))
 print(max(v, key=len))
-print(sum([1, 2, 3]))
+print(sum(range(5)))
+print(list(reversed(range(5))))
 print(any([False, True, False]))
 print(all([False, True, False]))
 print(list(zip("ABC", [1, 2, 4])))

@@ -35,7 +35,7 @@ def demo2():
 
         # Build a format string (two curly brackets get you one curly bracket)
         formatter = "{{0:{0}}}{{1:{1}}}{{2:{2}.3f}}".format(width1, width2, width3)
-        print(formatter)  # Debug
+        print(formatter)  # debug
         print(formatter.format(i, x, y))  # Use the formatter we built
 
         # There is a more direct way:

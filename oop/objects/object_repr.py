@@ -10,7 +10,7 @@ class Person:
 
     # use __repr__ to create a string useful for debugging
     def __repr__(self):
-        return "<Person Class - fname:{0}, lname:{1}, age{2}>".format(self.fname, self.lname, self.age)
+        return "<Person Class - fname:{0}, lname:{1}, age:{2}>".format(self.fname, self.lname, self.age)
 
     # use str for a more human-readable string
     def __str__(self):

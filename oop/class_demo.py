@@ -1,4 +1,4 @@
-class Hoge:
+class Hoge:  # == Hoge(object, metaclass=type)
     # Class doesn't introduce new scope
     cls_attr = 0
 
@@ -15,16 +15,22 @@ class Hoge:
         return cls(**items)
 
     def __init__(self, *args, **kwargs):
-        self.va = Hoge.cls_attr
+        self.ins_attr = Hoge.cls_attr
 
 
 class Fuga(Hoge):
     cls_attr = 100
 
+    def __init__(self):
+        super().__init__()
 
-def main():
-    pass
+    def access_cls_attr(self):
+        print(self.cls_attr)  # class
+        self.cls_attr += 1  # shadow instance variable
+        print(self.cls_attr)
+        print(self._get_cls_attr())
 
 
 if __name__ == '__main__':
-    main()
+    f = Fuga()
+    f.access_cls_attr()

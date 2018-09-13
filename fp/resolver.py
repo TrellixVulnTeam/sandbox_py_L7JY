@@ -24,7 +24,12 @@ if __name__ == '__main__':
 
     resolve = Resolver()
 
-    time = timeit(setup="from __main__ import resolve", stmt="resolve('python.org')", number=1)
+    time = timeit(setup="from __main__ import resolve",
+                  stmt="resolve('python.org')",
+                  number=1)
     print("{:f}".format(time))
-    time = timeit(setup="from __main__ import resolve", stmt="resolve('python.org')", number=1)
+
+    time = timeit(setup="from __main__ import resolve",
+                  stmt="resolve('python.org')",
+                  number=1)
     print("{:f}".format(time))
