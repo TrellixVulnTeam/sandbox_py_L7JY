@@ -56,3 +56,8 @@ student.setdefault("class", "B")
 print(student)
 
 print()
+
+# join
+dict_a = {"a": 1, "x": 10}
+dict_b = {"b": 2, "x": 20}
+print({**dict_a, **dict_b})  # 3.5 onwards

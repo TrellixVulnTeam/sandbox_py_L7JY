@@ -7,6 +7,7 @@ print('Python version {}.{}.{}'.format(*sys.version_info))
 print(sys.platform)
 print(os.name)
 
+print(os.environ)
 print(os.getenv('PATH'))
 
 print(os.getcwd())

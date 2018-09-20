@@ -1,13 +1,16 @@
+/.idea
+/.vscode
+/env/
+/venv/
 /tmp/*
 /out
-/.vscode
-/.idea
-/env
-/venv
+*.py[cod]
 __pycache__
-*.pyc
 .mypy_cache
+.env
 htmlcov
 .coverage
+db.sqlite3
 
+!.keep
 !.gitkeep
