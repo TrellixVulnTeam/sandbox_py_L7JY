@@ -1,8 +1,12 @@
+print('****** module load and meta class definition ******')
+print()
+
+
 class TracingMeta(type):
 
     @classmethod
     def __prepare__(mcs, name, bases, **kwargs):
-        print("TracingMeta.__prepare__(name, bases, **kwargs)")
+        print("TracingMeta.__prepare__(mcs, name, bases, **kwargs)")
         print("  mcs =", mcs)
         print("  name =", name)
         print("  bases =", bases)
@@ -19,7 +23,7 @@ class TracingMeta(type):
         print("  bases =", bases)
         print("  namespace =", namespace)
         print("  kwargs =", kwargs)
-        cls = super().__new__(mcs, name, bases, namespace, **kwargs)
+        cls = super().__new__(mcs, name, bases, namespace)
         print("<-- cls =", cls)
         print()
         return cls
@@ -52,6 +56,9 @@ class TracingMeta(type):
         return obj
 
 
+print('****** target class definition ******')
+
+
 class TracingClass(metaclass=TracingMeta):
 
     def __new__(cls, *args, **kwargs):
@@ -72,12 +79,6 @@ class TracingClass(metaclass=TracingMeta):
         print()
 
 
-#
-class Widget(metaclass=TracingMeta):
-    the_answer = 42
-
-    def action(self, message):
-        print(message)
-
-# if __name__ == '__main__':
-#     Widget()
+if __name__ == '__main__':
+    print('****** instantiation ******')
+    t = TracingClass(42, keyword="hoge")

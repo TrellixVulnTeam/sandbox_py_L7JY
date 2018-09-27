@@ -1,8 +1,10 @@
-# Descriptor protocol
 from weakref import WeakKeyDictionary
 
 
 class Positive:
+    """
+    descriptorにより、propertyを使ったコードを共通化する。
+    """
 
     def __init__(self):
         self._instance_data = WeakKeyDictionary()
@@ -45,6 +47,7 @@ class Planet:
             raise ValueError("Cannot set empty Planet.name")
         self._name = value
 
+    # class attributes, 1 attribute : 1 descriptor
     radius_metres = Positive()
     mass_kilograms = Positive()
     orbital_period_seconds = Positive()
@@ -80,4 +83,5 @@ def make_planets():
 
 
 if __name__ == '__main__':
-    make_planets()
+    planets = make_planets()
+    planets[0].mass_kilograms = -10000

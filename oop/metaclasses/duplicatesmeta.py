@@ -1,18 +1,5 @@
-class OneShotDict(dict):
-
-    def __init__(self, existing=None):
-        super().__init__()
-        if existing is not None:
-            for k, v in existing:
-                self[k] = v
-
-    def __setitem__(self, key, value):
-        if key in self:
-            raise ValueError("Cannot assign to existing key {!r}".format(key))
-        super().__setitem__(key, value)
-
-
 class OneShotClassNamespace(dict):
+    """One-shot dict for namespace lookup"""
 
     def __init__(self, name, existing=None):
         super().__init__()
@@ -23,7 +10,8 @@ class OneShotClassNamespace(dict):
 
     def __setitem__(self, key, value):
         if key in self:
-            raise TypeError("Cannot reassign existing class attribute {!r} of {!r}".format(key, self._name))
+            raise TypeError(
+                "Cannot reassign existing class attribute {!r} of {!r}".format(key, self._name))
         super().__setitem__(key, value)
 
 

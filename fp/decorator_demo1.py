@@ -1,31 +1,5 @@
 # decorator, closure
 from functools import wraps
-import time
-
-
-def elapsed_time(f):
-    def wrapper():
-        t1 = time.time()
-        f()
-        t2 = time.time()
-        # print(f'Elapsed time: {(t2 - t1) * 1000} ms')
-        print('Elapsed time: {} ms'.format((t2 - t1) * 1000))
-
-    return wrapper  # closure ref
-
-
-@elapsed_time
-def big_sum():
-    num_list = []
-    for num in (range(0, 1000)):
-        num_list.append(num)
-    # print(f'Big sum: {sum(num_list)}')
-    print('Big sum: {}'.format(sum(num_list)))
-
-
-big_sum()  # elapsed_time(big_sum)()
-
-print('---')
 
 
 def logme(func):
@@ -107,8 +81,9 @@ fefe('fefe')  # dec2(dec1(fefe('fefe')))
 print('---')
 
 
-# functools.wraps usage
 def noop_bare(f):
+    """bare wrapper"""
+
     def wrapper():
         return f()
 
@@ -119,7 +94,9 @@ def noop_bare(f):
 
 
 def noop(f):
-    @wraps(f)  # preserve metadata by functools.wraps
+    """preserve metadata by functools.wraps"""
+
+    @wraps(f)
     def wrapper():
         return f()
 
@@ -128,7 +105,7 @@ def noop(f):
 
 @noop_bare
 def hello1():
-    """ docstring of hello1()"""
+    """docstring of hello1()"""
     print('Hello, world!')
 
 
@@ -137,7 +114,7 @@ help(hello1)
 
 @noop
 def hello2():
-    """ docstring of hello2()"""
+    """docstring of hello2()"""
     print('Hello, world!')
 
 
@@ -146,7 +123,8 @@ help(hello2)
 print('---')
 
 
-def check_non_negative(index):  # non decorator, just return the callable
+# decorator with args
+def check_non_negative(index):  # decorator factory, just return the decorator
     def validator(f):  # the actual decorator
         def wrap(*args):
             if args[index] < 0:

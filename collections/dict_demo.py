@@ -18,6 +18,7 @@ student = {
 }
 
 print(student["name"])
+print(len(student))
 # student["last_name"]  # KeyError
 print(student.get("last_name", "Unknown"))
 print(student.keys())  # dict_keys : like set
@@ -32,7 +33,7 @@ for key in student.keys():
 for value in student.values():
     print("value:", value)
 
-for key, value in student.items():  # tuple unpacking
+for key, value in student.items():  # list of tuple
     print("{}: {}".format(key, value))
 
 print()

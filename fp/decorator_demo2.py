@@ -12,10 +12,12 @@ def northern_city():
 
 
 class Trace:
+    """callable decorator"""
     def __init__(self, enabled=True):
         self.enabled = enabled  # output on/off
 
     def __call__(self, f):
+        """decorator method"""
         def wrap(*args, **kwargs):
             if self.enabled:
                 print('Calling {}'.format(f))
@@ -25,21 +27,22 @@ class Trace:
 
 
 tracer = Trace()
+# tracer = Trace(enabled=False)
 
 
-@tracer  # Trace()(f)
+@tracer
 @escape_unicode
 def norwegian_island_maker(name):
     return name + 'øy'
 
 
-# method
 class IslandMaker:
     def __init__(self, suffix):
         self.suffix = suffix
 
     @tracer
     def make_island(self, name):
+        """decorated method"""
         return name + self.suffix
 
 

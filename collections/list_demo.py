@@ -2,6 +2,8 @@
 
 list1 = list(range(1, 10))
 print(list1)
+print(list1.__len__())
+print(len(list1))  # preferred
 
 list1.append(10)
 print(list1)

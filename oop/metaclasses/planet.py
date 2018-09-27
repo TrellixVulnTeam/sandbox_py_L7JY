@@ -1,5 +1,4 @@
 from weakref import WeakKeyDictionary
-from tracing import TracingMeta
 
 
 class Named:
@@ -9,6 +8,10 @@ class Named:
 
 
 class Positive(Named):
+    """
+    descriptorにより、propertyを使ったコードを共通化する。
+    さらに、どのattributeかをわかるようにする。
+    """
 
     def __init__(self, name=None):
         super().__init__(name)
@@ -29,16 +32,15 @@ class Positive(Named):
 
 
 class DescriptorNamingMeta(type):
+    """
+    各descriptorオブジェクトに名前を付ける
+    """
 
     def __new__(mcs, name, bases, namespace):
         for name, attr in namespace.items():
             if isinstance(attr, Named):
                 attr.name = name
         return super().__new__(mcs, name, bases, namespace)
-
-
-class TracingDescriptorNamingMeta(TracingMeta, DescriptorNamingMeta):
-    pass
 
 
 class Planet(metaclass=DescriptorNamingMeta):
@@ -65,6 +67,7 @@ class Planet(metaclass=DescriptorNamingMeta):
             raise ValueError("Cannot set empty Planet.name")
         self._name = value
 
+    # class attributes, 1 attribute : 1 descriptor
     radius_metres = Positive()
     mass_kilograms = Positive()
     orbital_period_seconds = Positive()
@@ -100,4 +103,5 @@ def make_planets():
 
 
 if __name__ == '__main__':
-    make_planets()
+    planets = make_planets()
+    planets[0].mass_kilograms = -10000
