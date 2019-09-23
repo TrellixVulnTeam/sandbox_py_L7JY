@@ -2,15 +2,19 @@
 /.vscode
 /env/
 /venv/
-/tmp/*
-/out
+/.venv/
+/tmp/
+/out/
 *.py[cod]
-__pycache__
+__pycache__/
 .mypy_cache
+*.log
 .env
-htmlcov
+htmlcov/
 .coverage
+.pytest_cache/
 db.sqlite3
+.ipynb_checkpoints/
 
 !.keep
 !.gitkeep

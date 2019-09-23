@@ -52,6 +52,8 @@ print()
 print(re.split(r'[A-Z]\.', 'Hoge X. Fefe'))
 print(re.split(r'\s*,\s*', 'hoge,  fuga ,   fefe'))
 
+print()
+
 # flags
 # re.I, re.IGNORECASE
 # re.S, re.DOTALL

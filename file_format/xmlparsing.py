@@ -1,7 +1,6 @@
 #
 # Example file for parsing and processing XML
 #
-
 import xml.dom.minidom
 
 
@@ -20,9 +19,9 @@ def main():
         print(skill.getAttribute("name"))
 
     # create a new XML tag and add it into the document
-    newSkill = doc.createElement("skill")
-    newSkill.setAttribute("name", "jQuery")
-    doc.firstChild.appendChild(newSkill)
+    new_skill = doc.createElement("skill")
+    new_skill.setAttribute("name", "jQuery")
+    doc.firstChild.appendChild(new_skill)
 
     skills = doc.getElementsByTagName("skill")
     print("%d skills:" % skills.length)

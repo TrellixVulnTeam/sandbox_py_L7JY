@@ -1,15 +1,15 @@
-from itertools import (islice, count, chain, accumulate, cycle, repeat,
-                       dropwhile, takewhile, combinations, permutations)
 import math
+from itertools import (groupby, islice, count, chain, accumulate, cycle, repeat,
+                       dropwhile, takewhile, combinations, permutations)
 
 # built-in funcs for iterable
 v = ["ab", "abc", "x", "a", "xyz"]
-print(min(v, key=len))
-print(max(v, key=len))
+print(min(v, key=len))  # type mismatch but work
+print(max(v, key=lambda s: len(s)))
 print(sum(range(5)))
 print(list(reversed(range(5))))
-print(any([False, True, False]))
-print(all([False, True, False]))
+print(any(len(s) > 2 for s in v))
+print(all(len(s) > 2 for s in v))
 print(list(zip("ABC", [1, 2, 4])))
 print(list(map(ord, "ほげふが")))  # 1 sequence
 print(list(map(lambda x, y: x + y, "ほげふが", "ABCD")))  # 2 sequences
@@ -75,6 +75,16 @@ def is_prime(x):
 
 print()
 
+# groupby : need to be sorted
+# [("A", 1), ("B", 4), ("A", 2), ("A", 3), ("B", 5)] => [("A", 6), ("B", 9)]
+a = [("A", 1), ("B", 4), ("A", 2), ("A", 3), ("B", 5)]
+
+result = [(key, sum(r[1] for r in rows)) for key, rows in
+          groupby(sorted(a, key=lambda t: t[0]), lambda t: t[0])]
+print(result)
+
+print()
+
 # Permutations（順列）: Order matters - some copies with same inputs but in different order
 # 3P3 = 6
 election = {1: "Barb", 2: "Karen", 3: "Erin"}
@@ -100,8 +110,9 @@ print(list(primes))
 
 print()
 
-temperatures = chain([1, 2, 3], [4, 5, 6], [7, 8, 9, 0])
-print(all(t > 0 for t in temperatures))
+print(list(chain([1, 2, 3], [4, 5, 6], [7, 8, 9, 0])))
+# flatten
+print(list(chain.from_iterable([[1, 2, 3], [4, 5, 6], [7, 8, 9, 0]])))
 
 print()
 

@@ -3,4 +3,3 @@ def foo():
 
 with foo():
     print('in block')
-    pass

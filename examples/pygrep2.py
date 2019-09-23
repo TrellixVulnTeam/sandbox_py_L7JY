@@ -10,9 +10,6 @@ def process_file(f):
             print(line, end='')
 
 
-# Start here
-
-
 # Must be at least one argument
 if len(sys.argv) == 1:
     print("usage: %s string [file ...]" % sys.argv[0], file=sys.stderr)

@@ -11,9 +11,13 @@ zip.write(TMP + "wishlist.txt", "wishlist.txt")
 # Closing the zip
 zip.close()
 
+# Check validity of the file
+print(zipfile.is_zipfile("Archive.zip"))
+
 # Open and List
 zip = zipfile.ZipFile(TMP + 'Archive.zip', 'r')
 print(zip.namelist())
+print(zip.infolist())
 
 # Metadata in the zip folder
 for meta in zip.infolist():

@@ -1,9 +1,12 @@
 # Files and File Writing
-# w --> write
 # r --> read (default)
-# r+ --> read and write
+# r+ --> read / write
+# w --> truncate and write
+# w+ --> truncate and read / write
 # a --> append
-# a+ --> append read and write
+# a+ --> append read / write
+# t --> text (default)
+# b --> binary
 
 DATA = "../data/"
 TMP = "../tmp/"
@@ -12,55 +15,35 @@ TMP = "../tmp/"
 myFile = open(TMP + "scores.txt", "w", encoding="utf-8")
 
 # Show attributes and properties of that file
-print("Name: " + myFile.name)
-print("Mode: " + myFile.mode)
+print("name: " + myFile.name)
+print("mode: " + myFile.mode)
 
 # Write to a file
-myFile.write("GBJ : 100\nKHD : 99\nBBB : 89\n")
+myFile.write("あわわ : 100\nほげ : 99\nふが : 89\n")
 myFile.close()
+
+print('---')
 
 # Read the file
 myFile = open(TMP + "scores.txt", "r", encoding="utf-8")  # default: text mode
-print("Reading...: " + myFile.read(10))
-print("Reading again: " + myFile.read(10))
-myFile.close()
 
-print()
+# Show attributes and properties of that file
+print("name: " + myFile.name)
+print("mode: " + myFile.mode)
 
-# Iterative Files
-myFile = open(TMP + "scores.txt", "r", encoding="utf-8")  # default: text mode
-
-# Read one line at a time
-print("My one line: " + myFile.readline())
-myFile.seek(0)  # rewind to the top
-
-# Iterate through each line of a file
+# Iterate through each line of a file (include line ending)
 for line in myFile:
-    newHighScorer = line.replace("BBB", "PDJ")
-    print(newHighScorer)
+    print(line.rstrip())
 
 myFile.close()
 
-# copy text file
-infile = open(DATA + "lines.txt", "rt")
-outfile = open(TMP + "lines-copy.txt", "wt")
-for line in infile:
-    outfile.writelines(line)
-    # print(line, end='', file=outfile)
-    # print(line.rstrip(), file=outfile)
-    print('.', end='', flush=True)
-outfile.close()  # important
-infile.close()
+print('---')
 
-# copy binary file
-infile = open(DATA + "bonsai.jpg", "rb")
-outfile = open(TMP + "bonsai-copy.jpg", "wb")
-while True:
-    buf = infile.read(16384)  # 16kb
-    if buf:
-        outfile.write(buf)
-        print('.', end='', flush=True)
-    else:
-        break
-outfile.close()  # important
-infile.close()
+# Read the file by pointer
+myFile = open(TMP + "scores.txt", "r", encoding="utf-8")  # default: text mode
+print("Readline: " + myFile.readline())
+print("Readline: " + myFile.readline())
+myFile.seek(0)  # rewind to the top
+print("Reading...: " + myFile.read(2))
+print("Reading again: " + myFile.read(11))
+myFile.close()

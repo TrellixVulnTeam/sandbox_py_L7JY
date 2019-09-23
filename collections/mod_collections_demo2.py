@@ -21,24 +21,6 @@ def namedtuple_demo():
     print(p1)
 
 
-def defaultdict_demo():
-    # define a list of items that we want to count
-    fruits = ['apple', 'pear', 'orange', 'banana',
-              'apple', 'grape', 'banana', 'banana']
-
-    # use a dictionary to count each element
-    # fruitCounter = {}  # raises KeyError
-    fruitCounter = defaultdict(int)  # default value's type
-
-    # Count the elements in the list
-    for fruit in fruits:
-        fruitCounter[fruit] += 1
-
-    # print the result
-    for (k, v) in fruitCounter.items():
-        print(k + ": " + str(v))
-
-
 def counter_demo():
     # list of students in class 1
     class1 = ["Bob", "James", "Chad", "Darcy", "Penny", "Hannah",
@@ -77,6 +59,32 @@ def counter_demo():
 
     # What's common between the two classes?
     print(c1 & c2)
+
+
+def defaultdict_demo():
+    # param: default factory (Supplier function)
+
+    str_dict = defaultdict(str)
+    str_dict['foo']
+    print(str_dict)
+
+    int_dict = defaultdict(int)
+    int_dict['foo']
+    print(int_dict)
+    int_dict['hello'] = 'world'  # no error
+    print(int_dict)
+
+    float_dict = defaultdict(float)
+    float_dict['foo']
+    print(float_dict)
+
+    fraction_dict = defaultdict(Fraction)
+    fraction_dict['foo']
+    print(fraction_dict)
+
+    dne_dict = defaultdict(lambda: 'DNE')
+    dne_dict['foo']
+    print(dne_dict)
 
 
 def ordered_dict_demo():

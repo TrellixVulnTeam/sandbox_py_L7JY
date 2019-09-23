@@ -13,7 +13,7 @@ NEW_FILE = TMP + "newfile.txt"
 
 def fs_demo():
     if not path.exists(TEXT_FILE):
-        f = open(TEXT_FILE, "w+")
+        f = open(TEXT_FILE, "w+")  # truncate and read/write
         for i in range(10):
             f.write("This is line %d\n" % (i + 1))
         f.close()

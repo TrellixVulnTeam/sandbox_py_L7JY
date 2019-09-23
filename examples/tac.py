@@ -2,7 +2,7 @@
 
 import sys
 
-version = 2
+version = 3
 
 if version == 1:  # Boring loop
     def revline(line):

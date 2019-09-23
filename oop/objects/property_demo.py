@@ -1,5 +1,5 @@
 class Hoge:
-    """ Decorator """
+    """Decorator"""
 
     @property
     def name(self):
@@ -13,7 +13,7 @@ class Hoge:
 
 
 class Fuga:
-    """ Property object """
+    """Property object"""
 
     def _get_name(self):
         return self._name

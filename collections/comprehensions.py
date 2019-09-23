@@ -1,4 +1,7 @@
-# Comprehension（内包表記）
+"""
+Comprehension（内包表記）
+ref: Functional Programming, Generators
+"""
 import random
 
 nums = range(3, 21)

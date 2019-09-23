@@ -2,29 +2,43 @@
 # Overloading
 
 from functools import singledispatch
+from collections.abc import Sequence
 
 
 @singledispatch
 def fun(arg):
-    return 'default'
+    return f'default: {arg}'
 
 
 # Registering behaviors to correspond to each types
 
 @fun.register(int)
 def fun_int(arg):
-    return 'int'
+    return f'int: {arg}'
 
 
 @fun.register(list)
 def fun_list(arg):
-    return 'list'
+    return f'list: {arg}'
+
+
+@fun.register(tuple)
+def _(arg):
+    return f'tuple: {arg}'
+
+
+# @fun.register(str)
+# def _(arg):
+#     return 'str: {arg}'
+
+
+@fun.register(Sequence)
+def _(arg):
+    return f'sequence: {arg}'
 
 
 print(fun(3))
-print(fun([]))
-print(fun('hoge'))  # str type is not registered.
-
-assert fun_int('dummy') == 'int'
-assert fun_list('dummy') == 'list'
-assert fun(object()) == 'default'  # Using 'instance of object' to test the default behavior.
+print(fun([5]))
+print(fun((2,)))
+print(fun('hoge'))
+print(fun(object()))

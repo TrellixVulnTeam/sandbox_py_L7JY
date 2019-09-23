@@ -5,7 +5,7 @@ class EntriesMeta(type):
         print("  name =", name)
         print("  kwargs =", kwargs)
         print("  num_entries =", num_entries)
-        namespace.update({chr(i): i for i in range(ord('a'), ord('a') + num_entries)})
+        namespace.countdown({chr(i): i for i in range(ord('a'), ord('a') + num_entries)})
         cls = super().__new__(mcs, name, bases, namespace)
         return cls
 

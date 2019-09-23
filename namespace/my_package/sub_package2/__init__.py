@@ -1,1 +1,1 @@
-from .Class2 import Class2
+from .module2 import Class2

@@ -27,6 +27,13 @@ y = "global: y"
 
 
 def someFunction():
+    print(x)  # OK
+
+
+someFunction()
+
+
+def someFunction2():
     # print(x)  # error
     x = "local: x"
     # print(y)  # error
@@ -34,35 +41,9 @@ def someFunction():
     y = "local: y"
 
 
-someFunction()
+someFunction2()
 print(x)
 print(y)
-
-print()
-
-s = "s@global"
-
-
-# Closure or Lambda
-def getfunc2():
-    # func = lambda: s  # PEP8 violation
-    def func(): return s
-
-    s = "s@getfunc2()"  # 位置に注目
-    return func
-
-
-print(getfunc2()())
-
-
-# global
-def getfunc3():
-    def func(): return s
-
-    return func
-
-
-print(getfunc3()())
 
 print()
 
@@ -72,13 +53,13 @@ message = 'global'
 def enclosing():
     message = 'enclosing'
 
-    def local():
+    def inner():
         # nonlocal message
         # global message
         message = 'local'
 
     print('enclosing message:', message)
-    local()
+    inner()
     print('enclosing message:', message)
 
 

@@ -26,7 +26,7 @@ def get_books(raw=False):
         return [Book(**book) for book in data['books']]
 
 
-# BOOKS is a list of instances of the Book class
+# BOOKS is a list of the Book instances
 BOOKS = get_books()
 # RAW_BOOKS is a list of book dictionaries
 RAW_BOOKS = get_books(raw=True)

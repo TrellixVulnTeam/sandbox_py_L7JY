@@ -1,17 +1,11 @@
-# DP
+# Dynamic Programming
 def fib(n):
-    if n < 2:
-        return n
-
     a, b = 0, 1
-    # for _ in range(2, n + 1):
-    for _ in range(n - 1):
-        a, b = b, a + b
-    return b
+    for _ in range(n):
+        a, b = a + b, a
+    return a
 
-
-for x in range(6):
-    print(fib(x))
+print([fib(x) for x in range(6)])
 
 
 # Recursive
@@ -19,8 +13,7 @@ def fib(n):
     return n if n < 2 else fib(n - 2) + fib(n - 1)
 
 
-for x in range(6):
-    print(fib(x))
+print([fib(x) for x in range(6)])
 
 
 # Generator
@@ -31,5 +24,4 @@ def fib(n):
         a, b = b, a + b
 
 
-for x in fib(6):
-    print(x)
+print([x for x in fib(6)])

@@ -8,7 +8,8 @@ expressions = OrderedDict()
 
 class ExpressionHandler(BaseHTTPRequestHandler):
     def next_id(self):
-        if len(expressions) == 0: return 1
+        if len(expressions) == 0:
+            return 1
 
         expression_ids = list(expressions.keys())
         last_key = expression_ids[-1]
@@ -24,6 +25,10 @@ class ExpressionHandler(BaseHTTPRequestHandler):
             return x['op1'] * x['op2']
         else:
             return None
+
+    #
+    # do_HTTP_METHOD_NAME
+    #
 
     def do_GET(self):
         path_parts = self.path.split('/')

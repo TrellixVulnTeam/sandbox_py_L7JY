@@ -45,7 +45,7 @@ print("name" in student.keys())
 print("name" in student)
 print(None in student.values())
 
-student.update({"name": "Hoge", "last_name": "Fuga"})  # "upsert"
+student.update({"name": "Hoge", "last_name": "Fuga"})  # "upsert(merge)"
 print(student)
 
 del student["name"]
@@ -62,3 +62,4 @@ print()
 dict_a = {"a": 1, "x": 10}
 dict_b = {"b": 2, "x": 20}
 print({**dict_a, **dict_b})  # 3.5 onwards
+print({**dict_a, "あ": "ほ", **dict_b})

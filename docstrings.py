@@ -4,6 +4,7 @@ Doctest (if successful, return nothing)
 python -m doctest docstrings.py
 """
 
+
 def func(arg1, arg2=None):
     """func(arg1, arg2=None) --> Doesn't really do anything special.
 

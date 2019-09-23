@@ -13,6 +13,7 @@ class Person:
         return "<Person Class - fname:{0}, lname:{1}, age:{2}>".format(self.fname, self.lname, self.age)
 
     # use str for a more human-readable string
+    # not overridden, __repr__ is used
     def __str__(self):
         return "Person ({0} {1} is {2})".format(self.fname, self.lname, self.age)
 
@@ -34,6 +35,7 @@ def main():
     p1 = Person("ほげ", "ふが", 25)
 
     # use different Python functions to convert it to a string
+    print(p1)
     print(repr(p1))
     print(str(p1))
     print("Formatted: {0}".format(p1))

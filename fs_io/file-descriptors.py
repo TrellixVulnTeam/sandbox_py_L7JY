@@ -1,5 +1,4 @@
 # Playing with file descriptors
-
 import sys
 
 TMP = "../tmp/"

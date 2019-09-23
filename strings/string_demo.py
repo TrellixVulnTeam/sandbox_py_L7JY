@@ -43,17 +43,20 @@ print()
 print("hoge" + "fuga")
 print("fefe" * 3)
 
+# 文字コード変換
 print(ord('🖖'))
 print(chr(128406))
-print(ascii("ほげ"))
-print(bytes("ほげ", encoding='utf-8'))
-
-print()
+w = "ほげ"
+print(len(w))
+a = ascii(w)
+print(a)
+print(len(a))
 
 # bytes
-# b = bytes("ほげ", encoding='utf-8')
-b = "ほげ".encode(encoding='utf-8')
+# b = bytes(w, encoding='utf-8')
+b = w.encode(encoding='utf-8')
 print(b)
+print(len(b))
 print(b.decode('utf-8'))
 
 print()
@@ -112,11 +115,49 @@ print("some,csv,values".split(","))
 print("hello".replace("e", "a"))
 
 print()
+print('    Hello World    '.strip())
+print('    Hello World    '.rstrip())
+print('    Hello World    '.lstrip())
+
+print()
 print('Hello'.rjust(20))
 print('Hello'.ljust(20, '*'))
 print('Hello'.center(20, '='))
 
 print()
-print('    Hello World    '.strip())
-print('    Hello World    '.rstrip())
-print('    Hello World    '.lstrip())
+names = ["Amy", "John", "George", "Michael", "Penelope"]
+biggest = max(len(name) for name in names)
+
+for name in names:
+    print(name.ljust(biggest + 2, "-"))
+for name in names:
+    print(name.center(biggest + 2, "-"))
+for name in names:
+    print(name.rjust(biggest + 2, "-"))
+
+print()
+
+# searching
+sample_str = "The quick brown fox jumps over the lazy dog"
+
+# startsWith and endsWith functions
+print(sample_str.startswith("The"))
+print(sample_str.startswith("the"))
+print(sample_str.endswith("dog"))
+
+# the find and rfind functions
+print(sample_str.find("the"))
+print(sample_str.rfind("the"))
+print("the" in sample_str)
+
+# using replace
+new_str = sample_str.replace("lazy", "tired")
+print(new_str)
+
+# counting instances of substrings
+print(sample_str.count("over"))
+
+# translate
+trans_table = str.maketrans("abegilostz", "4636110572")
+print(sample_str)
+print(sample_str.translate(trans_table))

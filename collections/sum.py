@@ -7,7 +7,7 @@ text = """
 l = [list(map(int, line.split())) for line in text.splitlines() if line.strip()]
 print(l)
 print(*l)
-print(list(zip(*l)))
+print(list(zip(*l)))  # transpose
 
 # 横の合計
 [print(sum(i)) for i in l]
@@ -15,4 +15,4 @@ print(list(zip(*l)))
 print()
 
 # 縦の合計
-[print(sum(i)) for i in list(zip(*l))]
+[print(sum(i)) for i in zip(*l)]

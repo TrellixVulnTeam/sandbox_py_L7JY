@@ -32,9 +32,9 @@ def counter_demo():
     print(prose_counter.elements())
     print(prose_counter.keys())
 
-    fruites = ['apples', 'apples', 'bananas',
+    fruits = ['apples', 'apples', 'bananas',
                'cherries', 'lemons', 'oranges', 'oranges', ]
-    shipment = Counter(fruites)  # Counter from list
+    shipment = Counter(fruits)  # Counter from list
     c.update(shipment)
     sold = ['apples', 'apples', 'oranges', 'bananas', ]
     sales = Counter(sold)
@@ -43,49 +43,41 @@ def counter_demo():
 
 
 def defaultdict_demo():
-    # param: default factory (Supplier function)
+    # define a list of items that we want to count
+    fruits = ['apple', 'pear', 'orange', 'banana',
+              'apple', 'grape', 'banana', 'banana']
 
-    str_dict = defaultdict(str)
-    str_dict['foo']
-    print(str_dict)
+    # use a dictionary to count each element
+    # fruitCounter = {}  # raises KeyError
+    fruitCounter = defaultdict(int)  # default value's type
 
-    int_dict = defaultdict(int)
-    int_dict['foo']
-    print(int_dict)
-    int_dict['hello'] = 'world'  # no error
-    print(int_dict)
+    # Count the elements in the list
+    for fruit in fruits:
+        fruitCounter[fruit] += 1
 
-    float_dict = defaultdict(float)
-    float_dict['foo']
-    print(float_dict)
-
-    fraction_dict = defaultdict(Fraction)
-    fraction_dict['foo']
-    print(fraction_dict)
-
-    dne_dict = defaultdict(lambda: 'DNE')
-    dne_dict['foo']
-    print(dne_dict)
+    # print the result
+    for (k, v) in fruitCounter.items():
+        print(k + ": " + str(v))
 
 
 def ordered_dict_demo():
-    fruites_dict = OrderedDict()
-    fruites = ['apples', 'bananas', 'cherries',
+    fruits_dict = OrderedDict()
+    fruits = ['apples', 'bananas', 'cherries',
                'lemons', 'limes', 'oranges', 'peaches']
-    for f in fruites:
-        fruites_dict[f] = random.randint(50, 100)
-    print(fruites_dict)
+    for f in fruits:
+        fruits_dict[f] = random.randint(50, 100)
+    print(fruits_dict)
 
-    fruites_dict['bananas'] = 50
-    print(fruites_dict)
+    fruits_dict['bananas'] = 50
+    print(fruits_dict)
 
-    fruites_dict.move_to_end('bananas')
-    print(fruites_dict)
-    fruites_dict.move_to_end('bananas', False)  # beginning
-    print(fruites_dict)
-    print(fruites_dict.popitem())
-    print(fruites_dict.popitem(False))  # beginning
-    print(fruites_dict)
+    fruits_dict.move_to_end('bananas')
+    print(fruits_dict)
+    fruits_dict.move_to_end('bananas', False)  # beginning
+    print(fruits_dict)
+    print(fruits_dict.popitem())
+    print(fruits_dict.popitem(False))  # beginning
+    print(fruits_dict)
 
 
 def namedtuple_demo():

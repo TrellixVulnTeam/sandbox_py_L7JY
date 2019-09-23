@@ -60,6 +60,23 @@ def demo3():
     print(string_factory(data))
 
 
+def demo4():
+    foo = "foo"
+    bar = 123
+    print("Output: {}, {}".format(foo, bar))
+    print("Output: {1}, {0}".format(foo, bar))
+    print("Output: {var2}, {var1}".format(var1=foo, var2=bar))
+    print("Output: {var2:x}, {var2:X}, {var1}".format(var1=foo.upper(), var2=bar))  # x: hexadecimal
+    print(f"Output: {bar:b}, {foo.upper()}")  # f-string 3.6
+
+    print()
+    product = "Widget"
+    price = 19.99
+    tax = 0.07
+    print(f"{product} has a price of {price}, with tax {tax:.2%}"
+          f" the total is {round(price + (price * tax), 2)}")
+
+
 if __name__ == '__main__':
     print("--- demo1 ---")
     demo1()
@@ -67,3 +84,5 @@ if __name__ == '__main__':
     demo2()
     print("\n--- demo3 ---")
     demo3()
+    print("\n--- demo4 ---")
+    demo4()

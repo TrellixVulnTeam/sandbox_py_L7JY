@@ -14,12 +14,13 @@ class MyHTMLParser(HTMLParser):
     # this will be called when the closing ">" of the tag is reached
     def handle_starttag(self, tag, attrs):
         global metacount
-        print("Encountered a start tag:", tag)
         if tag == "meta":
             metacount += 1
 
+        print("Encountered a start tag:", tag)
         pos = self.getpos()  # returns a tuple indication line and character
-        print("At line: ", pos[0], " position ", pos[1])
+        print("\tAt line: ", pos[0], " position: ", pos[1])
+
         if len(attrs) > 0:
             print("\tAttributes:")
             for a in attrs:
@@ -28,20 +29,16 @@ class MyHTMLParser(HTMLParser):
     # function to handle the ending tag
     def handle_endtag(self, tag):
         print("Encountered an end tag:", tag)
-        pos = self.getpos()
-        print("At line: ", pos[0], " position ", pos[1])
 
     # function to handle character and text data (tag contents)
     def handle_data(self, data):
-        print("Encountered some data:", data)
-        pos = self.getpos()
-        print("At line: ", pos[0], " position ", pos[1])
+        if (data.isspace()):
+            return
+        print("Encountered some text data:", data)
 
     # function to handle the processing of HTML comments
     def handle_comment(self, data):
         print("Encountered comment:", data)
-        pos = self.getpos()
-        print("At line: ", pos[0], " position ", pos[1])
 
     def error(self, message):
         pass
@@ -57,7 +54,7 @@ def main():
         contents = f.read()  # read the entire file
         parser.feed(contents)
 
-    print("%d meta tags encountered" % metacount)
+    print("{} meta tags encountered".format(metacount))
 
 
 if __name__ == "__main__":

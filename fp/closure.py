@@ -39,3 +39,18 @@ def enclosing():
 lf = enclosing()
 lf()
 lf()
+
+print()
+
+s = "s@global"
+
+
+def func():
+    def inner(): return s
+
+    s = "s@inner()"  # 位置に注目
+    return inner
+
+
+print(func()())
+print(s)

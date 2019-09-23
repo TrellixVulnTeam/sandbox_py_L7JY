@@ -1,6 +1,7 @@
 # Calendar Module
-from datetime import datetime, timedelta
 import calendar
+import locale
+from datetime import datetime, timedelta
 
 now = datetime.now()
 
@@ -15,17 +16,10 @@ if testDate > myFirstLinkedInCourse:
 
 print()
 
-# from string
-line = input("Enter your date of birth (DD/MM/YYYY): ")
-birthday = datetime.strptime(line, "%d/%m/%Y")
-print("You were born on a {0:%A}".format(birthday))  # strftime書式でformatしていることに注目
-
-print()
-
 # create a plain text calendar
 c = calendar.TextCalendar(calendar.SUNDAY)
-str = c.formatmonth(2013, 1, 0, 0)
-print(str)
+cal = c.formatmonth(2013, 1, 0, 0)
+print(cal)
 
 # calendar (shorthand)
 c = calendar.month(2013, 1)
@@ -33,8 +27,8 @@ print(c)
 
 # create an HTML formatted calendar
 c = calendar.HTMLCalendar(calendar.SUNDAY)
-str = c.formatmonth(2013, 1)
-print(str)
+cal = c.formatmonth(2013, 1)
+print(cal)
 
 print()
 
@@ -47,12 +41,9 @@ print(calendar.isleap(2100))
 
 print()
 
-for name in calendar.month_name:
-    print(name)
-
-print()
-for day in calendar.day_name:
-    print(day)
+print(list(calendar.month_name))
+print(list(calendar.day_name))
+print(list(calendar.day_abbr))
 
 print()
 
@@ -61,10 +52,17 @@ c = calendar.c  # TextCalendar(calendar.MONDAY)
 
 # loop over the days of a month
 # zeroes mean that the day of the week is in an overlapping month
-for i in c.itermonthdays(2013, 8):
-    print(i)
+print(list(c.itermonthdates(2013, 8)))
+print(list(c.itermonthdays(2013, 8)))
+print(list(c.itermonthdays2(2013, 8)))
+# print(list(c.itermonthdays3(2013, 8)))  # 3.7
+# print(list(c.itermonthdays4(2013, 8)))  # 3.7
+print(list(c.iterweekdays()))
 
 print()
 
-for i in c.iterweekdays():  # 基準曜日は、calendar初期化時の指定に寄る。
-    print(i)
+locale.setlocale(locale.LC_ALL, '')  # 環境から取得して設定する
+print(locale.getlocale(locale.LC_TIME))
+print(list(calendar.month_name))
+print(list(calendar.day_name))
+print(list(calendar.day_abbr))

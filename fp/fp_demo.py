@@ -32,7 +32,7 @@ print(factorial(1))
 
 print()
 
-# RECURSIVE PROBLEM
+# Recursive Problem
 courses = {
     'count': 2,
     'title': 'Django Basics',
@@ -119,7 +119,7 @@ def curried_f(x, y=None, z=None):
         else lambda z: f(x, y, z)  # z will be the next run's x
     )
 
-
+# partial application
 print(curried_f(2, 3, 4))
 print(curried_f(2, 3)(4))
 print(curried_f(2)(3, 4))

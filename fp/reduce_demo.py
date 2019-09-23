@@ -1,9 +1,11 @@
 from functools import reduce
 import operator  # infix operators
 
-print(reduce(operator.add, [1, 2, 3, 4, 5]))
-
 numbers = [1, 2, 3, 4, 5]
+
+print(reduce(operator.add, numbers))
+print(reduce(operator.add, numbers, 1))
+
 accumulator = operator.add(numbers[0], numbers[1])
 for item in numbers[2:]:
     accumulator = operator.add(accumulator, item)
@@ -14,9 +16,9 @@ def mul(x, y):
     return x * y
 
 
-reduce(mul, range(1, 10))
+print(reduce(mul, range(1, 10)))
 
-# print(reduce(mul, []))
+# print(reduce(mul, []))  # NG: empty iterable and no initial value
 print(reduce(mul, [], 111))  # initial value
 
 print()
@@ -41,7 +43,7 @@ print(count_words(documents[0]))
 
 
 def combine_counts(d1, d2):
-    d = d1.copy()
+    d = d1.to_clip()
     for word, count in d2.items():
         d[word] = d.get(word, 0) + count
     return d

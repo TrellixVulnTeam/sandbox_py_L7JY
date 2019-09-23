@@ -18,6 +18,7 @@ def test_factory(cursor, row):
 
 def main():
     print('--- connect ---')
+    # db = sqlite3.connect('tmp/db_demo.db', isolation_level=None)  # isolation_level=None: Auto commit
     # db = sqlite3.connect('tmp/db_demo.db')
     db = sqlite3.connect(':memory:')
     cur = db.cursor()
@@ -48,7 +49,7 @@ def main():
     print('--- insert rows ---')
     cur.executemany("""
         INSERT INTO test (string, number) VALUES (?, ?)
-        """, [('four', 4), ('five', 5), ('six', 6)])
+        """, [('four', 4), ('five', 5), ('six', 6)])  # sequence of params(tuple)
     print('--- commit ---')
     db.commit()
 

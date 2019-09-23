@@ -50,17 +50,26 @@ if __name__ == '__main__':
     with CtxMgr() as x:
         raise Exception("Hoge Hoge")
 
+    def func1(s):
+        with CtxMgr() as x:
+            return s.upper()
+
+    print(func1("fefe"))
+
     print()
+
     with logging_context_manager() as l:
         print(l)
     with logging_context_manager() as l:
         raise Exception("Fuga Fuga")
 
     print()
+
     with nest_test('outer') as n1, nest_test('inner nested in ' + n1):
         print("BODY")
 
     print()
+
     with propagater("outer", True), propagater("inner", False):
         raise Exception("from Body")
     with propagater("outer", False), propagater("inner", True):
