@@ -18,7 +18,8 @@ def test_factory(cursor, row):
 
 def main():
     print('--- connect ---')
-    # db = sqlite3.connect('tmp/db_demo.db', isolation_level=None)  # isolation_level=None: Auto commit
+    # isolation_level=None: Auto commit
+    # db = sqlite3.connect('tmp/db_demo.db', isolation_level=None)
     # db = sqlite3.connect('tmp/db_demo.db')
     db = sqlite3.connect(':memory:')
     cur = db.cursor()
@@ -59,7 +60,7 @@ def main():
     print(f'there are {count} rows in the table.')
 
     print('--- read ---')
-    for row in cur.execute("SELECT * FROM test"):
+    for row in cur.execute("SELECT * FROM test"):  # iterable
         print(row)
 
     print('--- python function ---')
@@ -68,13 +69,15 @@ def main():
         print(row)
 
     print('--- row factory ---')
-    db.row_factory = test_factory
+    # db.row_factory = sqlite3.Row  # built-in
+    db.row_factory = test_factory  # custom
     cur = db.cursor()  # row factoryの読み直し
     for row in cur.execute("SELECT * FROM test"):
-        print(row)  # namedtuple
+        print(row)
 
     print('--- drop ---')
     cur.execute("DROP TABLE test")
+
     print('--- close ---')
     db.close()
 

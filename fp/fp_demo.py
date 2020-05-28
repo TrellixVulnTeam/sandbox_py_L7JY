@@ -100,7 +100,7 @@ print(list(high_cal))
 
 print()
 
-print('--- curry ---')
+print('--- currying ---')
 
 
 def curried_f(x, y=None, z=None):
@@ -118,6 +118,7 @@ def curried_f(x, y=None, z=None):
         if (y is not None and z is not None)  # setup for third run
         else lambda z: f(x, y, z)  # z will be the next run's x
     )
+
 
 # partial application
 print(curried_f(2, 3, 4))

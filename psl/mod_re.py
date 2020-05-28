@@ -37,7 +37,7 @@ print()
 
 # difference between match() and search()
 print(re.match(r'Hello', 'Hello World!'))
-print(re.match(r'World', 'Hello World!'))  # None
+print(re.match(r'World', 'Hello World!'))  # => None: matches only from the beginning of the string
 print(re.search(r'World', 'Hello World!'))
 
 print()

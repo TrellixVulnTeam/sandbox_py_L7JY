@@ -148,6 +148,6 @@ chars = {c.upper() for c in sTemp if not c.isspace()}
 print(chars)
 
 print('--- map vs comprehensions')
-# no necessarily faster than the other
+# not necessarily faster than the other
 print(list(map(str, range(5))))
 print([str(i) for i in range(5)])

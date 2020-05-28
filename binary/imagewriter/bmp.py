@@ -11,7 +11,8 @@ def write_grayscale(filename, pixels):
             range 0-255.
 
     Raises:
-        OSError: If the file couldn't be written.
+       ValueError: If any of the integer values are out of range.
+       OSError: If the file couldn't be written.
     """
     height = len(pixels)
     width = len(pixels[0])
@@ -52,11 +53,8 @@ def write_grayscale(filename, pixels):
         for row in reversed(pixels):  # BMP files are bottom to top
             row_data = bytes(row)
             bmp.write(row_data)
-            # row padding multiple of four bytes
-            p = len(row) % 4
-            if p != 0:
-                padding = b'\x00' * (4 - p)
-                bmp.write(padding)
+            padding = b'\x00' * ((4 - (len(row) % 4)) % 4)  # Pad row to multiple of four bytes
+            bmp.write(padding)
 
         # End of file
         eof_bookmark = bmp.tell()

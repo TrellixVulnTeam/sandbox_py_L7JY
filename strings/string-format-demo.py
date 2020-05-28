@@ -8,13 +8,15 @@ def demo1():
     print('Nice to meet you {}. I am {}'.format(name, machine))
     print('Nice to meet you {0}. I am {1}'.format(name, machine))
     print("Nice to meet you {name}. I am {machine}".format(name=name, machine=machine))
-    print(f'Nice to meet you {name}. I am {machine}')  # 3.6
+    print(f'Nice to meet you {name}\\. I am {machine}')  # f-string 3.6
+    print(rf'Nice to meet you {name}\\. I am {machine}')  # raw f-string
 
     v = [1, -2, 3.3]
     print('%4d%10d%10.3f' % (1, -2, 3.3))
     # print('%4d%10d%10.3f' % (*v))  # NG
+    print('%4d%10d%10.3f' % tuple(v))
     print('{0:4}{1:10}{2:10.3f}'.format(*v))
-    print('{:4}{:10}{:10.3f}'.format(*v))
+    print('{:4}{:10}{:10.3f}'.format(*v))  # 順番通りなら位置指定は省略できる
     print('{:>04}{:<10}{:10.3f}'.format(*v))
 
 

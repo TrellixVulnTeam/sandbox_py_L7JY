@@ -20,6 +20,7 @@ student = {
 print(student["name"])
 print(len(student))
 # student["last_name"]  # KeyError
+print(student.get("last_name"))
 print(student.get("last_name", "Unknown"))
 print(student.keys())  # dict_keys : like set
 print(student.values())  # dict_values : like list
@@ -58,7 +59,7 @@ print(student)
 
 print()
 
-# join
+# unpack
 dict_a = {"a": 1, "x": 10}
 dict_b = {"b": 2, "x": 20}
 print({**dict_a, **dict_b})  # 3.5 onwards

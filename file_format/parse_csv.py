@@ -5,7 +5,7 @@ def demo():
     with open('../data/portfolio.csv', newline='', encoding='utf-8') as f:
         reader = csv.reader(f, delimiter=',')  # iterator
         for row in reader:
-            print(', '.join(row))
+            print(row)
 
     print('---')
 

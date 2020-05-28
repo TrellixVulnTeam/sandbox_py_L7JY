@@ -49,6 +49,7 @@ print(datetime.fromordinal(1))
 print(datetime.fromordinal(730000))
 print(datetime.combine(date.today(), time()))
 print(datetime.strptime('2018-2-9', '%Y-%m-%d'))
+print(datetime.fromisoformat('2014-05-14T14:40:25.950'))  # 3.7
 
 print()
 

@@ -90,3 +90,10 @@ if w != None:  # bad
     print("Not None")
 if w is not None:
     print("Not None")
+
+# Python3.8: walrus operator
+a = "Sx007"
+if (s := a[:2]).isalpha() and s.isupper():
+    print(f'"{s}" OK!')
+else:
+    print(f'"{s}" NG!')

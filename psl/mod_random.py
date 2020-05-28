@@ -21,16 +21,13 @@ print(random.randrange(0, 101, 5))
 
 # Use the seed function to position the generator
 random.seed(999)
-nums1 = [random.randint(1, 100) for _ in range(10)]
+print([random.randint(1, 100) for _ in range(10)])
 random.seed(999)
-nums2 = [random.randint(1, 100) for _ in range(10)]
-print(nums1)
-print(nums2)
+print([random.randint(1, 100) for _ in range(10)])
 
 # clear seed
 random.seed(None)
-nums3 = [random.randint(1, 100) for _ in range(10)]
-print(nums3)
+print([random.randint(1, 100) for _ in range(10)])
 
 print("----------------")
 

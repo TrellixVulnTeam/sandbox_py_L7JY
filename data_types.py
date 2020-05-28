@@ -24,6 +24,7 @@ print(issubclass(bool, int))  # => True
 # Falsy
 print()
 print(bool(0))
+print(bool(0.0))
 print(bool(""))
 print(bool("0"))  # => True
 print(bool(None))
@@ -34,9 +35,3 @@ print(bool(set()))
 print(bool(range(0)))
 print(bool(decimal.Decimal(0)))
 print(bool(fractions.Fraction(0, 10)))
-
-print()
-print(3 / 2)  # => 1.5
-print(3 // 2)  # => 1
-print(-3 / 2)  # => -1.5
-print(-3 // 2)  # => -2

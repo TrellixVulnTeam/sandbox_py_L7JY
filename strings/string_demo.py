@@ -137,6 +137,11 @@ for name in names:
 
 print()
 
+# splitlines(): list (not iterable or generator)
+print("Hoge\nFuga\n\nFefe".splitlines())
+
+print()
+
 # searching
 sample_str = "The quick brown fox jumps over the lazy dog"
 
@@ -145,7 +150,7 @@ print(sample_str.startswith("The"))
 print(sample_str.startswith("the"))
 print(sample_str.endswith("dog"))
 
-# the find and rfind functions
+# find and rfind functions
 print(sample_str.find("the"))
 print(sample_str.rfind("the"))
 print("the" in sample_str)
@@ -161,3 +166,6 @@ print(sample_str.count("over"))
 trans_table = str.maketrans("abegilostz", "4636110572")
 print(sample_str)
 print(sample_str.translate(trans_table))
+
+# partition
+'unforgetable'.partition('forget')

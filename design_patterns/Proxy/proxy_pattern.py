@@ -21,7 +21,7 @@ class Proxy(Subject):
 
     def do_action(self):
         # do something ...
-        pass
+        self.subject.do_action()
 
 
 if __name__ == '__main__':

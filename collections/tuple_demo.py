@@ -39,6 +39,11 @@ print(d)
 
 print()
 
+# multiple assignment
+tt = (a, (b, (c, d))) = (4, (3, (2, 1)))
+print(a, b, c, d)
+print(tt)
+
 # swapping technique
 s = 5
 t = 20

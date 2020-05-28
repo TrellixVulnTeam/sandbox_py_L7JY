@@ -1,6 +1,6 @@
 # List demo
 
-list1 = list(range(1, 10))
+list1 = list(range(10))
 print(list1)
 print(list1.__len__())
 print(len(list1))  # preferred
@@ -10,20 +10,22 @@ print(list1)
 
 print()
 
-# slices
+# slices (sequence protocol)
 # [start:end:step]
 print(list1[1:5])
 print(list1[0:3])
 print(list1[:3])
 print(list1[3:])
-print(list1[-1])
+print(list1[-1])  # not slice, single value
 print(list1[-1:])
 print(list1[:-1])
 print(list1[::2])
 print(list1[::-1])
-list2 = list1[:]  # copy
+list2 = list1[:]  # shallow copy
 print(list2 is list1)
 del list2[0]
+print(list2)
+del list2[2:4]
 print(list2)
 print(list1)
 
@@ -57,8 +59,15 @@ print(a)
 print()
 
 # operators
-print(list1 + ['a', 'b'])
-print(list1 * 2)
+list3 = ['a', 'b']
+print(list3 + ['c'])
+print(list3 * 2)
+print(list3)
+
+list4 = [[1]] * 4
+print(list4)
+list4[0].append(2)
+print(list4)
 
 print()
 
@@ -68,8 +77,6 @@ l.extend("abc")  # => l += ['a', 'b', 'c']
 print(l)
 print(l.index('c'))
 l.insert(3, 'x')
-print(l)
-del l[2:4]
 print(l)
 l.remove('b')
 print(l)
@@ -83,6 +90,7 @@ print(list(map(sum, l)))
 
 print()
 
+# out-of-place
 l1 = [(7, 2), (3, 4), (5, 5), (10, 3)]
 l2 = sorted(l1, key=lambda x: x[1])
 print(l2)  # => [(7, 2), (10, 3), (3, 4), (5, 5)]
@@ -100,3 +108,11 @@ for i, v in enumerate("qwerty"):
 
 for i, v in enumerate("qwerty", start=10):
     print("{}: {}".format(i, v))
+
+print()
+
+# unpack
+list_x = [5, 10]
+list_y = [2, 5]
+print([*list_x, *list_y])
+print([*list_x, "あ", "ほ", *list_y])

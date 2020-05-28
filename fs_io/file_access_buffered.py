@@ -17,8 +17,8 @@ infile.close()
 print()
 
 # copy binary file
-infile = open(DATA + "bonsai.jpg", "rb")
-outfile = open(TMP + "bonsai-copy.jpg", "wb")
+infile = open(DATA + "hotel_phillips.jpg", "rb")
+outfile = open(TMP + "hotel_phillips-copy.jpg", "wb")
 while True:
     buf = infile.read(8192)  # 8KB
     if buf:

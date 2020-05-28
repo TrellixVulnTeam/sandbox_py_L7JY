@@ -4,10 +4,8 @@ def kwarg_only_func(arg1, arg2, *, flag=False, **kwargs):  #
 
 
 # kwarg_only_func(1, 2, True)  # NG
-kwarg_only_func(1, 2, flag=True)
-
-
 # kwarg_only_func(1, 2, 3, flag=True)  # NG
+kwarg_only_func(1, 2, flag=True)
 
 
 # var args
@@ -56,3 +54,32 @@ def pack_both(arg1=None, *args, **kwargs):
 
 
 pack_both("gege", "a", 4, fuga=5, fefe=False)
+
+print()
+
+print('--- pitfall of mutable default arguments')
+
+
+def add_spam(menu=[]):
+    menu.append('spam')
+    return menu
+
+
+print(add_spam(['bacon', 'eggs']))
+print(add_spam())
+print(add_spam())
+
+print()
+
+import time
+
+
+def show_default(arg=time.ctime()):  # run only once at definition
+    print(arg)
+
+
+show_default()
+time.sleep(1)
+show_default()
+time.sleep(1)
+show_default()

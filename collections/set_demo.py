@@ -50,9 +50,16 @@ set1.add(2)  # set1 = {0, 1, 2}
 print(set1.issubset(set2))  # 部分集合（同値を含む）
 print(set1 < set2)
 print(set1 <= set2)
+print(set1 == set2)
 print(set2.issuperset(set1))
 print(set2 > set1)
 print(set2 >= set1)
 
 set3 = {3, 6, 9}
-print(set3.isdisjoint(set1))
+print(set3.isdisjoint(set2))
+
+# unpack
+set_x = {5, 10}
+set_y = {2, 5}
+print({*set_x, *set_y})
+print({*set_x, "あ", "ほ", *set_y})

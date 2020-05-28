@@ -1,11 +1,12 @@
 # decorator, closure
 from functools import wraps
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
 
 
+# basic decorator
 def logme(func):
-    import logging
-    logging.basicConfig(level=logging.DEBUG)
-
     def inner(*args, **kwargs):
         logging.debug("Called: {} with args: {} and kwargs: {}"
                       .format(func.__name__, args, kwargs))
@@ -14,19 +15,54 @@ def logme(func):
     return inner
 
 
-def hoge(msg=None):
-    print(msg)
-
-
-logme(hoge)('HOGE')
-
-
 @logme
 def fuga(msg=None):
     print(msg)
 
 
 fuga('FUGA')
+
+
+def hoge(msg=None):
+    print(msg)
+
+
+logme(hoge)('HOGE')
+
+print('---')
+
+
+# with decorator args
+def decorator_with_args(*dargs):
+    def wrap(f):
+        print("Inside wrap()")
+
+        def wrapped_f(*args):
+            print("Inside wrapped_f()")
+            print("Decorator arguments:", *dargs)
+            f(*args)
+            print("After f(*args)")
+
+        return wrapped_f
+
+    return wrap
+
+
+@decorator_with_args("hello", "world", 42)
+def say_hello(*args):
+    print('say_hello arguments:', *args)
+
+
+say_hello("say", "hello", "arguments")
+
+print()
+
+
+def say_hello2(*args):
+    print('say_hello2 arguments:', *args)
+
+
+decorator_with_args("hoge", "fuga")(say_hello2)("say", "hello", "arguments")
 
 print('---')
 
@@ -57,17 +93,17 @@ print('---')
 
 # decorator order
 def dec1(func):
-    def wrapper(msg):
+    def wrapped(msg):
         return func('dec1({})'.format(msg))
 
-    return wrapper
+    return wrapped
 
 
 def dec2(func):
-    def wrapper(msg):
+    def wrapped(msg):
         return func('dec2({})'.format(msg))
 
-    return wrapper
+    return wrapped
 
 
 @dec1
@@ -76,7 +112,7 @@ def fefe(msg):
     print(msg)
 
 
-fefe('fefe')  # dec2(dec1(fefe('fefe')))
+fefe('Hello!')  # dec2(dec1('Hello!'))
 
 print('---')
 
@@ -84,23 +120,23 @@ print('---')
 def noop_bare(f):
     """bare wrapper"""
 
-    def wrapper():
+    def wrapped():
         return f()
 
     # preserve metadata
-    # wrapper.__doc__ = f.__doc__
-    # wrapper.__name__ = f.__name__
-    return wrapper
+    # wrapped.__doc__ = f.__doc__
+    # wrapped.__name__ = f.__name__
+    return wrapped
 
 
 def noop(f):
     """preserve metadata by functools.wraps"""
 
     @wraps(f)
-    def wrapper():
+    def wrapped():
         return f()
 
-    return wrapper
+    return wrapped
 
 
 @noop_bare
@@ -123,7 +159,7 @@ help(hello2)
 print('---')
 
 
-# decorator with args
+# decorator args
 def check_non_negative(index):  # decorator factory, just return the decorator
     def validator(f):  # the actual decorator
         def wrap(*args):

@@ -1,4 +1,7 @@
 class JavaScriptObject(dict):
+    """
+    JavaScript prototype and __proto__ object
+    """
     def __getattribute__(self, item):
         try:
             return self[item]

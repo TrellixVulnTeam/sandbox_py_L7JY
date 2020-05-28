@@ -1,4 +1,5 @@
 # Files and File Writing
+# modes
 # r --> read (default)
 # r+ --> read / write
 # w --> truncate and write
