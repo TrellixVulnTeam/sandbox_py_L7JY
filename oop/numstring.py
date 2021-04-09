@@ -17,7 +17,7 @@ class NumString:
     def __radd__(self, other):
         return self + other
 
-    # in place add (+=)
+    # in-place add (+=)
     def __iadd__(self, other):
         self.value = str(self + other)
         return self.value

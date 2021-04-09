@@ -20,11 +20,13 @@ progressbar.step(5)  # wrap back around to 4
 
 value = DoubleVar()
 progressbar.config(variable=value)
-scale = ttk.Scale(root, orient=HORIZONTAL,
-                  length=400, variable=value,
-                  from_=0, to=11.0)
+scale = ttk.Scale(root, orient=HORIZONTAL, length=200, variable=value,
+                  from_=0, to=11.0, command=lambda v: print(value.get()))
 scale.pack()
-scale.set(4.2)
-print(scale.get())
+
+value2 = IntVar()
+scale2 = ttk.Scale(root, orient=HORIZONTAL, length=200, variable=value2,
+                   from_=0, to=11.0, command=lambda v: print(value2.get()))
+scale2.pack()
 
 root.mainloop()

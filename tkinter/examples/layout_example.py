@@ -1,5 +1,5 @@
-from tkinter import *
-from tkinter.ttk import Frame, Label, Button, Style
+from tkinter import Tk, Toplevel, Text, BOTH, X, LEFT, RIGHT, N, EW, W, NSEW, GROOVE
+from tkinter.ttk import Frame, Label, Button, Style, Entry
 
 
 class Buttons(Toplevel):
@@ -73,7 +73,7 @@ class Calculator(Toplevel):
 
         Style().configure("TButton", padding=(0, 5, 0, 5), font='Serif 10')
 
-        Entry(self).grid(row=0, columnspan=4, sticky=W + E)
+        Entry(self).grid(row=0, columnspan=4, sticky=EW)
 
         calc_grid = [
             ["Cls", "Back", "", "Close"],
@@ -88,7 +88,7 @@ class Calculator(Toplevel):
                 Button(self, text=text).grid(row=r + 1, column=c)
 
 
-def main():
+if __name__ == '__main__':
     root = Tk()
     w, h = 260, 100
     left = (root.winfo_screenwidth() - w) // 2
@@ -100,7 +100,3 @@ def main():
     Review(root)
     Calculator(root)
     root.mainloop()
-
-
-if __name__ == '__main__':
-    main()

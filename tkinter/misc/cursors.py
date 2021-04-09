@@ -24,12 +24,8 @@ class Example(Frame):
         self.pack()
 
 
-def main():
+if __name__ == '__main__':
     root = Tk()
     root.geometry("+200+50")
     Example(root)
     root.mainloop()
-
-
-if __name__ == '__main__':
-    main()

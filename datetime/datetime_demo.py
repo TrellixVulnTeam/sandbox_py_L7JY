@@ -6,7 +6,7 @@ from datetime import date, datetime, time
 # year=1-9999, month=1-12, day=1-31
 print(date.min)
 print(date.max)
-print(date.resolution)
+print(date.resolution)  # timedelta(days=1)
 
 print(date(2018, 1, 1))
 print(date(year=2018, month=1, day=1))
@@ -33,8 +33,8 @@ print(time())  # time class has no other factory methods
 
 t = time(hour=1, minute=23, second=45, microsecond=6789)
 print(t)
-print(t.replace(hour=5))
 print(t.isoformat())
+print(t.replace(hour=5))
 
 print()
 

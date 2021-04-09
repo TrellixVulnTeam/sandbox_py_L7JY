@@ -6,11 +6,11 @@ import sys
 
 class CtxMgr:
     def __enter__(self):
-        print("CtxMgr.__enter__()")
+        print("__enter__()")
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        print("CtxMgr.__exit__({}, {}, {})".format(exc_type, exc_val, exc_tb))
+        print(f"__exit__({exc_type}, {exc_val}, {exc_tb})")
         return True  # suppress propagate
 
 
@@ -21,9 +21,8 @@ def logging_context_manager():
         yield "You're in a with-block!"  # __enter__() return value
         print('logging_context_manager: normal exit')
     except Exception:
-        print('logging_context_manager: exceptional exit',
-              sys.exc_info())
-        # raise  # re-raise
+        print('logging_context_manager: exceptional exit', sys.exc_info())
+        # raise  # re-raise to propagate exception
 
 
 @contextlib.contextmanager
@@ -34,7 +33,7 @@ def nest_test(name):
 
 
 @contextlib.contextmanager
-def propagater(name, propagate):
+def propagater(name, propagate=True):
     try:
         yield
         print(name, 'exited normally.')
@@ -47,11 +46,13 @@ def propagater(name, propagate):
 if __name__ == '__main__':
     with CtxMgr() as x:
         print(x)
+
     with CtxMgr() as x:
         raise Exception("Hoge Hoge")
 
     def func1(s):
-        with CtxMgr() as x:
+        with CtxMgr():
+            print("in func1()")
             return s.upper()
 
     print(func1("fefe"))
@@ -60,6 +61,7 @@ if __name__ == '__main__':
 
     with logging_context_manager() as l:
         print(l)
+
     with logging_context_manager() as l:
         raise Exception("Fuga Fuga")
 
@@ -72,5 +74,6 @@ if __name__ == '__main__':
 
     with propagater("outer", True), propagater("inner", False):
         raise Exception("from Body")
+
     with propagater("outer", False), propagater("inner", True):
         raise Exception("from Body")

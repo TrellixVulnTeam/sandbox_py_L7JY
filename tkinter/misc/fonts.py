@@ -1,36 +1,34 @@
-from tkinter import *
-from tkinter import font
-from tkinter.ttk import Frame, Label
+from tkinter import font, Tk
+from tkinter.ttk import Label
 
+root = Tk()
+root.geometry("+300+200")
+root.title("Fonts")
 
-class Example(Frame):
+txt = "Today is a beautiful day"
+Label(root, text=txt).pack()
+Label(root, text=txt, font="TkDefaultFont").pack()
+Label(root, text=txt, font="TkTextFont").pack()
+Label(root, text=txt, font="TkFixedFont").pack()
+Label(root, text=txt, font="TkMenuFont").pack()
+Label(root, text=txt, font="TkHeadingFont").pack()
+Label(root, text=txt, font="TkCaptionFont").pack()
+Label(root, text=txt, font="TkSmallCaptionFont").pack()
+Label(root, text=txt, font="TkIconFont").pack()
+Label(root, text=txt, font="TkTooltipFont").pack()
+Label(root, text=txt, font="Helvetica 20 bold").pack()
+Label(root, text=txt, font=("Times", "20", "bold", "italic",)).pack()
+mono = font.Font(family="Monospace", size=20, weight="bold", name="myMono")
+Label(root, text=txt, font=mono).pack()
+print(mono, mono.measure(txt))
+print()
 
-    def __init__(self, root):
-        super().__init__(root)
-        self.master.title("Fonts")
-        txt = "Today is a beautiful day"
-        Label(self, text=txt).pack()
-        Label(self, text=txt, font="TkDefaultFont").pack()
-        Label(self, text=txt, font="TkTextFont").pack()
-        Label(self, text=txt, font="TkFixedFont").pack()
-        Label(self, text=txt, font="TkMenuFont").pack()
-        Label(self, text=txt, font="TkHeadingFont").pack()
-        Label(self, text=txt, font="TkCaptionFont").pack()
-        Label(self, text=txt, font="TkSmallCaptionFont").pack()
-        Label(self, text=txt, font="TkIconFont").pack()
-        Label(self, text=txt, font="TkTooltipFont").pack()
-        Label(self, text=txt, font=('Times', '20', 'bold', 'italic',)).pack()
-        Label(self, text=txt, font=font.Font(family="Monospace")).pack()
-        print(font.families())
-        self.pack()
+for name in ["TkDefaultFont", "TkFixedFont"]:
+    f = font.nametofont(name)
+    print(f.actual())
+    print(f.metrics())
 
+print()
+print(font.families())
 
-def main():
-    root = Tk()
-    root.geometry("+300+200")
-    Example(root)
-    root.mainloop()
-
-
-if __name__ == '__main__':
-    main()
+root.mainloop()

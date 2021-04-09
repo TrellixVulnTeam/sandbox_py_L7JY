@@ -24,16 +24,3 @@ jlogger.warning("This is a warning sent to the journal")
 # Prevent the message propagating to the root logger
 jlogger.propagate = False
 jlogger.warning("Warning ONLY to journal")
-
-
-# Within an exception handler you can print a stack trace:
-
-
-def bad_idea():
-    try:
-        c = 1 / 0  # Easy way to force an exception
-    except:
-        logging.error("Failed to divide", exc_info=True)
-
-
-bad_idea()

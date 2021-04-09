@@ -4,7 +4,7 @@ root = Tk()
 
 text = Text(root, width=40, height=10)
 text.pack()
-text.config(wrap='word')  # char(default), word, none
+text.config(wrap=WORD)  # char(default), word, none
 text.config(undo=True)  # enable undo/redo
 
 # base formats: line.char
@@ -38,7 +38,7 @@ print(text.mark_names())
 text.mark_gravity('my_mark', 'right')
 text.mark_unset('my_mark')
 
-image = PhotoImage(file='python_logo.gif').subsample(5, 5)  # Change path as needed
+image = PhotoImage(file='python_logo.gif').subsample(5, 5)
 text.image_create('insert', image=image)
 text.image_create('insert', image=image)
 

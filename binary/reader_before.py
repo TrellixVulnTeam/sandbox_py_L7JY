@@ -44,7 +44,7 @@ def make_colored_vertex(x, y, z, red, green, blue):
 
 
 def main():
-    with open('colors.bin', 'rb') as f:
+    with open('../tmp/colors.bin', 'rb') as f:
         buffer = f.read()
 
     print("buffer: {} bytes".format(len(buffer)))

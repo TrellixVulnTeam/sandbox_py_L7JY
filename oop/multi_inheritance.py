@@ -16,7 +16,7 @@ class BaseClass:
         return self.__class__.__name__
 
     def call_me(self):
-        print("Calling method on Base Class")
+        return "BaseClass.call_me"
 
 
 class LeftSubClass(BaseClass):
@@ -25,18 +25,16 @@ class LeftSubClass(BaseClass):
         print("LeftSubClass.__init__")
 
     def call_me(self):
-        print("Calling method on Left SubClass")
-        super().call_me()
+        return super().call_me() + " :LeftSubClass.call_me"
 
 
 class RightSubClass(BaseClass):
     def __init__(self):
         super().__init__()
-        print("RigthSubclass.__init__")
+        print("RightSubclass.__init__")
 
     def call_me(self):
-        print("Calling method on Right SubClass")
-        super().call_me()
+        return super().call_me() + " :RightSubClass.call_me"
 
 
 class SubClass(LeftSubClass, RightSubClass):
@@ -45,14 +43,12 @@ class SubClass(LeftSubClass, RightSubClass):
         print("SubClass.__init__")
 
     def call_me(self):
-        print("Calling method on SubClass")
         # super(SubClass, self).call_me()
-        super().call_me()  # shorthand
+        return super().call_me() + " :SubClass.call_me"
 
 
 if __name__ == '__main__':
     s = SubClass()
-    s.call_me()
 
     print()
     print(SubClass.__bases__)
@@ -72,5 +68,7 @@ if __name__ == '__main__':
     print(super(RightSubClass, s).call_me)
 
     print()
-    super(LeftSubClass, s).call_me()
-    super(RightSubClass, s).call_me()
+    print(s.call_me())
+    print(super(SubClass, s).call_me())
+    print(super(LeftSubClass, s).call_me())
+    print(super(RightSubClass, s).call_me())

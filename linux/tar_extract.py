@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 
-# tartest4.py
 # Extract only recently modified files (using tarinfo)
 
 import os

@@ -6,6 +6,7 @@ import secrets
 # the urandom() function in the OS module produces random numbers that
 # are cryptographically safe to use for sensitive purposes
 result = os.urandom(8)
+print(result)
 print([hex(b) for b in result])
 
 # secrets.choice is the same as random.choice but more secure

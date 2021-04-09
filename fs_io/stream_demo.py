@@ -10,7 +10,7 @@ import io
 def text_wrapper_demo():
     d = os.path.dirname(__file__)
     with urllib.request.urlopen(rf'file:///{d}/../data/portfolio.csv') as bs:  # byte stream
-        ts = io.TextIOWrapper(bs, newline='', encoding='utf-8')  # only text stream
+        ts = io.TextIOWrapper(bs, newline='', encoding='utf-8')  # text stream
         reader = csv.reader(ts)
         for row in reader:
             print(row)

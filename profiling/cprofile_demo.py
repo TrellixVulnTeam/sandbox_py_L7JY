@@ -1,6 +1,7 @@
 # Importing the profile module
 import cProfile
 
+
 # we'll check the time consumption of this function
 # if our processor is significantly powerful, then the timing will be nearly zero
 
@@ -16,6 +17,7 @@ def squareroot():
 # Running the function for its time consumption
 cProfile.run('squareroot()')
 
+
 # Lets make another function
 
 
@@ -25,7 +27,7 @@ def selection_sort():
     for i in range(len(A)):
         # Find the minimum element in remaining unsorted array
         min_idx = i
-        for j in range(i+1, len(A)):
+        for j in range(i + 1, len(A)):
             if A[min_idx] > A[j]:
                 min_idx = j
 

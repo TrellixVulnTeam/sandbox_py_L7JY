@@ -1,8 +1,11 @@
-from functools import reduce
+import functools
+import itertools
 
 # map
 print(list(map(lambda x: x * 2, [x for x in range(10)])))
-print([x * 2 for x in range(10)])
+print([x * 2 for x in range(10)])  # comprehension
+
+print(dict(map(lambda x, y: (x, y), ["a", "b", "c", "d"], itertools.count())))  # zip
 
 # filter
 print(list(filter(lambda x: x > 0, [1, -2, 0, 5, 8, -3])))
@@ -11,12 +14,12 @@ print(list(filter(None, [0, 1, False, True, [], [0], {}, (), "", "abc"])))  # fi
 print()
 
 
-# reduce
+# functools.reduce
 def product(x, y):
     return x * y
 
 
-print(reduce(product, [1, 2, 3, 4, 5]))
+print(functools.reduce(product, [1, 2, 3, 4, 5]))
 
 print()
 

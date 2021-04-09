@@ -5,35 +5,12 @@ Global
 Built-in
 """
 
-
-class T:
-    lst = ["hoge"]
-
-
-a = T()
-b = T()
-c = T()
-print(id(a.lst) == id(b.lst))
-print(id(a.lst) == id(c.lst))
-c.lst = ["c"]
-print(id(a.lst) == id(b.lst))
-print(id(a.lst) == id(c.lst))
-
-print()
-
 # global vs. local variables in functions
 x = "global: x"
 y = "global: y"
 
 
-def someFunction():
-    print(x)  # OK
-
-
-someFunction()
-
-
-def someFunction2():
+def global_demo():
     # print(x)  # error
     x = "local: x"
     # print(y)  # error
@@ -41,9 +18,16 @@ def someFunction2():
     y = "local: y"
 
 
-someFunction2()
+global_demo()
 print(x)
 print(y)
+
+print()
+
+print(globals())
+globals()['tau'] = 6.283185
+print(globals())
+print(tau)  # error in IDE, but no problem
 
 print()
 
@@ -69,26 +53,14 @@ print('global message:', message)
 
 print()
 
-print(globals())
-globals()['tau'] = 6.283185
-print(globals())
-
-print()
-
 
 def report_scope(arg):
-    from pprint import pprint as pp
     x = 496
+
+    def local_func(): return "Fuga"
+
+    from pprint import pprint as pp
     pp(locals(), width=10)
 
 
 report_scope(42)
-
-
-def print_locals():
-    name = "Hoge"
-    age = 9
-    print("{name}: {age}".format(**locals()))
-
-
-print_locals()

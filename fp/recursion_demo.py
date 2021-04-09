@@ -10,7 +10,7 @@ def s(n):
         return n + s(n - 1)
 
 
-# tail recursion optimization: not supported in python
+# tail recursion optimization: not supported in Python
 def s2(n, acc=0):
     if n == 0:
         return acc
@@ -20,7 +20,9 @@ def s2(n, acc=0):
 
 if __name__ == '__main__':
     print(sys.getrecursionlimit())
+
+    print()
     print(s(997))
     print(s2(997))
     # print(s(998))
-    print(s2(998))
+    # print(s2(998))

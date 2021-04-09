@@ -17,9 +17,9 @@ def func(arg1, arg2=None):
 
 def add(x, y):
     """Add 2 items
-    :param x:
-    :param y:
-    :return:
+    :param: x
+    :param: y
+    :return: x + y
 
     >>> add(2, 2)
     4
@@ -32,6 +32,7 @@ def add(x, y):
 if __name__ == "__main__":
     # print(func.__doc__)
     help(func)
+    help(add)
 
     # doctest from code
     import doctest

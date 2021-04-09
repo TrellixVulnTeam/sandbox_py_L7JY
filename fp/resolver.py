@@ -1,3 +1,6 @@
+"""
+Callable: function with states
+"""
 import socket
 
 

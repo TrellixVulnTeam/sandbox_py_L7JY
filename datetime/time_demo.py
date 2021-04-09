@@ -14,3 +14,6 @@ print('42 seconds later:', time.ctime(current_time + 42))
 
 # BAD : daylight saving time, leap year, leap second
 print('42 days later:', time.ctime(current_time + 42 * 24 * 3600))
+
+# time_ns(): Python3.7
+print(time.time_ns())

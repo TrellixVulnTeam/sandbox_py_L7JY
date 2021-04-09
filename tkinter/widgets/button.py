@@ -8,7 +8,7 @@ button.pack()
 
 
 def callback(number=None):
-    print(f"Clicked! {number if number else ''}")
+    print(f"Clicked! {number if number else 'Top'}")
 
 
 button.config(command=callback)
@@ -18,9 +18,9 @@ button.invoke()  # from code
 button.state([DISABLED])  # constants
 print(button.instate(['disabled']))
 button.state(['!disabled'])
-print(button.instate(['!disabled']))
+print(button.instate(['disabled']))
 
-logo = PhotoImage(file='python_logo.gif')  # change path to image as necessary
+logo = PhotoImage(file='python_logo.gif')
 button.config(image=logo, compound=LEFT)
 small_logo = logo.subsample(5, 5)
 button.config(image=small_logo)

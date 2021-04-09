@@ -1,4 +1,4 @@
-from algo.ds.data_structures import Deque
+from data_structures import Deque
 
 
 def check_palindrome(input_str):
@@ -16,4 +16,5 @@ def check_palindrome(input_str):
 
 
 print(check_palindrome('racecar'))
+print(check_palindrome('よわいわよはんしんはよわいわよ'))
 print(check_palindrome('oranges'))

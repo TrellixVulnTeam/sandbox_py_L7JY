@@ -4,8 +4,16 @@ import requests
 from requests.auth import HTTPBasicAuth
 
 
+def print_response(response: requests.Response):
+    print('Status code: {}'.format(response.status_code))
+    print('Response Headers: ----------------------')
+    print(response.headers)
+    print('Response Body: ----------------------')
+    print(response.text)
+
+
 def main():
-    # Access a URL that requires authentication - the format of this 
+    # Access a URL that requires authentication - the format of this
     # URL is that you provide the username/password to auth against
     url = "http://httpbin.org/basic-auth/HogeFuga/hogefuga"
 
@@ -15,14 +23,6 @@ def main():
     # Issue the request with the authentication credentials
     result = requests.get(url, auth=credentials)
     print_response(result)
-
-
-def print_response(response: requests.Response):
-    print('Status code: {}'.format(response.status_code))
-    print('Response Headers: ----------------------')
-    print(response.headers)
-    print('Response Body: ----------------------')
-    print(response.text)
 
 
 if __name__ == "__main__":

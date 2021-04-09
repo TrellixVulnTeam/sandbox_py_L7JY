@@ -37,7 +37,7 @@ class ClipboardDemo(ttk.Frame):
 
 if __name__ == '__main__':
     master = Tk()
-    master.geometry("300x100")
+    # master.geometry("300x100")
     master.title("Clipboard Sample")
     ClipboardDemo(master)
     master.mainloop()

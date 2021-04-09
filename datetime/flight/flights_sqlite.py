@@ -15,7 +15,7 @@ def insert_flight(cur, flight):
 conn = sqlite3.connect(':memory:', detect_types=sqlite3.PARSE_DECLTYPES)
 cur = conn.cursor()
 
-# TIMESTAMP: not SQLite type, Python convert to datetime object
+# TIMESTAMP: not SQLite type, datetime object in Python
 cur.execute('CREATE TABLE flight('
             'flight_id TEXT, '
             'origin TEXT,'

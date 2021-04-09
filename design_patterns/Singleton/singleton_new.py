@@ -6,6 +6,9 @@ class Singleton(object):
             Singleton.__instance = object.__new__(cls)
         return Singleton.__instance
 
+    def __init__(self):
+        print('Singleton.__init__')
+
 
 if __name__ == '__main__':
     s1 = Singleton()

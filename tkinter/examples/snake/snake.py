@@ -1,154 +1,140 @@
 """
 This is a simple Snake game clone.
-TODO: main menu
 """
 import sys
 import random
-from PIL import Image, ImageTk
-from tkinter import Tk, Frame, Canvas, ALL, NW
+from tkinter import Tk, PhotoImage, Canvas, ALL, NW, Button
 
-BOARD_WIDTH = 300
-BOARD_HEIGHT = 300
+BOARD_WIDTH, BOARD_HEIGHT = 300, 300
+CENTER_X, CENTER_Y = BOARD_WIDTH // 2, BOARD_HEIGHT // 2
 DELAY = 100
 DOT_SIZE = 10
-MAX_RAND_POS = 27
+MAX_RAND_POS = 28
 
 
 class Board(Canvas):
 
-    def __init__(self):
-        super().__init__(width=BOARD_WIDTH, height=BOARD_HEIGHT,
+    def __init__(self, master):
+        super().__init__(master, width=BOARD_WIDTH, height=BOARD_HEIGHT,
                          background="black", highlightthickness=0)
-        self.init_game()
-        self.pack()
-
-    def init_game(self):
-        """initializes game"""
-        self.inGame = True
-        # self.dots = 3
-        self.score = 0
-
-        # variables used to move snake object
-        self.moveX = DOT_SIZE
-        self.moveY = 0
-
-        # starting apple coordinates
-        self.appleX = 100
-        self.appleY = 190
-
         self.load_images()
-
-        # self.focus_get()
-
-        self.create_objects()
-        self.locate_apple()
-        self.bind_all("<Key>", self.on_key_pressed)
-        self.after(DELAY, self.on_timer)
+        self.init_game()
 
     def load_images(self):
         """loads images from the disk"""
-        try:
-            self.idot = Image.open("dot.png")
-            self.dot = ImageTk.PhotoImage(self.idot)
-            self.ihead = Image.open("head.png")
-            self.head = ImageTk.PhotoImage(self.ihead)
-            self.iapple = Image.open("apple.png")
-            self.apple = ImageTk.PhotoImage(self.iapple)
-        except IOError as e:
-            print(e)
-            sys.exit(1)
+        self.dot_img = PhotoImage(file="dot.png")  # require Tcl/Tk8.6
+        self.head_img = PhotoImage(file="head.png")
+        self.apple_img = PhotoImage(file="apple.png")
+
+    def init_game(self):
+        """initializes game"""
+
+        self.delete(ALL)
+
+        self.playing = True
+        self.score = 0
+
+        # initial direction (Left)
+        self.dx, self.dy = DOT_SIZE, 0
+
+        # apple coordinates
+        self.apple_x, self.apple_y = 0, 0
+
+        self.create_objects()
+        self.locate_apple()
+
+        self.bind_all("<Key>", self.on_key_pressed)
+
+        self.on_timer()  # start
+
+    def locate_apple(self):
+        """places the apple object on Canvas"""
+        self.apple_x = random.randint(1, MAX_RAND_POS) * DOT_SIZE
+        self.apple_y = random.randint(1, MAX_RAND_POS) * DOT_SIZE
+        self.moveto(self.apple, self.apple_x, self.apple_y)
 
     def create_objects(self):
         """creates objects on Canvas"""
-        self.create_text(30, 10, text="Score: {0}".format(self.score),
-                         tag="score", fill="white")
-        self.create_image(self.appleX, self.appleY, image=self.apple,
-                          anchor=NW, tag="apple")
-        self.create_image(50, 50, image=self.head, anchor=NW, tag="head")
-        self.create_image(30, 50, image=self.dot, anchor=NW, tag="dot")
-        self.create_image(40, 50, image=self.dot, anchor=NW, tag="dot")
+        self.score_txt = self.create_text(
+            30, 10, text=f"Score: {self.score}", fill="white")
+        self.apple = self.create_image(
+            self.apple_x, self.apple_y, image=self.apple_img, anchor=NW)
+        self.snake = [
+            self.create_image(50, 50, image=self.head_img, anchor=NW),  # head
+            self.create_image(40, 50, image=self.dot_img, anchor=NW),  # dot
+            self.create_image(30, 50, image=self.dot_img, anchor=NW),
+        ]
 
     def check_apple_collision(self):
         """checks if the head of snake collides with apple"""
-        apple = self.find_withtag("apple")
-        head = self.find_withtag("head")
-
-        # print(self.bbox(head))
-        x1, y1, x2, y2 = self.bbox(head)
+        x1, y1, x2, y2 = self.bbox(self.snake[0])
         overlap = self.find_overlapping(x1, y1, x2, y2)
 
         for ovr in overlap:
-            if apple[0] == ovr:
+            if self.apple == ovr:
                 self.score += 1
-                x, y = self.coords(apple)
-                self.create_image(x, y, image=self.dot, anchor=NW, tag="dot")
+                x, y = self.coords(self.apple)
+                self.snake.append(self.create_image(x, y, image=self.dot_img, anchor=NW))
                 self.locate_apple()
 
     def move_snake(self):
         """moves the Snake object"""
-        dots = self.find_withtag("dot")
-        head = self.find_withtag("head")
-        items = dots + head
+        z = len(self.snake) - 1
+        while z > 0:
+            c = self.coords(self.snake[z - 1])
+            self.moveto(self.snake[z], c[0], c[1])
+            z -= 1
 
-        z = 0
-        while z < len(items) - 1:
-            c1 = self.coords(items[z])
-            c2 = self.coords(items[z + 1])
-            self.move(items[z], c2[0] - c1[0], c2[1] - c1[1])
-            z += 1
-
-        self.move(head, self.moveX, self.moveY)
+        self.move(self.snake[0], self.dx, self.dy)
 
     def check_collisions(self):
         """checks for collisions"""
-        dots = self.find_withtag("dot")
-        head = self.find_withtag("head")
-
-        x1, y1, x2, y2 = self.bbox(head)
+        x1, y1, x2, y2 = self.bbox(self.snake[0])
         overlap = self.find_overlapping(x1, y1, x2, y2)
 
-        for dot in dots:
+        for dot in self.snake[1:]:
             for over in overlap:
                 if over == dot:
-                    self.inGame = False
+                    self.playing = False
 
         if x1 < 0 or x1 > BOARD_WIDTH - DOT_SIZE or \
                 y1 < 0 or y1 > BOARD_HEIGHT - DOT_SIZE:
-            self.inGame = False
+            self.playing = False
 
-    def locate_apple(self):
-        """places the apple object on Canvas"""
-        apple = self.find_withtag("apple")
-        self.delete(apple[0])
+    def draw_score(self):
+        """draws score"""
+        self.itemconfigure(self.score_txt, text=f"Score: {self.score}")
 
-        r = random.randint(0, MAX_RAND_POS)
-        self.appleX = r * DOT_SIZE
-        r = random.randint(0, MAX_RAND_POS)
-        self.appleY = r * DOT_SIZE
-
-        self.create_image(self.appleX, self.appleY, anchor=NW,
-                          image=self.apple, tag="apple")
+    def game_over(self):
+        """deletes all objects and draws game over message"""
+        self.delete(ALL)
+        self.create_text(CENTER_X, CENTER_Y - 30,
+                         text=f"Game Over with score {self.score}",
+                         fill="white")
+        button = Button(self, text="Restart", padx=10, pady=2, command=self.init_game)
+        self.create_window(CENTER_X, CENTER_Y + 10, window=button)
+        button.focus()
 
     def on_key_pressed(self, e):
         """controls direction variables with cursor keys"""
         key = e.keysym
-        if key == "Left" and self.moveX <= 0:
-            self.moveX = -DOT_SIZE
-            self.moveY = 0
-        if key == "Right" and self.moveX >= 0:
-            self.moveX = DOT_SIZE
-            self.moveY = 0
-        if key == "Up" and self.moveY <= 0:
-            self.moveX = 0
-            self.moveY = -DOT_SIZE
-        if key == "Down" and self.moveY >= 0:
-            self.moveX = 0
-            self.moveY = DOT_SIZE
+        if key == "Left" and self.dx <= 0:
+            self.dx = -DOT_SIZE
+            self.dy = 0
+        elif key == "Right" and self.dx >= 0:
+            self.dx = DOT_SIZE
+            self.dy = 0
+        elif key == "Up" and self.dy <= 0:
+            self.dx = 0
+            self.dy = -DOT_SIZE
+        elif key == "Down" and self.dy >= 0:
+            self.dx = 0
+            self.dy = DOT_SIZE
 
     def on_timer(self):
         """creates a game cycle each timer event"""
         self.check_collisions()
-        if self.inGame:
+        if self.playing:
             self.check_apple_collision()
             self.move_snake()
             self.draw_score()
@@ -156,31 +142,16 @@ class Board(Canvas):
         else:
             self.game_over()
 
-    def draw_score(self):
-        """draws score"""
-        score = self.find_withtag("score")
-        self.itemconfigure(score, text="Score: {0}".format(self.score))
 
-    def game_over(self):
-        """deletes all objects and draws game over message"""
-        self.delete(ALL)
-        self.create_text(self.winfo_width() / 2, self.winfo_height() / 2,
-                         text="Game Over with score {0}".format(self.score), fill="white")
-
-
-class Snake(Frame):
-    def __init__(self, root):
-        super().__init__(root)
-        self.master.title('Snake')
-        self.board = Board()
-        self.pack()
-
-
-def main():
-    root = Tk()
-    Snake(root)
-    root.mainloop()
+class Snake(Tk):
+    def __init__(self):
+        super().__init__()
+        self.title("Snake")
+        self.resizable(False, False)
+        self.board = Board(self)
+        self.board.pack()
 
 
 if __name__ == '__main__':
-    main()
+    snake = Snake()
+    snake.mainloop()

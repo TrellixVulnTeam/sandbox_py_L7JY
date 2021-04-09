@@ -9,7 +9,7 @@ from subprocess import Popen, PIPE
 # The second group matches the rest of the line
 regex = re.compile(r"(/dev/sd[ab][1-9])(.*)")
 
-outfile = open("fstab.out", mode="w")
+outfile = open("../fstab.out", mode="w")
 
 for line in open("fstab.in"):
     match = re.search(regex, line)

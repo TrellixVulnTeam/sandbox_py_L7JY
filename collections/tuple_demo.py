@@ -1,4 +1,4 @@
-# Tuple : immutable
+# Tuple : immutable sequence
 
 tuple1 = (1, 2)
 tuple2 = 1, 2

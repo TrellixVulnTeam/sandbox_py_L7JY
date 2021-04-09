@@ -16,7 +16,7 @@ class Stack:
         """Removes and returns the last item for the list, which is also the
         top item of the Stack.
 
-        The runtime here is constant time, because all it does is index to the
+        The runtime here is O(1), constant time, because all it does is index to the
         last item of the list.
         """
         if self.items:
@@ -125,17 +125,15 @@ class Deque:
         front of a list, all the other items in the list need to shift one
         position to the right.
         """
-
         self.items.insert(0, item)
 
     def add_rear(self, item):
         """Takes in an item as a parameter and appends that item to the end of
         the list that is representing the Deque.
 
-        The runtime is constant because appending to the end of a list happens
-        in constant time.
+        The runtime is constant, or O(1) because appending to the end of a list
+        happens in constant time.
         """
-
         self.items.append(item)
 
     def remove_front(self):
@@ -153,8 +151,8 @@ class Deque:
         """Removes and returns the last item of the list, which represents the
         rear of the Deque.
 
-        The runtime is constant because all we're doing is indexing to the end
-        of a list.
+        The runtime is constant, or O(1), because all we're doing is indexing
+        to the end of a list.
         """
         if self.items:
             return self.items.pop()
@@ -164,7 +162,7 @@ class Deque:
         """Returns the value found at the 0th index of the list, which represents
         the front of the Deque.
 
-        The runtime is constant because al we're doing is indexing into a list.
+        The runtime is constant, or O(1), because all we're doing is indexing into a list.
         """
         if self.items:
             return self.items[0]
@@ -173,8 +171,8 @@ class Deque:
     def peek_rear(self):
         """Returns the value found at the -1st, or last, index.
 
-        The runtime is constant because all we're doing is indexing into a
-        list."""
+        The runtime is constant, or O(1), because all we're doing is indexing into a list.
+        """
         if self.items:
             return self.items[-1]
         return None
@@ -183,7 +181,8 @@ class Deque:
         """Returns the length of the list, which is representing the Deque.
 
         The runtime will be constant because all we're doing is finding the length
-        of a list and returning that value."""
+        of a list and returning that value.
+        """
         return len(self.items)
 
     def is_empty(self):

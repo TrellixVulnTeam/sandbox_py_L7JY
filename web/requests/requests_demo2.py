@@ -11,7 +11,7 @@ option = input()
 country = input('What country do you want that information for? ')
 
 params = {'fields': 'population;languages;timezones', 'fullText': 'true'}
-r = requests.get('{}name/{}'.format(base_url, country), params=params)
+r = requests.get(f'{base_url}name/{country}', params=params)
 json_response = r.json()
 
 country = None

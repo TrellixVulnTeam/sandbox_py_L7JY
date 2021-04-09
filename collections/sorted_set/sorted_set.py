@@ -1,5 +1,4 @@
 # Custom Collection class
-# Immutable
 from bisect import bisect_left
 from collections.abc import Sequence, Set
 from itertools import chain
@@ -37,10 +36,11 @@ class SortedSet(Set, Sequence):
             return NotImplemented
         return self._items == rhs._items
 
-    def __ne__(self, rhs):
-        if not isinstance(rhs, SortedSet):
-            return NotImplemented
-        return self._items != rhs._items
+    # 以下の様にひっくり返すだけなら、オーバーライドする必要はない
+    # def __ne__(self, rhs):
+    #     if not isinstance(rhs, SortedSet):
+    #         return NotImplemented
+    #     return self._items != rhs._items
 
     def _is_unique_and_sorted(self):
         return all(self[i] < self[i + 1] for i in range(len(self) - 1))

@@ -1,39 +1,36 @@
 class DLLNode:
 
     def __init__(self, data):
-        self.data = data
-        self.next = None
-        self.previous = None
+        self._data = data
+        self._next = None
+        self._previous = None
 
-    def __repr__(self):
-        return "DLLNode object: data={}".format(self.data)
+    def __str__(self):
+        return f"<DLLNode: data={self._data}>"
 
-    def get_data(self):
-        """Return the self.data attribute."""
-        return self.data
+    @property
+    def data(self):
+        return self._data
 
-    def set_data(self, new_data):
-        """Replace the existing value of the self.data attribute with new_data
-        parameter."""
-        self.data = new_data
+    @data.setter
+    def data(self, new_data):
+        self._data = new_data
 
-    def get_next(self):
-        """Return the self.next attribute"""
-        return self.next
+    @property
+    def next(self):
+        return self._next
 
-    def set_next(self, new_next):
-        """Replace the existing value of the self.next attribute with new_next
-        parameter."""
-        self.next = new_next
+    @next.setter
+    def next(self, new_next):
+        self._next = new_next
 
-    def get_previous(self):
-        """Return the self.previous attribute"""
-        return self.previous
+    @property
+    def previous(self):
+        return self._previous
 
-    def set_previous(self, new_previous):
-        """Replace the existing value of the self.previous attribute with
-        new_previous parameter."""
-        self.previous = new_previous
+    @previous.setter
+    def previous(self, new_previous):
+        self._previous = new_previous
 
 
 class DLL:
@@ -41,12 +38,17 @@ class DLL:
     def __init__(self):
         self.head = None
 
-    def __repr__(self):
-        return "<DLL object: head=>".format(self.head)
+    def __str__(self):
+        current = self.head
+        node_list = [str(current)]
+        while current is not None:
+            current = current.next
+            node_list.append(str(current))
+        return f"DLL({self.size()}): {' -> '.join(node_list)}"
 
     def is_empty(self):
         """Returns True if the Linked List is empty. Otherwise, returns False."""
-        return self.head is None  # self.head == None
+        return self.head is None
 
     def size(self):
         """Traverses the Linked List and returns an integer value representing
@@ -62,7 +64,7 @@ class DLL:
         current = self.head
         while current is not None:  # While there are still Nodes left to count
             size += 1
-            current = current.get_next()
+            current = current.next
 
         return size
 
@@ -73,15 +75,11 @@ class DLL:
         The time complexity is O(n) because in the worst case, we have to visit
         every Node in the list.
         """
-        if self.head is None:
-            return "Linked List is empty. No Nodes to search."
-
         current = self.head
         while current is not None:
-            if current.get_data() == data:
+            if current.data == data:
                 return True
-            else:
-                current = current.get_next()
+            current = current.next
 
         return False
 
@@ -89,36 +87,53 @@ class DLL:
         """Add a Node whose data is the new_data argument to the front of the
         Linked List."""
         temp = DLLNode(new_data)
-        temp.set_next(self.head)
+        temp.next = self.head
 
         if self.head is not None:
-            self.head.set_previous(temp)
+            self.head.previous = temp
 
         self.head = temp
 
     def remove(self, data):
         """Removes the first occurrence of a Node that contains the data argument
-        as its self.data attribute. Returns nothing.
+        as its self.data attribute and returns True. Otherwise, returns False.
 
         The time complexity is O(n) because in the worst case, we have to visit
         every Node before finding the one we want to remove.
         """
-        if self.head is None:
-            return "Linked List is empty. No Nodes to remove."
-
         current = self.head
-        found = False
-        while not found:
-            if current.get_data() == data:
-                found = True
-            else:
-                if current.get_next() is None:
-                    return "A Node with that data value is not present."
+        previous = None
+        while current is not None:
+            if current.data == data:
+                if previous is None:  # remove head
+                    self.head = current.next
                 else:
-                    current = current.get_next()
+                    if current.previous is not None:
+                        current.previous.next = current.next
+                    if current.next is not None:
+                        current.next.previous = current.previous
+                return True
+            else:
+                previous = current
+                current = current.next
 
-        if current.previous is None:
-            self.head = current.get_next()
-        else:
-            current.previous.set_next(current.get_next())
-            current.next.set_previous(current.get_previous())
+        return False
+
+
+if __name__ == '__main__':
+    dll = DLL()
+    dll.add_front(4)
+    dll.add_front(2)
+    dll.add_front(56)
+    dll.add_front(3)
+    print(dll)
+
+    print(dll.remove(99))
+    print(dll.remove(56))
+    print(dll)
+    print(dll.remove(3))
+    print(dll)
+    print(dll.remove(4))
+    print(dll)
+    print(dll.remove(2))
+    print(dll)

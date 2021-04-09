@@ -26,7 +26,7 @@ myFile.close()
 print('---')
 
 # Read the file
-myFile = open(TMP + "scores.txt", "r", encoding="utf-8")  # default: text mode
+myFile = open(TMP + "scores.txt", "r", encoding="utf-8")
 
 # Show attributes and properties of that file
 print("name: " + myFile.name)
@@ -41,7 +41,7 @@ myFile.close()
 print('---')
 
 # Read the file by pointer
-myFile = open(TMP + "scores.txt", "r", encoding="utf-8")  # default: text mode
+myFile = open(TMP + "scores.txt", "r", encoding="utf-8")
 print("Readline: " + myFile.readline())
 print("Readline: " + myFile.readline())
 myFile.seek(0)  # rewind to the top

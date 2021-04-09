@@ -3,29 +3,30 @@
 # use the built-in logging module
 import logging
 
-extData = {'user': 'joem@example.com'}
+extra_data = {'user': 'hoge@example.com'}
 
 
-def anotherFunction():
-    logging.debug("This is a debug-level log message", extra=extData)
+def another():
+    logging.critical("This is a debug-level log message", extra=extra_data)
 
 
-def main():
+def custom_fmt():
     # set the output file and debug level, and
     # use a custom formatting specification
-    fmtStr = "%(asctime)s: %(levelname)s: %(funcName)s Line:%(lineno)d User:%(user)s %(message)s"
-    dateStr = "%m/%d/%Y %I:%M:%S %p"
+    log_fmt = "%(asctime)s: %(levelname)s: %(funcName)s Line:%(lineno)d User:%(user)s %(message)s"
+    date_fmt = "%m/%d/%Y %I:%M:%S %p"
     logging.basicConfig(filename="../tmp/logging_custom.log",
-                        filemode="w",  # default: 'a'
+                        filemode="w",
                         level=logging.DEBUG,
-                        format=fmtStr,
-                        datefmt=dateStr)
+                        format=log_fmt,
+                        datefmt=date_fmt)
 
-    logging.info("This is an info-level log message", extra=extData)
-    logging.warning("This is a warning-level message", extra=extData)
-    logging.error("This is an error-level message", extra=extData)
-    anotherFunction()
+    logging.debug("This is a debug-level log message", extra=extra_data)
+    logging.info("This is an info-level log message", extra=extra_data)
+    logging.warning("This is a warning-level message", extra=extra_data)
+    logging.error("This is an error-level message", extra=extra_data)
+    another()
 
 
 if __name__ == "__main__":
-    main()
+    custom_fmt()

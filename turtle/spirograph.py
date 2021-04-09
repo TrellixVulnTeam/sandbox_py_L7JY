@@ -1,7 +1,8 @@
 import turtle
 
-painter = turtle.Turtle()
-painter.speed(7)
+painter = turtle.Turtle("turtle")
+painter.shapesize(0.8, 0.8)
+painter.speed(10)  # "fast"
 
 painter.pencolor("blue")
 

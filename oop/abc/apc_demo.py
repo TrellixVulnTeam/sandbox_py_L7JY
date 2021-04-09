@@ -40,7 +40,7 @@ print()
 class AbstractBaseClass(ABC):
 
     @property
-    @abstractmethod  # inner most, apply first
+    @abstractmethod
     def abstract_property(self):
         raise NotImplementedError
 

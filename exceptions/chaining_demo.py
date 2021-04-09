@@ -32,8 +32,8 @@ def run_demo(f):
         f()
     except Exception as e:
         print(e)
-        print('__context__:', type(e.__context__), e.__context__)
-        print('__cause__:', type(e.__cause__), e.__cause__)
+        print('__context__:', repr(e.__context__))
+        print('__cause__:', repr(e.__cause__))
 
     print()
 

@@ -63,6 +63,7 @@ if __name__ == '__main__':
     l = rotate_list(l)
     print(l)
 
+    tracer.enabled = True
     print(norwegian_island_maker("Hoge"))
 
     im = IslandMaker("_o_")

@@ -7,16 +7,16 @@ class Connection:
         self.xid = 0
 
     def _start_transaction(self):
-        print('starting transaction', self.xid)
+        print(f'starting transaction:{self.xid}')
         rslt = self.xid
         self.xid += 1
         return rslt
 
     def _commit_transaction(self, xid):
-        print('committing transaction', xid)
+        print(f'committing transaction:{xid}')
 
     def _rollback_transaction(self, xid):
-        print('rolling back transaction', xid)
+        print(f'rolling back transaction:{xid}')
 
 
 class Transaction:
@@ -51,15 +51,15 @@ if __name__ == '__main__':
             x = 1 + 1
             raise ValueError()
             y = x + 2
-            print("transaction {} = {}, {}".format(tx.xid, x, y))
+            print(f"transaction:{tx.xid} => {x}, {y}")
     except ValueError:
-        print("Oops, transaction {} failed.".format(tx.xid))
+        print(f"Oops, transaction:{tx.xid} failed.")
 
     print()
     try:
         with start_transaction(conn) as tx:
             x = 1 + 1
             y = x + 2
-            print("transaction {} = {}, {}".format(tx.xid, x, y))
+            print(f"transaction:{tx.xid} => {x}, {y}")
     except ValueError:
-        print("Oops, transaction {} failed.".format(tx.xid))
+        print(f"Oops, transaction:{tx.xid} failed.")

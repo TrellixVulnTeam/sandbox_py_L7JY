@@ -12,9 +12,11 @@ with open(TMP + "testfile.txt", "r", encoding="utf-8") as fp:
 
 print()
 
-# Add data to an existing file
+# Add data to an existing file, and read all from the beginning
 with open(TMP + "testfile.txt", "a+", encoding="utf-8") as fp:
     fp.write("ふぇふぇ : 77\n")
     fp.seek(0)
     data = fp.read()
     print(data, end='')
+
+print(fp.closed)

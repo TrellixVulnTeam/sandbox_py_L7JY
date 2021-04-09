@@ -8,6 +8,7 @@ class MyColor:
         self.blue = blue
 
     # use getattr to dynamically return a value
+    # invoked when the AttributeError is fired by __getattribute__() or attr.__get__()
     def __getattr__(self, attr):
         if attr == "rgbcolor":
             return (self.red, self.green, self.blue)

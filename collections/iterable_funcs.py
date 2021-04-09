@@ -2,6 +2,8 @@ import math
 from itertools import (groupby, islice, count, chain, accumulate, cycle, repeat,
                        dropwhile, takewhile, combinations, permutations)
 
+# map(), filter()については、fp_demo.py参照
+
 # built-in funcs for iterable
 v = ["ab", "abc", "x", "a", "xyz"]
 print(min(v, key=len))  # type mismatch but work
@@ -76,7 +78,7 @@ print()
 
 
 def is_prime(x):
-    if x < 2:
+    if x < 1:
         return False
     for i in range(2, int(math.sqrt(x)) + 1):
         if x % i == 0:
@@ -90,8 +92,8 @@ print()
 # [("A", 1), ("B", 4), ("A", 2), ("A", 3), ("B", 5)] => [("A", 6), ("B", 9)]
 a = [("A", 1), ("B", 4), ("A", 2), ("A", 3), ("B", 5)]
 
-result = [(key, sum(r[1] for r in rows)) for key, rows in
-          groupby(sorted(a, key=lambda t: t[0]), lambda t: t[0])]
+result = [(key, sum(r for _, r in rows)) for key, rows in
+          groupby(sorted(a, key=lambda t: t[0]), key=lambda t: t[0])]
 print(result)
 
 print()

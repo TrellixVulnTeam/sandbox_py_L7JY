@@ -1,6 +1,3 @@
-"""
-docstring
-"""
 import decimal
 import fractions
 

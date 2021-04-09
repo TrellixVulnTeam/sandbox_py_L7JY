@@ -1,8 +1,5 @@
 from tkinter import *
-from tkinter import ttk
-from tkinter import messagebox
-from tkinter import colorchooser
-from tkinter import filedialog
+from tkinter import messagebox, colorchooser, filedialog
 
 
 def open_file():
@@ -56,8 +53,8 @@ check.add_checkbutton(label='One')
 check.add_checkbutton(label='Two')
 
 
-def about():
-    print(messagebox.showinfo(title="A Friendly Message", message='Hello, Tkinter!'))
+def info():
+    print(messagebox.showinfo(title="Info", message='Info message'))
 
 
 def warning():
@@ -78,7 +75,7 @@ def choose_color():
     print(color)
 
 
-help_.add_command(label='About', command=about)
+help_.add_command(label='Info', command=info)
 help_.add_command(label='Warning', command=warning)
 help_.add_command(label='Error', command=error)
 help_.add_command(label='Yes/No', command=yesno)
@@ -93,7 +90,7 @@ help_.add_command(label='Other')
 
 logo = PhotoImage(file='../widgets/python_logo.gif').subsample(10, 10)  # Change path as needed
 help_.entryconfig('Compound', image=logo, compound='left')
-help_.entryconfig('About', accelerator='Ctrl+A')
+help_.entryconfig('Info', accelerator='Ctrl+A')
 
 help_.delete('Other')
 other = Menu(help_)

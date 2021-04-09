@@ -1,4 +1,4 @@
-from algo.ds.data_structures import Queue
+from data_structures import Queue
 
 import random
 

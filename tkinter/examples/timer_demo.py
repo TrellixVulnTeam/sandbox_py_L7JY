@@ -1,113 +1,110 @@
-import tkinter.ttk as ttk
-from tkinter import *
-from tkinter import messagebox
+from tkinter import (Tk, IntVar, StringVar,
+                     BOTH, X, CENTER, DISABLED, NORMAL, LEFT, RIGHT)
+from tkinter.ttk import Frame, Label, Spinbox, Button
 
+MAX_COUNT = 3600  # sec
 DEFAULT_COUNT = 5
+WIDTH, HEIGHT = 240, 180
 
 
-class TimerDemo:
-    def __init__(self, master):
-        self.master = master
-        self.setup_master()
-        self.frame = ttk.Frame(self.master)
-        self.build_grid()
-        self.build_banner()
-        self.build_entry()
-        self.build_timer()
-        self.build_buttons()
-        self.count_start = self.count = DEFAULT_COUNT
-        self.draw_time()
-        self.frame.pack(fill=BOTH, expand=True)
+class TimerUi:
+    """View"""
 
-    def setup_master(self):
-        self.master.title('Timer')
-        w, h = 240, 240
-        left = (self.master.winfo_screenwidth() - w) // 2
-        top = (self.master.winfo_screenheight() - h) // 2
-        self.master.geometry(f'{w}x{h}+{left}+{top}')
-        self.master.resizable(False, False)
+    def __init__(self, app):
+        self.time_label = Label(app.root, textvariable=app.time, anchor=CENTER,
+                                foreground='black', background='lightgray',
+                                font=('Helvetica', 60))
+        self.time_label.pack(fill=BOTH, expand=True)
 
-    def build_grid(self):
-        self.frame.columnconfigure(0, weight=1)
-        self.frame.rowconfigure(0, weight=0)
-        self.frame.rowconfigure(1, weight=0)
-        self.frame.rowconfigure(2, weight=1)
-        self.frame.rowconfigure(3, weight=0)
+        validate_command = (app.root.register(self.check), '%P')
+        self.entry = Spinbox(app.root, from_=1, to=MAX_COUNT,
+                             textvariable=app.count_start,
+                             validate='all',
+                             validatecommand=validate_command)
+        self.entry.pack(fill=X)
+        self.entry.focus()
 
-    def build_banner(self):
-        banner = ttk.Label(self.frame, text='Timer', anchor=CENTER,
-                           foreground='White', background='red',
-                           font=('Helvetica', 20))
-        banner.grid(row=0, column=0, sticky='ew', padx=10, pady=10)
+        buttons_frame = Frame(app.root)
+        buttons_frame.pack(fill=X)
+        self.start_button = Button(buttons_frame, text='Start',
+                                   command=app.start_timer)
+        self.stop_button = Button(buttons_frame, text='Stop', state=DISABLED,
+                                  command=app.stop_timer)
+        self.start_button.pack(side=LEFT, fill=X, expand=True)
+        self.stop_button.pack(side=RIGHT, fill=X, expand=True)
 
-    def build_entry(self):
-        self.entry = ttk.Entry(self.frame)
-        self.entry.insert(0, DEFAULT_COUNT)
-        self.entry.bind('<Return>', self.entry_listener)
-        self.entry.grid(row=1, column=0, sticky='ew', padx=10, pady=10)
+    def check(self, new_val):
+        return new_val.isdigit() and 1 <= int(new_val) <= MAX_COUNT
 
-    def entry_listener(self, e):
-        try:
-            self.count_start = self.count = int(self.entry.get())
-        except ValueError:
-            pass
-        else:
-            self.draw_time()
-
-    def build_timer(self, *args):
-        self.timer = ttk.Label(self.frame, anchor=CENTER,
-                               font=('Helvetica', 36))
-        self.timer.grid(row=2, column=0, sticky='ew', padx=10, pady=10)
-
-    def build_buttons(self):
-        buttons_frame = ttk.Frame(self.frame)
-        buttons_frame.grid(row=3, column=0, sticky='ew', padx=10, pady=10)
-        buttons_frame.columnconfigure(0, weight=1)
-        buttons_frame.columnconfigure(1, weight=1)
-        self.start_button = ttk.Button(buttons_frame, text='Start',
-                                       command=self.start_timer)
-        self.stop_button = ttk.Button(buttons_frame, text='Stop!',
-                                      command=self.stop_timer)
-        self.start_button.grid(row=0, column=0, sticky='ew')
-        self.stop_button.grid(row=0, column=1, sticky='ew')
-        self.stop_button.config(state=DISABLED)
-
-    def start_timer(self):
+    def state_started(self):
         self.stop_button.config(state=NORMAL)
         self.start_button.config(state=DISABLED)
         self.entry.config(state=DISABLED)
-        self.countdown()
+        self.time_label.config(foreground='white', background='red')
 
-    def stop_timer(self):
-        self.master.after_cancel(self.timer_id)
-        self.reset_timer()
-
-    def reset_timer(self):
+    def state_stopped(self):
         self.stop_button.config(state=DISABLED)
         self.start_button.config(state=NORMAL)
         self.entry.config(state=NORMAL)
-        self.count = self.count_start
+        self.time_label.config(foreground='black', background='lightgray')
+
+
+class TimerDemo:
+    """Controller"""
+
+    def __init__(self):
+        self.root = Tk()
+        self.root.title('Timer')
+        left = (self.root.winfo_screenwidth() - WIDTH) // 2
+        top = (self.root.winfo_screenheight() - HEIGHT) // 2
+        self.root.geometry(f'{WIDTH}x{HEIGHT}+{left}+{top}')
+        self.root.resizable(False, False)
+
+        # variables
+        self.count_start = IntVar()
+        self.count_start.trace_add('write', self.count_start_changed)
+        self.count = IntVar()
+        self.count.trace_add('write', self.count_changed)
+        self.time = StringVar()
+        self.timer_id = None
+
+        self.ui = TimerUi(self)
+        self.count_start.set(DEFAULT_COUNT)
+
+    def run(self):
+        self.root.mainloop()
+
+    def count_changed(self, *args):
         self.draw_time()
+
+    def count_start_changed(self, *args):
+        # Countdown中には呼ばれないようにすること
+        self.count.set(self.count_start.get())
 
     def draw_time(self):
-        m, s = self.count // 60, self.count % 60
-        self.timer.config(text=f'{m:0>2}:{s:0>2}')
+        count = self.count.get()
+        m, s = count // 60, count % 60
+        self.time.set(f'{m:0>2}:{s:0>2}')
+
+    def start_timer(self):
+        if self.count.get() == 0:
+            self.count_start_changed()
+        self.ui.state_started()
+        self.timer_id = self.root.after(1000, self.countdown)
+
+    def stop_timer(self):
+        if self.timer_id:
+            self.root.after_cancel(self.timer_id)
+        self.ui.state_stopped()
 
     def countdown(self):
-        self.draw_time()
-        if self.count > 0:
-            self.count -= 1
-            self.timer_id = self.master.after(1000, self.countdown)  # recursive
+        self.count.set(self.count.get() - 1)
+        if self.count.get() > 0:
+            self.timer_id = self.root.after(1000, self.countdown)  # recursive
         else:
-            messagebox.showinfo('Time Up!', 'Your timer is Up')
-            self.reset_timer()
-
-
-def main():
-    root = Tk()
-    TimerDemo(root)
-    root.mainloop()
+            self.root.bell()
+            self.ui.state_stopped()
 
 
 if __name__ == '__main__':
-    main()
+    TimerDemo().run()

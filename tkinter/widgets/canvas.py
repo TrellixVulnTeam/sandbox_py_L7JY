@@ -4,14 +4,17 @@ from tkinter import ttk
 root = Tk()
 
 canvas = Canvas(root)
-canvas.config(width=640, height=480, bg='white')
-canvas.pack()
+canvas.config(width=640, height=480, bg='#ccc')
+canvas.pack(fill=BOTH, expand=True)
 
 canvas.create_line(600, 50, 600, 450, fill='blue', width=5, dash=(4, 2))
-line = canvas.create_line(160, 360, 480, 120, fill='blue', width=5)
+line = canvas.create_line(160, 360, 480, 120, fill='blue', width=5, tag='line1')
 canvas.itemconfigure(line, fill='green')
 print(canvas.coords(line))
 canvas.coords(line, 0, 0, 320, 240, 640, 0)
+
+lines = canvas.find_withtag('line1')
+assert lines[0] is line  # True
 
 canvas.itemconfigure(line, smooth=True)
 canvas.itemconfigure(line, splinesteps=5)
@@ -27,7 +30,8 @@ poly = canvas.create_polygon(160, 360, 320, 480, 480, 360, fill='blue')
 text = canvas.create_text(320, 240, text='Python', font=('Courier', 32, 'bold'))
 
 logo = PhotoImage(file='python_logo.gif')
-image = canvas.create_image(320, 240, image=logo)
+image = canvas.create_image(320, 240, image=logo)  # anchor default: center
+# image = canvas.create_image(320, 240, image=logo, anchor=NW)
 
 canvas.lift(text)
 canvas.lower(image)

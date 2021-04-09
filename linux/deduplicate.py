@@ -6,10 +6,8 @@ import hashlib
 import os
 
 
-# Compute the MD5 digest of a file
-
-
 def gethash(file):
+    """Compute the MD5 digest of a file"""
     hasher = hashlib.md5()
     with open(file, "rb") as f:
         buf = f.read()

@@ -17,7 +17,7 @@ Eve's cat has been arrested for catnapping, cat burglary, and extortion.
 Sincerely,
 Bob''')  # no need to escape quotes and newlines
 
-print()
+print("*-=-" * 20)
 
 # immutable
 s = "hoge"
@@ -38,10 +38,7 @@ print(id(s) == id(v))  # => True
 print(s == u)  # => True
 print(s is u)  # => False
 
-print()
-
-print("hoge" + "fuga")
-print("fefe" * 3)
+print("*-=-" * 20)
 
 # 文字コード変換
 print(ord('🖖'))
@@ -58,10 +55,13 @@ b = w.encode(encoding='utf-8')
 print(b)
 print(len(b))
 print(b.decode('utf-8'))
+# print(b'abc(\xff)XYZ'.decode(encoding='utf-8', errors='strict'))  # UnicodeDecodeError
+print(b'abc(\xff)XYZ'.decode(encoding='utf-8', errors='ignore'))
+print(b'abc(\xff)XYZ'.decode(encoding='utf-8', errors='replace'))
 
-print()
+print("*-=-" * 20)
 
-# slice (substr)
+# slice (sequence protocol)
 spam = 'Hello world!'
 print(spam)
 print(spam[:])
@@ -75,14 +75,17 @@ print(spam[:5])  # 同上
 print(spam[6:])  # 6番目以降の文字
 print(spam[::2])  # 1文字置き
 print(spam[::-1])  # 逆順
+print([*spam])  # unpack
+print(list(spam))
 
-print()
+print("*-=-" * 20)
+
 print('Hello' in 'Hello World')
 print('HELLO' in 'Hello World')
 print('' in 'Hello World')
 print('Howdy' not in 'Hello World')
 
-print()
+print("*-=-" * 20)
 
 # methods
 print("hello".islower())
@@ -109,12 +112,14 @@ print("123.5".isnumeric())
 print('This Is Title Case 123'.istitle())
 print('This Is NOT Title Case 123'.istitle())
 
-print()
+print("*-=-" * 20)
+
 print(', '.join(['cats', 'rats', 'bats']))
 print("some,csv,values".split(","))
 print("hello".replace("e", "a"))
 
-print()
+print("*-=-" * 20)
+
 print('    Hello World    '.strip())
 print('    Hello World    '.rstrip())
 print('    Hello World    '.lstrip())
@@ -135,12 +140,12 @@ for name in names:
 for name in names:
     print(name.rjust(biggest + 2, "-"))
 
-print()
+print("*-=-" * 20)
 
 # splitlines(): list (not iterable or generator)
 print("Hoge\nFuga\n\nFefe".splitlines())
 
-print()
+print("*-=-" * 20)
 
 # searching
 sample_str = "The quick brown fox jumps over the lazy dog"
@@ -168,4 +173,4 @@ print(sample_str)
 print(sample_str.translate(trans_table))
 
 # partition
-'unforgetable'.partition('forget')
+print('unforgetable'.partition('forget'))

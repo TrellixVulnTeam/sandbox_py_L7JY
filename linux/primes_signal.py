@@ -30,8 +30,6 @@ signal(SIGHUP, sighup_handler)
 
 
 # SIGUSR1 reports current status
-
-
 def report_status(signum, frame):
     global primes_list
     print("found %d primes so far" % len(primes_list))

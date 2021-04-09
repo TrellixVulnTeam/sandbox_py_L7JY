@@ -9,7 +9,9 @@ style.configure('TFrame', background='pink')
 frame = ttk.Frame(root)
 frame.config(height=50, width=200)
 frame.config(relief=FLAT)  # default
-frame.config(padding=(30, 15))
+# frame.config(padding=(30, 15))  # horizontal vertical
+# frame.config(padding=(30, 15, 30))  # left vertical right
+frame.config(padding='5 5 15 15')  # left top right bottom
 frame.pack(fill=BOTH, padx=5, pady=5)
 
 # relieves

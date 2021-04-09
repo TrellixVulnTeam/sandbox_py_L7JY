@@ -73,7 +73,7 @@ def make_colored_vertex(mem_vertex):
 
 
 def main():
-    with open('colors.bin', 'rb') as f:
+    with open('../tmp/colors.bin', 'rb') as f:
         buffer = f.read()
 
     print("buffer: {} bytes".format(len(buffer)))

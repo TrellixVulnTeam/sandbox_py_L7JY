@@ -11,6 +11,7 @@ class Hoge(MonoState):
 
     def __init__(self, val):
         self.val = val
+        print('Hoge.__init__')
 
     def __str__(self):
         return "{0!r} {1}".format(self, self.val)

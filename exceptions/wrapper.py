@@ -30,7 +30,8 @@ def wrap(text, line_length):
     lines = [' '.join(line_of_words) for line_of_words in lines_of_words]
     result = '\n'.join(lines)
 
-    assert all(line_length >= len(line) for line in result.splitlines())
+    assert all(line_length >= len(line) for line in result.splitlines()), \
+        "Line too long"
 
     return result
 
@@ -45,6 +46,5 @@ wealth_of_nations = "The annual labour of every nation is the fund which or" \
                     " necessaries and conveniencies for which it has occasion."
 
 if __name__ == '__main__':
-    print(wealth_of_nations)
     print(wrap(wealth_of_nations, 80))
     # print(wrap(wealth_of_nations, 10))  # Exception

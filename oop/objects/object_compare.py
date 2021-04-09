@@ -50,7 +50,7 @@ def main():
     print(bool(dept[0] > dept[2]))
     print(bool(dept[4] < dept[3]))
 
-    # sort the items
+    # sort the items: need to implement __gt__ (or __lt__)
     emps = sorted(dept)  # no key
     print(emps)
 

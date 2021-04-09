@@ -3,24 +3,25 @@ import pickle
 from pprint import pprint as pp
 
 # Creating data dictionary
-data = {}
-data['employee'] = []
-
-data['employee'].append({
-    'name': 'Satya',
-    'website': 'microsoft.com',
-    'from': 'India'
-})
-data['employee'].append({
-    'name': 'Jorden',
-    'website': 'IBM.com',
-    'from': 'New york'
-})
-data['employee'].append({
-    'name': 'Luther',
-    'website': 'oracle.com',
-    'from': 'California'
-})
+data = {
+    'employee': [
+        {
+            'name': 'Satya',
+            'website': 'microsoft.com',
+            'from': 'India'
+        },
+        {
+            'name': 'Jorden',
+            'website': 'IBM.com',
+            'from': 'New york'
+        },
+        {
+            'name': 'Luther',
+            'website': 'oracle.com',
+            'from': 'California'
+        },
+    ]
+}
 
 # For printing the info
 pp(data)

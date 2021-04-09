@@ -21,6 +21,6 @@ root.grid_columnconfigure(0, weight=1)
 root.grid_rowconfigure(0, weight=1)
 
 for i in range(1, 101):
-    lbox.insert('end', 'Line {} of 100'.format(i))
+    lbox.insert(END, 'Line {} of 100'.format(i))
 
 root.mainloop()

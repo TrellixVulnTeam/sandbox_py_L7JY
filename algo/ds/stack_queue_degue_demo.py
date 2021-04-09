@@ -1,4 +1,4 @@
-from algo.ds.data_structures import Stack, Queue, Deque
+from data_structures import Stack, Queue, Deque
 
 stack = Stack()
 queue = Queue()

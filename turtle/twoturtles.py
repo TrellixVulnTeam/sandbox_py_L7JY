@@ -11,8 +11,8 @@ dude.speed(0)
 
 for i in range(180):
     myrtle.forward(i + 50)
-    myrtle.left(92)
     dude.forward(i + 50)
+    myrtle.left(92)
     dude.right(92)
 
 turtle.done()

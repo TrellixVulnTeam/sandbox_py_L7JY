@@ -3,10 +3,10 @@ from tkinter import ttk
 
 root = Tk()
 
-label1 = ttk.Label(root, text='Label 1')
-label2 = ttk.Label(root, text='Label 2')
-label1.pack()
-label2.pack()
+label1 = ttk.Label(root, text='Label 1', relief=SOLID, padding='10 5')
+label2 = ttk.Label(root, text='Label 2', relief=SOLID, padding='10 5')
+label1.pack(pady=(10, 5))
+label2.pack(pady=(5, 10))
 
 label1.bind('<ButtonPress>', lambda e: print('<ButtonPress> Label 1'))
 label1.bind('<1>', lambda e: print('<1> Label 1'))

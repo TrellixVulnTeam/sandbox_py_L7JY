@@ -73,7 +73,7 @@ def make_colored_vertex(mem_vertex):
 
 
 def main():
-    with open('colors.bin', 'rb') as f:
+    with open('../tmp/colors.bin', 'rb') as f:
         with mmap.mmap(f.fileno(), 0, access=mmap.ACCESS_READ) as buffer:
             print("buffer: {} bytes".format(len(buffer)))
 

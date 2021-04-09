@@ -1,4 +1,5 @@
 # Demonstration of reading a binary file (planets)
+# use "planet-writer.c" for creating input data
 
 import struct
 

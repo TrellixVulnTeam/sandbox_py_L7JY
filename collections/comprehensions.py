@@ -28,6 +28,11 @@ print('---')
 print({x: x**2 for x in range(11)})
 
 print('---')
+a = {'A': 1, 'B': 2, 'C': 3, 'D': 4}
+b = ['A', 'C', 'X']
+print({k: a[k] for k in b if k in a})  # => {'A': 1, 'C': 3}
+
+print('---')
 print({x for x in 'superduper' if x not in 'pd'})
 
 print('---')
@@ -103,7 +108,7 @@ print('--- generator ---')
 gen_squares = (x * x for x in range(1, 101))
 print(gen_squares)
 print(list(gen_squares))
-print(list(gen_squares))
+print(list(gen_squares))  # exhausted
 
 # cart_item_count = sum(item[2] for item in cart)
 cart_item_count = sum(qty for (name, price, qty) in cart)
@@ -115,7 +120,7 @@ print(max_item_count)
 max_item_price = max(price for name, price, qty in cart)
 print(max_item_price)
 
-max_item = max((item for item in cart), key=lambda i: i[1])
+max_item = max(cart, key=lambda i: i[1])
 print(max_item)
 
 print('---')
@@ -151,3 +156,41 @@ print('--- map vs comprehensions')
 # not necessarily faster than the other
 print(list(map(str, range(5))))
 print([str(i) for i in range(5)])
+
+print('--- multi-input comprehensions')
+values = [x / (x - y)
+          for x in range(10)
+          if x > 5
+          for y in range(10)
+          if x - y != 0]
+print(values)
+
+values = []
+for x in range(10):
+    if x > 5:
+        for y in range(10):
+            if x - y != 0:
+                values.append(x / (x - y))
+print(values)
+
+points = [(x, y) for x in range(5) for y in range(x)]
+print(points)
+
+points = []
+for x in range(5):
+    for y in range(x):
+        points.append((x, y))
+print(points)
+
+print('--- nested comprehensions')
+print([[col * row for col in range(1, 10)] for row in range(1, 10)])
+
+print([[y * 3 for y in range(x)] for x in range(10)])
+
+outer = []
+for x in range(10):
+    inner = []
+    for y in range(x):
+        inner.append(y * 3)
+    outer.append(inner)
+print(outer)

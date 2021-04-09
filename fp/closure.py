@@ -1,28 +1,22 @@
 # closure: Function factory
-def closure(x):
-    def _(y):
-        return x + y
-
-    return _
-
-
-print(closure.__name__)
-print(closure(0).__closure__)
-print(closure(1)(1))
 
 
 def enclosing():
-    x = 0
+    x = "closed"
 
     def local_func():
-        print(x)
+        return x, y
+
+    y = "over"
 
     return local_func
 
 
 lf = enclosing()
-lf()
-lf()
+print(lf.__closure__)  # recorded objects from the enclosing scope
+print(lf())
+
+print()
 
 
 def enclosing():
@@ -31,26 +25,27 @@ def enclosing():
     def local_func():
         nonlocal x
         x += 1
-        print(x)
+        return x
 
     return local_func
 
 
 lf = enclosing()
-lf()
-lf()
+print(lf())
+print(lf())
 
 print()
 
-s = "s@global"
+
+def enclosing(x):
+    def _(y):
+        return x + y
+
+    return _
 
 
-def func():
-    def inner(): return s
-
-    s = "s@inner()"  # 位置に注目
-    return inner
-
-
-print(func()())
-print(s)
+print(enclosing(0).__closure__)
+print(enclosing("").__closure__)
+print(enclosing(1)(1))
+print(enclosing(4)(2))
+print(enclosing("abc")("xyz"))

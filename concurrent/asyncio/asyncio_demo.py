@@ -1,27 +1,30 @@
-# Native concurrency with asyncio
 import asyncio
 import time
 
 
-async def my_task():
-    time.sleep(1)  # to hold for 1 seconds
-    print("Processing Task")
+async def get_content(n):
+    """ネットワークI/Oなどの時間の掛かる処理の代わり"""
+    time.sleep(3)
+    return n
 
 
-async def my_task_generator():
-    for i in range(5):
-        asyncio.ensure_future(my_task())
-        print(asyncio.Task.all_tasks())  # For list of pending tasks
+async def coro(n):
+    content = await get_content(n)  # この行でcoro()は中断される
+    return content
 
 
-# initiated loop-
-initiate_loop = asyncio.get_event_loop()
+def main_old():
+    loop = asyncio.get_event_loop()
+    v = loop.run_until_complete(coro("done"))
+    loop.close()
+    return v
 
-# running the task until it gets over-
-initiate_loop.run_until_complete(my_task_generator())
 
-# Signal to check if all tasks are completed
-print("Completed All Tasks")
+def main():
+    """Python3.7+"""
+    v = asyncio.run(coro("done"))
+    return v
 
-# Safely Closing loop
-initiate_loop.close()
+
+if __name__ == "__main__":
+    print(main())

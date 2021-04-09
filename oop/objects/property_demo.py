@@ -12,6 +12,12 @@ class Hoge:
         self._name = name.capitalize()
 
 
+class HogeChild(Hoge):
+    @Hoge.name.setter
+    def name(self, name: str):
+        Hoge.name.fset(self, f"*** {name} ***")
+
+
 class Fuga:
     """Property object"""
 
@@ -46,7 +52,7 @@ class CapitalizeStr:
         self._instance_data[instance] = value.capitalize()
 
     def __delete__(self):
-        """deleter : del()"""
+        """deleter"""
         raise AttributeError("Cannot delete attribute")
 
 
@@ -69,7 +75,17 @@ if __name__ == '__main__':
     print(f.name)
     # f.name = 9
 
-    fefe = Piyo()
-    fefe.first_name = "fefe"
-    fefe.last_name = "fefe"
-    print(fefe)
+    h2 = HogeChild()
+    h2.name = "hoge jr"
+    print(h2.name)
+    h2.name = 9
+
+    piyo1 = Piyo()
+    piyo1.first_name = "piyo1"
+    piyo1.last_name = "piyo1"
+    print(piyo1)
+
+    piyo2 = Piyo()
+    piyo2.first_name = "piyo2"
+    piyo2.last_name = "piyo2"
+    print(piyo2)

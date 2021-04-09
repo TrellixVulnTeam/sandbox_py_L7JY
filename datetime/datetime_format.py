@@ -1,6 +1,11 @@
-import datetime
+"""
+strftime() and strptime()
+both are platform-dependent
+"""
 
-now = datetime.datetime.now()
+from datetime import datetime
+
+now = datetime.now()
 
 # strftime
 # %y/%Y - Year, %a/%A - weekday, %b/%B - month, %d - day of month
@@ -19,15 +24,16 @@ print(now.strftime("%c"))
 print(now.strftime("%x"))
 print(now.strftime("%X"))
 print("{:%A %d %B %Y}".format(now))
+# print("{:%A %-d %B %Y}".format(now))  # NG on Windows
 
 # strptime
-birthday = datetime.datetime.strptime('12/12/1972', "%d/%m/%Y")  # DD/MM/YYYY
+birthday = datetime.strptime('12/12/1972', "%d/%m/%Y")  # DD/MM/YYYY
 print("You were born on {0:%A} of the {0:%W}th week".format(birthday))  # strftime書式でformatしていることに注目
 
 
 def example(mmdd):
     try:
-        date = datetime.datetime.strptime(mmdd, '%m/%d')
+        date = datetime.strptime(mmdd, '%m/%d')
         output = date.strftime('%b_%d')
         print(output)
     except ValueError:

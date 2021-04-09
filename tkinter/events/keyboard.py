@@ -32,26 +32,27 @@ root.bind('<0>', key_press)
 root.bind('<a>', key_press)
 root.bind('<A>', key_press)
 root.bind('<space>', key_press)
-root.bind('<\'>', key_press)
+root.bind("<'>", key_press)
 root.bind('<">', key_press)
-root.bind('<\>', key_press)
+root.bind('<\\>', key_press)
 root.bind('<less>', key_press)
 root.bind('<greater>', key_press)
 
 # special
 root.bind('<F1>', key_press)
 root.bind('<F12>', key_press)
-root.bind('<Right>', key_press)
-root.bind('<Left>', key_press)
 root.bind('<Up>', key_press)
 root.bind('<Down>', key_press)
+root.bind('<Left>', key_press)
+root.bind('<Right>', key_press)
 root.bind('<Alt_L>', key_press)  # _L: left
 root.bind('<Shift_R>', key_press)  # _R: right
 root.bind('<Win_R>', key_press)
 root.bind('<App>', key_press)
-root.bind('<Return>', key_press)
+root.bind('<Return>', key_press)  # <Enter>はmouseイベント
 root.bind('<Prior>', key_press)  # PageUp
 root.bind('<Next>', key_press)  # PageDown
+root.bind('<Escape>', key_press)
 
 # combo
 root.bind('<Control-c>', key_press)

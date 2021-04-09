@@ -1,29 +1,24 @@
 #!/usr/bin/python3
 
-# tartest3.py
+# Archive
 
 import os
 import tarfile
 import sys
 
 
-# Add file f to archive t
-
-
 def add_to_archive(f, t):
+    """Add file f to archive t"""
     try:
         t.add(f)
     except PermissionError as e:
         print("sorry %s " % e, file=sys.stderr)
 
 
-if len(sys.argv) < 2:
-    list = ["."]
-else:
-    list = sys.argv[1:]
+file_list = ["."] if len(sys.argv) < 2 else sys.argv[1:]
 
 with tarfile.open("/tmp/test3.tar", "w") as t:
-    for file in list:
+    for file in file_list:
         # os.walk only works on directories
         if os.path.isdir(file):
             for root, dirs, files in os.walk(file):

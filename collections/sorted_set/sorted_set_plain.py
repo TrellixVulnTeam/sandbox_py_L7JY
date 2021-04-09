@@ -1,35 +1,36 @@
-# Custom Collection class
-# Immutable
+from bisect import bisect_left
 
 
 class SortedSet:
 
-    def __init__(self, items=None):
-        self._items = sorted(set(items)) if items is not None else []
-
-    def __contains__(self, item):
-        return item in self._items
-
-    def __len__(self):
-        return len(self._items)
-
-    def __iter__(self):
-        return iter(self._items)
-
-    def __getitem__(self, index):
-        result = self._items[index]
-        return SortedSet(result) if isinstance(index, slice) else result
+    def __init__(self, items):
+        self._set = []
+        for x in items:
+            self.add(x)
 
     def __repr__(self):
-        return "SortedSet({})".format(
-            repr(self._items) if self._items else ''
-        )
+        return "SortedSet({})".format(repr(self._set) if self._set else "")
 
-    def __eq__(self, rhs):
-        if not isinstance(rhs, SortedSet):
-            return NotImplemented
-        return self._items == rhs._items
+    def add(self, x):
+        self._set.append(x)
+        self._set = sorted(set(self._set))
+        assert self._is_unique_and_sorted()
 
-    # 以下の様にひっくり返すだけなら、オーバーライドする必要はない
-    # def __ne__(self, rhs):
-    #     return not self == rhs
+    def contains(self, x):
+        assert self._is_unique_and_sorted()
+        index = bisect_left(self._set, x)
+        return index != len(self._set) and self._set[index] == x
+
+    def _is_unique_and_sorted(self):
+        return all(self._set[i] < self._set[i + 1]
+                   for i in range(len(self._set) - 1))
+
+
+if __name__ == '__main__':
+    s = SortedSet([2, 3, 2, 4])
+    s.add(2)
+    print(s)
+    s.add(5)
+    print(s)
+    s.add(1)
+    print(s)

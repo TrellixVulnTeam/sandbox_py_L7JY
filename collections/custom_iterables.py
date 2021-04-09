@@ -16,15 +16,15 @@ class ExampleIterator:
 
 
 class ExampleIterable:
-    def __init__(self, data=[]):
+    def __init__(self, data):
         self.data = data
 
     def __iter__(self):
         return ExampleIterator(self.data)
 
 
-class AlternateIterable:
-    def __init__(self, data=[]):
+class ExampleIterable2:
+    def __init__(self, data):
         self.data = data
 
     # indexer
@@ -33,24 +33,18 @@ class AlternateIterable:
 
 
 if __name__ == '__main__':
-    iter_obj = ExampleIterable([1, 2, 3])
+    iter_obj = ExampleIterable(["a", "b", "c"])
+    print(iter(iter_obj))
 
     for i in iter_obj:
         print(i)
-
-    for i in enumerate(iter_obj):
-        print(i)
-
-    # print(iter_obj)  # NG
 
     print()
 
-    iter_obj = AlternateIterable([1, 2, 3])
+    iter_obj = ExampleIterable2(["a", "b", "c"])
+    print(iter(iter_obj))
 
     for i in iter_obj:
-        print(i)
-
-    for i in enumerate(iter_obj):
         print(i)
 
     print(iter_obj[1])  # access by the index

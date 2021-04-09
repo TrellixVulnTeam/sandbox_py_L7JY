@@ -33,9 +33,9 @@ if __name__ == "__main__":
     root = tkinter.Tk()
 
     # tkinter
-    TkinterSample(master=root).grid(row=0, column=0, sticky=tkinter.N)
+    TkinterSample(root).grid(row=0, column=0, padx=10, pady=10, sticky=tkinter.N)
 
     # ttk
-    TtkSample(master=root).grid(row=0, column=1, sticky=tkinter.N)
+    TtkSample(root).grid(row=0, column=1, padx=10, pady=10, sticky=tkinter.N)
 
     root.mainloop()

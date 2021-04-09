@@ -4,6 +4,7 @@ Demonstrate object implementation and custom attributes using a simple 2D vector
 
 
 class Vector:
+    """Simple 2D vector"""
 
     def __init__(self, **coords):
         private_coords = {'_' + k: v for k, v in coords.items()}
@@ -30,6 +31,8 @@ class Vector:
 
 
 class ColoredVector(Vector):
+    """Colored 2D vector"""
+
     COLOR_INDEXES = ('red', 'green', 'blue')
 
     def __init__(self, red, green, blue, **coords):

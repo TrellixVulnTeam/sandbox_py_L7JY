@@ -62,6 +62,9 @@ def demo3():
 
 
 if __name__ == '__main__':
+    print(IndexError.__mro__)
+
+    print()
     demo1()
     print()
     demo2()

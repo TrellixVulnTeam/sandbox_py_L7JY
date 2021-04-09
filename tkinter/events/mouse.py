@@ -6,22 +6,24 @@ prev = None
 
 def mouse_press(event):
     global prev
-    print('event: {}'.format(event))
+    print(event)
     prev = event
 
 
 def draw(event):
     global prev
+    print(event)
     canvas.create_line(prev.x, prev.y, event.x, event.y, width=5)
     prev = event
 
 
 root = Tk()
 
-canvas = Canvas(root, width=640, height=480, background='white')
+canvas = Canvas(root, width=640, height=480, bg='white')
 canvas.pack()
 canvas.bind('<1>', mouse_press)
-canvas.bind('<B1-Motion>', draw)
+canvas.bind('<B1-Motion>', draw)  # drag
+canvas.bind('<ButtonRelease-1>', lambda e: print(e))
 
 lb = ttk.Label(root, text="Starting...", background='yellow', anchor=CENTER)
 lb.pack(ipadx=40, ipady=40, padx=20, pady=20)

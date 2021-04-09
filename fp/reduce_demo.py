@@ -3,8 +3,10 @@ import operator  # infix operators
 
 numbers = [1, 2, 3, 4, 5]
 
-print(reduce(operator.add, numbers))
+print(reduce(operator.add, numbers))  # initial = 0
 print(reduce(operator.add, numbers, 1))
+print(reduce(operator.mul, numbers))  # initial = 1
+print(reduce(operator.mul, numbers, 0))
 
 accumulator = operator.add(numbers[0], numbers[1])
 for item in numbers[2:]:
@@ -39,11 +41,9 @@ documents = [
     'I do not like green eggs and ham. I do not like them, Sam-I-Am.'
 ]
 
-print(count_words(documents[0]))
-
 
 def combine_counts(d1, d2):
-    d = d1.to_clip()
+    d = d1.copy()
     for word, count in d2.items():
         d[word] = d.get(word, 0) + count
     return d

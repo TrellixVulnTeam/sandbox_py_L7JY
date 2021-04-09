@@ -1,4 +1,4 @@
-from algo.ds.data_structures import Stack
+from data_structures import Stack
 
 
 def match_symbols(symbol_str):

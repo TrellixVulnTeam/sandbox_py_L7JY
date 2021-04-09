@@ -1,7 +1,8 @@
 import turtle
 
-painter = turtle.Turtle()
-painter.speed(0)
+painter = turtle.Turtle("turtle")
+painter.shapesize(0.8, 0.8, 1)
+painter.speed(0)  # "fastest" no animation
 
 
 def fractal(size, depth=0):
