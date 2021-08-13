@@ -1,4 +1,4 @@
-# Text Wrap Module
+# textwrap Module
 import textwrap
 
 websiteText = """   Learning can happen anywhere with our apps on your computer,

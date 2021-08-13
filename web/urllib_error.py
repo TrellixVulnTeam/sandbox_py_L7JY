@@ -1,6 +1,5 @@
 # handling errors and status codes
 
-# import the request, error, and status modules
 import urllib.request
 from urllib.error import HTTPError, URLError
 from http import HTTPStatus

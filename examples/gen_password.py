@@ -37,11 +37,11 @@ def generate_password(min_length=8, max_length=16, use_punctuation=False):
         char_counts[v] += 1
 
     password = [random_uppercase() for _ in range(char_counts[0])]
-    password.extend([random_lowercase() for _ in range(char_counts[1])])
-    password.extend([random_digit() for _ in range(char_counts[2])])
+    password.extend(random_lowercase() for _ in range(char_counts[1]))
+    password.extend(random_digit() for _ in range(char_counts[2]))
 
     if use_punctuation:
-        password.extend([random_punctuation() for _ in range(char_counts[3])])
+        password.extend(random_punctuation() for _ in range(char_counts[3]))
 
     random.shuffle(password)
 
@@ -49,48 +49,36 @@ def generate_password(min_length=8, max_length=16, use_punctuation=False):
 
 
 def print_stats(password):
-    counts = [
-        sum([1 for x in password if x in string.ascii_uppercase]),
-        sum([1 for x in password if x in string.ascii_lowercase]),
-        sum([1 for x in password if x in string.digits]),
-        sum([1 for x in password if x in string.punctuation])
-    ]
+    upper_count = sum(1 for x in password if x in string.ascii_uppercase)
+    lower_count = sum(1 for x in password if x in string.ascii_lowercase)
+    digit_count = sum(1 for x in password if x in string.digits)
+    punctuation_count = sum(1 for x in password if x in string.punctuation)
 
-    upper_count = counts[0]
-    lower_count = counts[1]
-    digit_count = counts[2]
-    punctuation_count = counts[3]
-
-    upper_template = string.Template('Uppercase Letters: $upper')
-    lower_template = string.Template('Lowercase Letters: $lower')
-    digit_template = string.Template('Digits: $digit')
-    punctuation_template = string.Template('Punctuation: $punctuation')
-
-    stats = ['Password has:',
-             upper_template.substitute({'upper': upper_count}),
-             lower_template.substitute({'lower': lower_count}),
-             digit_template.substitute({'digit': digit_count})]
-
-    if punctuation_count > 0:
-        stats.append(punctuation_template.substitute(
-            {'punctuation': punctuation_count}))
-
-    print('\n'.join(stats))
+    print(f"""Password has:
+  Uppercase Letters: {upper_count}
+  Lowercase Letters: {lower_count}
+  Digits: {digit_count}
+  Punctuations: {punctuation_count}
+""")
 
 
-if __name__ == '__main__':
+def parse_args():
     argparser = argparse.ArgumentParser(
         description='Generate a random password')
-    argparser.add_argument('--min_length', '-n', type=int,
-                           help='Minimum length of the password', default=8)
-    argparser.add_argument('--max_length', '-x', type=int,
-                           help='Maximum length of the password', default=16)
+    argparser.add_argument('--min_length', '-n', type=int, default=8,
+                           help='Minimum length of the password')
+    argparser.add_argument('--max_length', '-x', type=int, default=16,
+                           help='Maximum length of the password')
     argparser.add_argument('--use_punctuation', dest='punctuation',
                            action='store_true',
                            help='Include special characters in the password')
     argparser.add_argument('--stats', dest='stats', action='store_true',
                            help='Show password stats')
-    args = argparser.parse_args()
+    return argparser.parse_args()
+
+
+if __name__ == '__main__':
+    args = parse_args()
 
     password = generate_password(
         args.min_length, args.max_length, args.punctuation)

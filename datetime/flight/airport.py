@@ -4,9 +4,8 @@ import csv
 class Airport:
     """ Airport as represented in airports.dat """
     # CSV columns will become Airport property names in __init__
-    prop_names = ('id', 'name', 'city', 'country', 'iata', 'icao',
-                  'lat', 'long', 'alt', 'utc_offset', 'dst_rule',
-                  'tz', 'type', 'source')
+    prop_names = ('name', 'city', 'country', 'iata', 'lat', 'long',
+                  'utc_offset', 'dst_rule', 'tz')
 
     def __init__(self, csv_entry):
         """ Put values from a CSV reader entry into the internal dictionary """
@@ -18,10 +17,17 @@ class Airport:
 
 
 def load_airports(csv_file_name):
-    """ Load airports into a dictionary where keys are IATA codes"""
+    """Load airports into a dictionary where keys are IATA codes"""
     airports = {}
     with open(csv_file_name, newline='', encoding='utf-8') as data_file:
         for entry in csv.reader(data_file):
             a = Airport(csv_entry=entry)
             airports[a.iata] = a
     return airports
+
+
+if __name__ == '__main__':
+    airports = load_airports('../../data/airports.csv')
+    print(len(airports))
+    for a in airports.values():
+        print(a)

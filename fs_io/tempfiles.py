@@ -1,4 +1,4 @@
-# Tempfile Module
+# tempfile Module
 import os
 import tempfile
 
@@ -35,17 +35,17 @@ os.remove(tempfp)
 print()
 
 # create a temp file using the TemporaryFile class
-with tempfile.TemporaryFile(mode="w+t") as tfp:
-    tfp.write('This is some text data')
-    tfp.seek(0)
-    print(tfp.read())
+with tempfile.TemporaryFile(mode="w+t") as tf:
+    tf.write('This is some text data')
+    tf.seek(0)
+    print(tf.read())
 
 print()
 
 # create a temporary directory using the TemporaryDirectory class
 with tempfile.TemporaryDirectory() as tdp:
     path = os.path.join(tdp, "tempfile.txt")
-    with open(path, "w+t", encoding="utf-8") as tfp:
-        tfp.write("This is a temp file in temp dir")
-        tfp.seek(0)
-        print(tfp.read())
+    with open(path, "w+t", encoding="utf-8") as tf:
+        tf.write("This is a temp file in temp dir")
+        tf.seek(0)
+        print(tf.read())

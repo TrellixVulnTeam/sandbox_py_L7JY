@@ -93,8 +93,7 @@ def game_loop():
         print("You can move [{}]".format(", ".join(valid_moves)))
         print("Enter 'QUIT' to quit")
 
-        move = input("> ")
-        move = move.upper()
+        move = input("> ").upper()
 
         if move == 'QUIT':
             print("\n ** See you next time! **\n")
@@ -117,8 +116,9 @@ def game_loop():
             game_loop()
 
 
-clear_screen()
-print("Welcome to the dungeon!!")
-input("Press ENTER to start!")
-clear_screen()
-game_loop()
+if __name__ == '__main__':
+    clear_screen()
+    print("Welcome to the dungeon!!")
+    input("Press ENTER to start!")
+    clear_screen()
+    game_loop()

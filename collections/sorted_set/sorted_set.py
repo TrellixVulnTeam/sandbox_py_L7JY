@@ -1,4 +1,5 @@
 # Custom Collection class
+# immutable SortedSet
 from bisect import bisect_left
 from collections.abc import Sequence, Set
 from itertools import chain
@@ -10,6 +11,7 @@ class SortedSet(Set, Sequence):
         self._items = sorted(set(items)) if items is not None else []
 
     def __contains__(self, item):
+        """container, sequence, set"""
         try:
             self.index(item)
             return True
@@ -17,13 +19,26 @@ class SortedSet(Set, Sequence):
             return False
 
     def __len__(self):
+        """sized, sequence, set"""
         return len(self._items)
 
     def __iter__(self):
+        """iterable"""
+
+        # generator function
+        # for item in self._items:
+        #     yield item
+
+        # another way (3.3~)
+        # yield from self._items
+
+        # simple way
         return iter(self._items)
 
     def __getitem__(self, index):
+        """iterable, sequence"""
         result = self._items[index]
+        # indexがsliceオブジェクトの場合、listではなくSortedSetを返すようにする
         return SortedSet(result) if isinstance(index, slice) else result
 
     def __repr__(self):
@@ -33,10 +48,10 @@ class SortedSet(Set, Sequence):
 
     def __eq__(self, rhs):
         if not isinstance(rhs, SortedSet):
-            return NotImplemented
+            return NotImplemented  # raise NotImplementedErrorではない
         return self._items == rhs._items
 
-    # 以下の様にひっくり返すだけなら、オーバーライドする必要はない
+    # __eq__をひっくり返すだけなら、わざわざオーバーライドする必要はない
     # def __ne__(self, rhs):
     #     if not isinstance(rhs, SortedSet):
     #         return NotImplemented
@@ -54,16 +69,19 @@ class SortedSet(Set, Sequence):
 
     def count(self, item):
         # assert self._is_unique_and_sorted()
-        return int(item in self)
+        return int(item in self)  # self.__contains__
 
     def __add__(self, rhs):
+        """sequence"""
         return SortedSet(chain(self._items, rhs._items))
 
     def __mul__(self, rhs):
+        """sequence"""
         return self if rhs > 0 else SortedSet()
 
     def __rmul__(self, lhs):
-        return self * lhs
+        """sequence"""
+        return self * lhs  # self.__mul__
 
     def issubset(self, iterable):
         return self <= SortedSet(iterable)
@@ -98,5 +116,6 @@ if __name__ == '__main__':
     print(time)
 
 """
-python -O -m timeit -n 1 -s "from random import randrange; from sorted_set_seq import SortedSet; s = SortedSet(randrange(1000) for _ in range(2000))" "[s.count(i) for i in range(1000)]"
+# run from the command line
+python -O -m timeit -n 1 -s "from random import randrange; from sorted_set import SortedSet; s = SortedSet(randrange(1000) for _ in range(2000))" "[s.count(i) for i in range(1000)]"
 """

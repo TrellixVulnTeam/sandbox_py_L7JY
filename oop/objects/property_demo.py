@@ -30,6 +30,7 @@ class Fuga:
         self._name = name.capitalize()
 
     name = property(fget=_get_name, fset=_set_name)
+    # name = property(fset=_set_name)  # setter only property
 
 
 class CapitalizeStr:

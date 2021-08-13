@@ -31,6 +31,10 @@ def demo1():
     # use the key parameter to select a field to sort on
     print(sorted(prod_list, key=lambda p: p.price))
 
+    # reverse order
+    print(sorted(prod_list, key=lambda p: p.price, reverse=True))
+    print(sorted(prod_list, key=lambda p: -p.price))
+
     # the key parameter can also call a method on the object
     print(sorted(prod_list, key=lambda p: p.discount_price()))
 

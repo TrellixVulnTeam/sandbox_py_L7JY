@@ -1,3 +1,4 @@
+# Infinite iterator demo
 import datetime
 import itertools
 import random

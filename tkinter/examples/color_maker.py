@@ -46,11 +46,8 @@ class UiFrame(Frame):
                   command=root.update_color) \
                 .grid(row=0, column=i, sticky=EW)
 
-        def create_callback(x):
-            return lambda: root.set_color(*COLORS[x][1:])
-
         for i, c in enumerate(COLORS):
-            Button(self, text=c[0], command=create_callback(i)) \
+            Button(self, text=c[0], command=lambda x=i: root.set_color(*COLORS[x][1:])) \
                 .grid(row=i // 3 + 1, column=i % 3, padx=2, pady=2, sticky=EW)
 
         # Create the color box and color labels

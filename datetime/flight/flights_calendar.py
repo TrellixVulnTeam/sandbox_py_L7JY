@@ -6,7 +6,7 @@ class FlightsCalendar(calendar.TextCalendar):
     """Custom Calendar with decorating flight days"""
 
     def __init__(self, firstweekday, flights):
-        super(FlightsCalendar, self).__init__(firstweekday)
+        super().__init__(firstweekday)
         self.dates_with_flight = set()
         for f in flights:
             self.dates_with_flight.add(f.departure.date())
@@ -40,7 +40,7 @@ class FlightsCalendar(calendar.TextCalendar):
             self.formatday(day, wkday, width, day in days_with_flights) for (day, wkday) in theweek)
 
     def formatday(self, day, weekday, width, has_flight=True):
-        s = super(FlightsCalendar, self).formatday(day, weekday, width).strip()
+        s = super().formatday(day, weekday, width).strip()
         if has_flight and day != 0:  # day = 0 : 範囲外
             s = '[' + s + ']'
         return s.center(width)

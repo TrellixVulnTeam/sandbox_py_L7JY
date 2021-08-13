@@ -33,7 +33,7 @@ def nest_test(name):
 
 
 @contextlib.contextmanager
-def propagater(name, propagate=True):
+def propagator(name, propagate=True):
     try:
         yield
         print(name, 'exited normally.')
@@ -50,10 +50,12 @@ if __name__ == '__main__':
     with CtxMgr() as x:
         raise Exception("Hoge Hoge")
 
+
     def func1(s):
         with CtxMgr():
             print("in func1()")
             return s.upper()
+
 
     print(func1("fefe"))
 
@@ -72,8 +74,8 @@ if __name__ == '__main__':
 
     print()
 
-    with propagater("outer", True), propagater("inner", False):
+    with propagator("outer", True), propagator("inner", False):
         raise Exception("from Body")
 
-    with propagater("outer", False), propagater("inner", True):
+    with propagator("outer", False), propagator("inner", True):
         raise Exception("from Body")

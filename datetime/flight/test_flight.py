@@ -1,6 +1,6 @@
 import unittest
 from datetime import datetime, timedelta
-from unittest.mock import *
+from unittest.mock import patch
 
 from flight_duration import Flight, airports
 from pytz import timezone
@@ -14,6 +14,16 @@ class TestFlight(unittest.TestCase):
                    destination=airports['SVO'],
                    departure=datetime(2018, 1, 1, 10, 10, 0),
                    arrival=datetime(2018, 1, 2, 7, 12, 0))]
+
+    def test_time_to_departure_fail(self):
+        """
+        This test is unstable.
+        Only success in the same timezone of the departure airport.
+        """
+        with patch('flight_duration.datetime') as mock_datetime:
+            mock_datetime.now.return_value = datetime(2018, 1, 1, 10, 10, 0)
+            self.assertEqual(self.flights[0].time_to_departure(),
+                             timedelta(hours=0))
 
     def test_time_to_departure(self):
         with patch('flight_duration.datetime') as mock_datetime, \

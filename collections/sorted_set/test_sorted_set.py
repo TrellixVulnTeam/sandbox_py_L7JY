@@ -1,5 +1,5 @@
 import unittest
-from collections.abc import (Container, Sized, Iterable, Sequence, Set)
+from collections.abc import Container, Sized, Iterable, Sequence, Set
 from sorted_set import SortedSet
 
 
@@ -204,6 +204,7 @@ class TestReprProtocol(unittest.TestCase):
 
 
 class TestEqualityProtocol(unittest.TestCase):
+    # assertEqual/assertNotEqualを使わない
 
     def test_positive_equal(self):
         self.assertTrue(SortedSet([4, 5, 6]) == SortedSet([6, 5, 4]))
@@ -220,6 +221,7 @@ class TestEqualityProtocol(unittest.TestCase):
 
 
 class TestInequalityProtocol(unittest.TestCase):
+    # assertEqual/assertNotEqualを使わない
 
     def test_positive_unequal(self):
         self.assertFalse(SortedSet([4, 5, 6]) != SortedSet([6, 5, 4]))

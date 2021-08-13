@@ -1,23 +1,15 @@
-import sys
 import os
+import sys
+from platform import python_version
 
 print(sys.version_info)
-print('Python version {}.{}.{}'.format(*sys.version_info))
+print(f'This is python version {python_version()}')
 
 print(sys.platform)
 print(os.name)
 
 print(os.environ)
 print(os.getenv('PATH'))  # os.environ.get(key, default=None)
-
-print(os.getcwd())
-print(os.listdir("."))
-
-print(__file__)
-print(os.path.dirname(__file__))
-print(os.path.dirname(os.path.abspath(__file__)))
-print(os.path.abspath(os.path.dirname(__file__)))
-print(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 print(sys.getdefaultencoding())
 

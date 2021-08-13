@@ -6,10 +6,6 @@ import logging
 extra_data = {'user': 'hoge@example.com'}
 
 
-def another():
-    logging.critical("This is a debug-level log message", extra=extra_data)
-
-
 def custom_fmt():
     # set the output file and debug level, and
     # use a custom formatting specification
@@ -25,7 +21,7 @@ def custom_fmt():
     logging.info("This is an info-level log message", extra=extra_data)
     logging.warning("This is a warning-level message", extra=extra_data)
     logging.error("This is an error-level message", extra=extra_data)
-    another()
+    logging.critical("This is a critical-level log message", extra=extra_data)
 
 
 if __name__ == "__main__":

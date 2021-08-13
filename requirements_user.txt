@@ -23,6 +23,6 @@ lxml
 html5lib
 
 selenium
-pytest
 pytest-cov
+pytest
 coverage

@@ -13,13 +13,13 @@ if version == 1:  # Boring loop
             outline += line[index]
         print(outline, end='')
 
-if version == 2:  # Recursive
+elif version == 2:  # Recursive
     def revline(line):
         if line:
             revline(line[1:])
             print(line[0], end='')
 
-if version == 3:  # Pythonic slicing
+elif version == 3:  # Pythonic slicing
     def revline(line):
         print(line[::-1], end='')
 

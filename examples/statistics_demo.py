@@ -3,23 +3,6 @@ import statistics
 import csv
 import array
 
-# simple statistics operations
-sample_data1 = [1, 3, 5, 7]
-sample_data2 = [2, 3, 5, 4, 3, 5, 3, 2, 5, 6, 4, 3]
-
-# Use the mean function - calculates an average value
-print('mean:', statistics.mean(sample_data1))
-
-# Use the different median functions
-print('median:', statistics.median(sample_data1))
-print('median_low:', statistics.median_low(sample_data1))
-print('median_high:', statistics.median_high(sample_data1))
-
-# The mode function indicates which data item occurs most frequently
-print('mode:', statistics.mode(sample_data2))
-
-print()
-
 
 # Read data from a CSV file and calculate statistics
 def read_data():
@@ -50,10 +33,10 @@ def calc_stats():
     data_std = round(statistics.stdev(data), 2)  # 標準偏差 = √分散
     data_var = round(statistics.variance(data), 2)  # 分散
 
-    print("Mean: ", data_mean)
-    print("Median: ", data_med)
-    print("Standard deviation: ", data_std)
-    print("Variance: ", data_var)
+    print("Mean:", data_mean)
+    print("Median:", data_med)
+    print("Standard deviation:", data_std)
+    print("Variance:", data_var)
 
 
 calc_stats()

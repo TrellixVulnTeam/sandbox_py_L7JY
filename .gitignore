@@ -1,5 +1,5 @@
-/.idea/
-/.vscode/
+.idea/
+.vscode/
 /env/
 /venv/
 /.venv/
@@ -16,6 +16,7 @@ htmlcov/
 .coverage
 .pytest_cache/
 db.sqlite3
+*.db
 .ipynb_checkpoints/
 
 !.keep

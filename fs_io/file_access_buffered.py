@@ -1,4 +1,4 @@
-# Files and File Writing
+# copying files by manual
 
 DATA = "../data/"
 TMP = "../tmp/"

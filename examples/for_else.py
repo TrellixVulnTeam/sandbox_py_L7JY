@@ -17,7 +17,7 @@ def for_else(items, divisor):
         **locals()))
 
 
-# useing function instead of for-else
+# using function instead of for-else
 def has_divisible(items, divisor):
     for item in items:
         if item % divisor == 0:

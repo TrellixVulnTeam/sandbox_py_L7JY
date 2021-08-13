@@ -6,7 +6,7 @@ def fetch(iterator):
     try:
         return next(iterator)
     except StopIteration:
-        print("no item")
+        print(">>> no item <<<")
 
 
 i = iter([5, 34, 235, 0])  # accepts iterable
@@ -23,6 +23,8 @@ print(next(i))
 print(next(i))
 print(next(i))
 print(next(i))
+
+print()
 
 with open('../data/sample.txt', 'rt') as f:
     for line in iter(lambda: f.readline().strip(), 'END'):

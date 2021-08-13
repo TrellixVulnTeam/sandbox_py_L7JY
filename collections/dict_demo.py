@@ -23,6 +23,8 @@ print(len(student))
 # student["last_name"]  # KeyError
 print(student.get("last_name"))
 print(student.get("last_name", "Unknown"))
+
+# iteration
 print(student.keys())  # dict_keys : set-like view
 print(student.values())  # dict_values : list-like view
 print(student.items())  # dict_items : set-like view of key-value pairs (tuples)
@@ -37,6 +39,13 @@ for value in student.values():
 
 for key, value in student.items():
     print("{}: {}".format(key, value))
+
+print()
+
+# dict view objects
+print(student.keys() == student.keys())
+print(student.values() == student.values())  # always False!!
+print(student.items() == student.items())
 
 print()
 

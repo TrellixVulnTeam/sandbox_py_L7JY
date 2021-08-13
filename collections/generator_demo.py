@@ -1,4 +1,5 @@
 # Generator
+# Generator is Iterator and Iterable
 def gen123():
     input("yield 1: press enter")
     yield 1

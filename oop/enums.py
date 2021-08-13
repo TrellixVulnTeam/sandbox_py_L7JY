@@ -29,6 +29,12 @@ def main():
     myFruits[Fruit.BANANA] = "Come Mr. Tally-man"
     print(myFruits[Fruit.BANANA])
 
+    # iteration
+    print(list(Fruit))
+
+    for m in Fruit:
+        print(m)
+
 
 if __name__ == "__main__":
     main()

@@ -1,4 +1,4 @@
-# file stat
+# file stat by os.path module
 import os
 import time
 from datetime import datetime
@@ -21,21 +21,17 @@ def file_path():
     print("Item's size: " + str(path.getsize(TEXT_FILE)))
 
     # Work with file paths
-    src = path.realpath(TEXT_FILE)  # linkを展開する
-    print("Item's realpath:", src)
     src = path.abspath(TEXT_FILE)
     print("Item's abspath:", src)
+    src2 = path.realpath(TEXT_FILE)  # linkを展開する
+    print("Item's realpath:", src2)
     head, tail = path.split(src)
-    print("Item's dirname:", head)
-    print("Item's basename:", tail)
+    print("Item's head by path.split:", head)
+    print("Item's tail by path.split:", tail)
     print("Item's dirname:", path.dirname(src))
     print("Item's basename:", path.basename(src))
 
-    # This file
-    print(__file__)
-    print(path.abspath(__file__))
-    print(path.dirname(path.abspath(__file__)))  # 1個上
-    print(path.dirname(path.dirname(path.abspath(__file__))))  # 2個上
+    print()
 
     # Get the modification time
     mt = path.getmtime(TEXT_FILE)
@@ -49,7 +45,7 @@ def file_path():
     print("Or, " + str(td.total_seconds()) + " seconds")
 
 
-def list_file_stat():
+def enumerate_file_stats():
     for file in os.listdir("."):
         info = os.stat(file)
         print("{0:<30} uid:{1.st_uid:>4}, {1.st_size:>10} byte".format(file, info))
@@ -58,4 +54,4 @@ def list_file_stat():
 if __name__ == "__main__":
     file_path()
     print()
-    list_file_stat()
+    enumerate_file_stats()

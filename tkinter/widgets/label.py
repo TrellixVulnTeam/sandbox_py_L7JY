@@ -21,9 +21,6 @@ label.config(font=('Courier', 16, 'bold'))
 # logo = PhotoImage(file='python_logo.gif')
 logo = ImageTk.PhotoImage(file='river.jpg')  # load JPEG using Pillow
 label.config(image=logo)
-label.config(compound='text')
-# label.config(compound='right')
-# label.config(compound='center')
-label.config(compound=CENTER)  # constants
+label.config(compound=CENTER)
 
 root.mainloop()

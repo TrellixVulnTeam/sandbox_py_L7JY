@@ -1,3 +1,6 @@
+from collections.abc import Iterable, Iterator
+
+
 class ExampleIterator:
     def __init__(self, data):
         self.index = 0
@@ -33,6 +36,13 @@ class ExampleIterable2:
 
 
 if __name__ == '__main__':
+    print(issubclass(ExampleIterator, Iterable))  # True
+    print(issubclass(ExampleIterator, Iterator))  # True
+    print(issubclass(ExampleIterable, Iterable))  # True
+    print(issubclass(ExampleIterable2, Iterable))  # False
+
+    print()
+
     iter_obj = ExampleIterable(["a", "b", "c"])
     print(iter(iter_obj))
 

@@ -27,16 +27,16 @@ def fs_demo():
     # now use the shell to make a copy of the file
     shutil.copy(src, dst)
 
-    # copy over the permissions, modification times, and other info
+    # copy over the permissions(incl. owner), modification times, and other info. Like `cp -P`
     shutil.copystat(src, dst)
 
     # mkdir
     os.mkdir(TMP + "test")
 
     # rmdir
-    # os.rmdir("test")  # rm dir
-    # os.removedirs("test")  # rm -r dir
-    shutil.rmtree(TMP + "test")  # rm -rf dir
+    # os.rmdir(TMP + "test")  # rmdir <dir>  # <dir> must be empty
+    # shutil.rmtree(TMP + "test")  # rm -r <dir>
+    shutil.rmtree(TMP + "test", ignore_errors=True)  # rm -rf <dir>
 
     # delete file
     if path.exists(NEW_FILE):
@@ -47,7 +47,7 @@ def fs_demo():
 
     # now put things into a ZIP archive
     if path.exists(TMP):
-        # shutil.make_archive(TMP + "data_arc", "zip", "data")
+        # format: zip, tar, gztar, bztar, xztar
         shutil.make_archive(base_name=TMP + "data_arc", format="zip", root_dir=DATA)
         shutil.make_archive(base_name=TMP + "hoge_arc", format="zip", root_dir=DATA,
                             base_dir="hoge")

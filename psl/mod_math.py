@@ -1,4 +1,4 @@
-# Math Module
+# math Module
 import math
 
 # Constants

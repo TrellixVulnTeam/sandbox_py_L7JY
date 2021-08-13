@@ -20,7 +20,7 @@ print(list1[-1])  # not slice, single value
 print(list1[-1:])
 print(list1[:-1])
 print(list1[::2])
-print(list1[::-1])
+print(list1[::-1])  # reverse
 list2 = list1[:]  # shallow copy
 print(list2 is list1)
 del list2[0]
@@ -84,7 +84,7 @@ l.reverse()
 print(l)
 
 l = [[5, 8], {6, 3, 7}, (2, 9), [100]]
-l.sort(key=sum, reverse=True)  # key: func (len, sum, ...)
+l.sort(key=sum, reverse=True)  # key: function to be applied to each item
 print(l)
 print(list(map(sum, l)))
 

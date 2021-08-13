@@ -65,7 +65,8 @@ class Board(Canvas):
         self.playing = True
         self.draw_board()
 
-    def walk_around(self, row, col, consumer):
+    @staticmethod
+    def walk_around(row, col, consumer):
         """周囲8セルに対して、consumerの処理をする"""
         # left
         if col > 0:

@@ -18,6 +18,7 @@ print(now.strftime("%W"))  # week of the year
 # %I/%H - 12/24 Hour, %M - minute, %S - second, %p - locale's AM/PM
 print(now.strftime("%I:%M:%S %p"))  # 12-Hour:Minute:Second:AM
 print(now.strftime("%H:%M:%S"))  # 24-Hour:Minute:Second
+print(now.strftime("%T"))  # shorthand
 
 # %c - locale's date and time, %x - locale's date, %X - locale's time
 print(now.strftime("%c"))

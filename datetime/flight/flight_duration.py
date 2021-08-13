@@ -34,7 +34,7 @@ class Flight:
         return self.arrival - self.departure
 
     def time_to_departure(self):
-        # return self.departure - datetime.now()  # NG
+        # return self.departure - datetime.now()  # NG: aware - naive
         return self.departure - get_localzone().localize(datetime.now())
 
     def __str__(self):
@@ -67,8 +67,8 @@ flights = [
     Flight(flight_id='DST02',
            origin=airports['BRU'],
            destination=airports['ATL'],
-           # departure=datetime(2018, 3, 25, 2, 10, 0),  # NonExistentTimeError
-           # departure=datetime(2018, 10, 28, 2, 10, 0),  # AmbiguousTimeError
+           # departure=datetime(2018, 3, 25, 2, 10, 0),  # NonExistentTimeError (winter -> summer)
+           # departure=datetime(2018, 10, 28, 2, 10, 0),  # AmbiguousTimeError (summer -> winter)
            departure=datetime(2018, 3, 25, 3, 10, 0),
            arrival=datetime(2018, 3, 25, 7, 0, 0))
 ]

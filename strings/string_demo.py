@@ -1,4 +1,4 @@
-# string
+# str is a mutable sequence (iterable, collection)
 
 print("hoge" "fuga")  # 'hogefuga'
 
@@ -49,19 +49,31 @@ a = ascii(w)
 print(a)
 print(len(a))
 
-# bytes
-# b = bytes(w, encoding='utf-8')
-b = w.encode(encoding='utf-8')
+# encode/decode
+# default encoding='utf-8'
+# str to bytes
+s = "ほげふが"
+print(len(s))
+# b = bytes(s, encoding='utf-8')  # need encoding for str
+# b = s.encode(encoding='utf-8')
+b = s.encode()
+# b = s.encode(encoding='ascii')  # UnicodeEncodeError
 print(b)
 print(len(b))
-print(b.decode('utf-8'))
-# print(b'abc(\xff)XYZ'.decode(encoding='utf-8', errors='strict'))  # UnicodeDecodeError
-print(b'abc(\xff)XYZ'.decode(encoding='utf-8', errors='ignore'))
-print(b'abc(\xff)XYZ'.decode(encoding='utf-8', errors='replace'))
+
+# bytes to str
+# print(b.decode(encoding='utf-8', errors='strict'))
+print(b.decode())
+
+# invalid characters
+# print(b'abc(\xff)XYZ'.decode(errors='strict'))  # UnicodeDecodeError
+print(b'abc(\xff)XYZ'.decode(errors='ignore'))
+print(b'abc(\xff)XYZ'.decode(errors='replace'))
 
 print("*-=-" * 20)
 
 # slice (sequence protocol)
+# [start:end:step]
 spam = 'Hello world!'
 print(spam)
 print(spam[:])
@@ -125,20 +137,9 @@ print('    Hello World    '.rstrip())
 print('    Hello World    '.lstrip())
 
 print()
-print('Hello'.rjust(20))
 print('Hello'.ljust(20, '*'))
-print('Hello'.center(20, '='))
-
-print()
-names = ["Amy", "John", "George", "Michael", "Penelope"]
-biggest = max(len(name) for name in names)
-
-for name in names:
-    print(name.ljust(biggest + 2, "-"))
-for name in names:
-    print(name.center(biggest + 2, "-"))
-for name in names:
-    print(name.rjust(biggest + 2, "-"))
+print('Hello'.center(20))  # space
+print('Hello'.rjust(20, '+'))
 
 print("*-=-" * 20)
 
@@ -158,7 +159,6 @@ print(sample_str.endswith("dog"))
 # find and rfind functions
 print(sample_str.find("the"))
 print(sample_str.rfind("the"))
-print("the" in sample_str)
 
 # using replace
 new_str = sample_str.replace("lazy", "tired")

@@ -7,7 +7,7 @@ text = """
 l = [list(map(int, line.split()))
      for line in text.splitlines() if line.strip()]
 print(l)
-print(list(zip(*l)))  # transpose
+print(list(zip(*l)))  # transpose (転置)
 
 # 横の合計
 for i in l:

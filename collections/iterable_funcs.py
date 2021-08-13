@@ -1,6 +1,6 @@
 import math
 from itertools import (groupby, islice, count, chain, accumulate, cycle, repeat,
-                       dropwhile, takewhile, combinations, permutations)
+                       dropwhile, takewhile, combinations, permutations, zip_longest)
 
 # map(), filter()については、fp_demo.py参照
 
@@ -34,6 +34,25 @@ for temps in zip(sunday, monday, tuesday):
     print(f"min = {min(temps):4.1f},",
           f"max={max(temps):4.1f},",
           f"average={sum(temps) / len(temps):4.1f}")
+
+print()
+
+s_list = "abcd"
+l_list = range(7)
+
+print(dict(zip(l_list, s_list)))  # shortest
+print(dict(zip_longest(l_list, s_list, fillvalue='?')))
+
+print()
+
+countries = ['Netherlands', 'Nigeria', 'Jordan', 'Nepal', 'Niger', 'Japan']
+capitals = ['Amsterdam', 'Abuja', 'Amman', 'Kathmandu', 'Niamey', 'Tokyo']
+
+pairs = list(zip(countries, capitals))
+print(pairs)
+countries_t, capitals_t = zip(*pairs)
+print(countries_t)
+print(capitals_t)
 
 print()
 

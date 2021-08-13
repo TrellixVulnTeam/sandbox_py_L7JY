@@ -1,6 +1,5 @@
 # Send data to a server using urllib
 
-# import the request and parse modules
 import urllib.request
 import urllib.parse
 import json

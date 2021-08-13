@@ -1,10 +1,10 @@
-# using the requests library to access internet data
-
 import requests
 from requests.exceptions import HTTPError, Timeout, ConnectionError
 
+from utils import print_response, print_error
 
-def error(url, timeout=10):
+
+def send_request(url, timeout=10, banner=None):
     # Use requests to issue a standard HTTP GET request
     try:
         result = requests.get(url, timeout=timeout)
@@ -13,29 +13,18 @@ def error(url, timeout=10):
         # code was returned as part of the response
         result.raise_for_status()
 
-        print_response(result)
+        print_response(result, banner=banner)
+
     except ConnectionError as err:
-        print(err)
+        print_error(err, banner)
     except HTTPError as err:
-        print(err)
+        print_error(err, banner)
     except Timeout as err:
-        print("Request timed out: {0}".format(err))
-
-
-def print_response(response: requests.Response):
-    print('Status code: {}'.format(response.status_code))
-    print('Response Headers: ----------------------')
-    print(response.headers)
-    print('Response Body: ----------------------')
-    print(response.text)
+        print_error(err, banner)
 
 
 if __name__ == "__main__":
-    print("--- OK ---")
-    error("http://httpbin.org/html")  # should work with no errors
-    print("--- ConnectionError ---")
-    error("http://no-such-server.xxx")  # will generate a ConnectionError
-    print("\n--- HTTPError ---")
-    error("http://httpbin.org/status/404")  # will generate a HTTPError
-    print("\n--- Timeout ---")
-    error("http://httpbin.org/delay/5", 2)  # will generate a Timeout
+    send_request("https://httpbin.org/html", banner="OK")
+    send_request("https://no-such-server.xxx", banner="ConnectionError")
+    send_request("https://httpbin.org/status/404", banner="HTTPError")
+    send_request("https://httpbin.org/delay/3", timeout=1, banner="Timeout")

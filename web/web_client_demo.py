@@ -15,7 +15,7 @@ def read_demo():
     q = Request(URL, method='GET', headers=HEADERS)
     try:
         res: HTTPResponse = urlopen(q)
-        print(json.loads(res.read(), encoding='utf-8'))
+        print(json.loads(res.read()))
     except HTTPError as e:
         print(
             {'error': e.reason, 'code': e.code},
