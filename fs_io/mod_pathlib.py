@@ -10,6 +10,7 @@ print()
 file_path = Path(__file__)
 print(file_path)
 print(file_path.absolute())
+print(file_path.absolute().as_uri())  # convert to URI. Path must be an absolute path.
 print(file_path.name)
 print(file_path.stem)
 print(file_path.suffix)

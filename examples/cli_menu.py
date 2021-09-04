@@ -48,4 +48,4 @@ def dispatch(action_name):
 
 
 if __name__ == '__main__':
-    print(do_menu())
+    do_menu()

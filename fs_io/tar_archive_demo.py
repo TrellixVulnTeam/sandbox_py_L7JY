@@ -9,14 +9,14 @@ GZTAR_ARCHIVE = TMP + "archive.tar.gz"
 
 def create_tar_archive():
     with tarfile.open(TAR_ARCHIVE, 'w') as tar:
-        tar.add(DATA + "lines.txt", "lines.txt")
-        tar.add(DATA + "loremipsum.txt", "loremipsum.txt")
+        tar.add(DATA + "sample.txt", "sample.txt")
+        tar.add(DATA + "sample.html", "sample.html")
 
 
 def append_to_tar_archive():
     # mode='a' can only be used for uncompressed tar archives
     with tarfile.open(TAR_ARCHIVE, 'a') as tar:
-        tar.add(DATA + "sample.txt", "sample.txt")
+        tar.add(DATA + "loremipsum.txt", "loremipsum.txt")
 
 
 def read_tar_archive():
@@ -50,8 +50,8 @@ def extract_all():
 def create_gztar_archive():
     # gz, bz2, xz(lzma)
     with tarfile.open(GZTAR_ARCHIVE, 'w:gz') as tar:
-        tar.add(DATA + "lines.txt", "lines.txt")
         tar.add(DATA + "sample.txt", "sample.txt")
+        tar.add(DATA + "sample.html", "sample.html")
 
 
 def read_gztar_archive():

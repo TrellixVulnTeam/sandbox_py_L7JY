@@ -4,8 +4,8 @@ DATA = "../data/"
 TMP = "../tmp/"
 
 # copy text file
-infile = open(DATA + "lines.txt", "rt", encoding="utf-8")
-outfile = open(TMP + "lines-copy.txt", "wt", encoding="utf-8")
+infile = open(DATA + "sample.txt", "rt", encoding="utf-8")
+outfile = open(TMP + "sample-copy.txt", "wt", encoding="utf-8")
 for line in infile:
     outfile.write(line)
     # print(line, end='', file=outfile)
